@@ -7,7 +7,7 @@ export default {
   SELL: '/sell',
 
   // Buyer pages
-  BUY: '/buy',
+  FORM: '/form',
 
   // Admin pages
 };

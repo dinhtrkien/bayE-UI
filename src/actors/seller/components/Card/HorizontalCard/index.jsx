@@ -1,5 +1,4 @@
 import React from 'react';
-
 export default function HorizontalCard({ car }) {
   return (
     <div className="w-full max-w-6xl shadow-xl card lg:card-side bg-base-100 max-h-96">
