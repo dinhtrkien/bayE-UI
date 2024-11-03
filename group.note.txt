@@ -1,0 +1,4 @@
+1. Lam viec voi ENV trong vite
+  a. Khong su dung process.env.API ma su dung import.meta.env.VITE_API (bat buoc phai co prefix VITE_ thi moi nhan)
+
+2. Co mot page de truy cap vao web => chia role luon
