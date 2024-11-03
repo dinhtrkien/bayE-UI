@@ -23,7 +23,7 @@ const Form = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="w-full max-w-md p-6 bg-white rounded shadow-md">
+    <form onSubmit={handleSubmit} className="w-full max-w-md p-6 bg-white rounded shadow-md my-2 m-auto">
       <div className="mb-4">
         <label className="block text-sm font-medium text-gray-700">Name</label>
         <input
