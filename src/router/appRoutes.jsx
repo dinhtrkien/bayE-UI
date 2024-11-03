@@ -1,6 +1,6 @@
 import routes from '@src/constants/route';
 import Sell from '@src/actors/seller/pages/Sell';
-import Buy from '@src/actors/buyer/pages/Buy';
+import Form from '@src/actors/buyer/pages/Form';
 import Home from '@src/pages/Home';
 
 import Login from '@src/pages/Login';
@@ -14,8 +14,8 @@ export default [
     isPrivate: false,
   },
   {
-    path: routes.BUY,
-    component: Buy,
+    path: routes.FORM,
+    component: Form,
     exact: true,
     restricted: true,
     isPrivate: false,
