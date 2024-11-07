@@ -1,36 +1,25 @@
-/* eslint-disable react/jsx-no-comment-textnodes */
-/* eslint-disable-next-line jsx-a11y/anchor-is-valid */
 import React from 'react';
-const Header = () => {
+import Logo from './Logo';
+import Navigation from './Navigation';
+import SearchComponent from './SearchComponent';
+import LoginButton from './LoginButton';
+
+function Header() {
   return (
-    <div className="navbar bg-slate-400">
-      <div className="flex-1">
-        <a className="text-xl btn btn-ghost" href="/">
-          bayE
-          {/* TODO: Better with image here */}
-        </a>
+    <header className="flex overflow-hidden flex-col pt-4 w-full bg-white max-md:max-w-full">
+      <div className="flex flex-wrap gap-10 justify-center items-center self-center max-md:max-w-full">
+        <div className="flex flex-wrap gap-10 items-start self-stretch my-auto min-w-[240px] max-md:max-w-full">
+          <Logo />
+          <Navigation />
+        </div>
+        <div className="flex gap-6 items-center self-stretch my-auto min-w-[240px]">
+          <SearchComponent />
+          <LoginButton />
+        </div>
       </div>
-      <div className="flex-none">
-        <ul className="px-1 menu menu-horizontal">
-          <li>
-            <a href="/">Link</a>
-          </li>
-          <li>
-            <details>
-              <summary>Parent</summary>
-              <ul className="p-2 rounded-t-none bg-base-100">
-                <li>
-                  <a href="/">Link 1</a>
-                </li>
-                <li>
-                  <a href="/">Link 2</a>
-                </li>
-              </ul>
-            </details>
-          </li>
-        </ul>
-      </div>
-    </div>
+      <div className="flex mt-4 w-full bg-stone-500 bg-opacity-30 min-h-[1px] max-md:max-w-full" />
+    </header>
   );
-};
+}
+
 export default Header;
