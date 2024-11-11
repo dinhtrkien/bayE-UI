@@ -1,8 +1,8 @@
 import React from 'react';
-import Logo from './Logo';
-import Navigation from './Navigation';
-import SearchComponent from './SearchComponent';
-import LoginButton from './LoginButton';
+import Logo from '../Logo';
+import Navigation from '../Navigation';
+import SearchComponent from '../SearchComponent';
+import LoginButton from '../LoginButton';
 
 function Header() {
   return (

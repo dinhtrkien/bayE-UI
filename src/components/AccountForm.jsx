@@ -1,10 +1,10 @@
 import React from 'react';
 import FormInput from './FormInput';
-import PhoneInput from './PhoneInput.jsx';
+import PhoneInput from './Header/PhoneInput.jsx';
 import AccountTypeSelect from './AccountTypeSelect';
-import TermsCheckbox from './TermsCheckbox';
-import SubmitButton from './SubmitButton';
-import SocialSignup from './SocialSignup';
+import TermsCheckbox from './Header/TermsCheckbox';
+import SubmitButton from './Header/SubmitButton';
+import SocialSignup from './Header/SocialSignup';
 
 function AccountForm() {
   return (
