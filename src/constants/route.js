@@ -8,6 +8,6 @@ export default {
 
   // Buyer pages
   FORM: '/form',
-
+  CAR_DETAIL: '/car/:id',
   // Admin pages
 };
