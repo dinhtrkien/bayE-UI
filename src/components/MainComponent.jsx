@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from './Header/Header';
 import CreateAccount from './CreateAccount';
-import Footer from './Footer';
+import Footer from './Footer/Footer';
 
 function MainComponent() {
   return (

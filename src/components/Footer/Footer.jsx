@@ -1,6 +1,6 @@
 import React from 'react';
-import FooterLinks from './FooterLinks';
-import FooterBottom from './FooterBottom';
+import FooterLinks from '../FooterLinks';
+import FooterBottom from '../FooterBottom';
 
 function Footer() {
   return (
