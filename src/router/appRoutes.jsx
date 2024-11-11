@@ -1,11 +1,19 @@
 import routes from '@src/constants/route';
-import Sell from '@src/actors/seller/pages/Sell';
+import Sell from '@src/actors/seller/pages/Seller';
 import Form from '@src/actors/buyer/pages/Form';
 import Home from '@src/pages/Home';
 
 import Login from '@src/pages/Login';
+import AddCar from '@src/actors/seller/pages/AddCar';
 
 export default [
+  {
+    path: routes.ADDCAR,
+    component: AddCar,
+    exact: true,
+    restricted: true,
+    isPrivate: false,
+  },
   {
     path: routes.SELL,
     component: Sell,

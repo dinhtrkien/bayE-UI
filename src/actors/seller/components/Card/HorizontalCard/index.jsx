@@ -1,26 +1,58 @@
+import { ToolIcon } from '@src/components/Icon/ToolIcon';
 import React from 'react';
-export default function HorizontalCard({ car }) {
+
+export default function HorizontalCard({ car, openWaiterList }) {
   return (
-    <div className="w-full max-w-6xl shadow-xl card lg:card-side bg-base-100 max-h-96">
-      <div className="card-body">
-        <h2 className="card-title">Mercedes-Benz A32</h2>
-        <p className="text-gray-500">Added {car.addedDate} days ago</p>
-        <p className="text-gray-500">{car.viewedCount} recently</p>
-        <p className="text-gray-500">Price: ${car.price}</p>
-        <div className="justify-end card-actions">
-          <div className="btn btn-primary" htmlFor="upload">
-            {car.testRequestCount} waiting for car request
-          </div>
+    <div className="flex items-start w-full max-w-4xl space-x-4 border border-gray-500 shadow-lg rounded-2xl max-h-56">
+      <div className="flex flex-row w-3/5 gap-2 overflow-hidden max-h-56">
+        <img
+          src={car.image}
+          alt="Car"
+          className="object-cover w-9/12 rounded-2xl max-h-fit"
+        />
+        <div className="flex flex-col gap-2">
+          <img
+            src={car.image}
+            alt="Car"
+            className="object-cover rounded-lg h-1/2 "
+          />{' '}
+          <img
+            src={car.image}
+            alt="Car"
+            className="object-cover rounded-lg h-1/2 "
+          />
         </div>
       </div>
-      <figure>
-        <img
-          src="/src/mock/hyukohImage.jpg"
-          // src='{children.url}'
-          alt="Live from space album cover"
-          className="object-cover w-32 h-32"
-        />
-      </figure>
+      {/* Car Details */}
+      <div className="w-2/5 p-5">
+        {/* Title and Heart Icon */}
+        <div className="flex items-start justify-between">
+          <h2 className="text-3xl font-semibold">{car.name}</h2>
+        </div>
+
+        {/* Condition and Price */}
+        <p className="text-lg text-gray-500 ">Added {car.addedDate} days ago</p>
+        <div className="mt-2 text-sm text-gray-600">
+          <p>{car.viewedCount} viewed recently</p>
+        </div>
+
+        <h1 className="text-xl font-bold">Price: ${car.price}</h1>
+        <div className="flex items-end justify-between mt-2">
+          <div className=" card-actions">
+            <button
+              type="button"
+              className="btn btn-primary"
+              htmlFor="upload"
+              onClick={openWaiterList}
+            >
+              {car.testRequestCount} waiting for car request
+            </button>
+          </div>
+          <ToolIcon />
+        </div>
+
+        {/* Additional Details */}
+      </div>
     </div>
   );
 }

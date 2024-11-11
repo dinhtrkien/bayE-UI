@@ -5,7 +5,7 @@ export default {
 
   // Seller pages
   SELL: '/sell',
-
+  ADDCAR: '/addcar',
   // Buyer pages
   FORM: '/form',
 
