@@ -18,13 +18,13 @@ const InstallmentCalculator = () => {
   };
 
   return (
-    <div className="max-w-4xl mx-auto p-8 bg-white shadow-md rounded-lg">
+    <div className="max-w-4xl p-8 mx-auto bg-white rounded-lg shadow-md">
       <div className="grid grid-cols-2 gap-8">
         <div>
-          <h2 className="text-2xl font-semibold mb-4">
+          <h2 className="mb-4 text-2xl font-semibold">
             Installment Calculator
           </h2>
-          <p className="text-gray-600 mb-6">
+          <p className="mb-6 text-gray-600">
             Use our Installment calculator to calculate payments over the life
             of your installment. Enter your information to see how much your
             monthly payments could be.
@@ -97,18 +97,18 @@ const InstallmentCalculator = () => {
           </div>
           <button
             onClick={calculate}
-            className="mt-6 w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 transition"
+            className="w-full py-2 mt-6 text-white transition bg-blue-600 rounded-md hover:bg-blue-700"
           >
             Calculate
           </button>
         </div>
-        <div className="bg-gray-100 p-6 rounded-md">
-          <h3 className="text-xl font-semibold mb-4">Monthly Payment</h3>
-          <p className="text-3xl text-blue-600 font-bold">${monthlyPayment}</p>
-          <h3 className="text-xl font-semibold mt-6">Down Payment</h3>
-          <p className="text-3xl text-blue-600 font-bold">${downPayment}</p>
-          <h3 className="text-xl font-semibold mt-6">Total Payment</h3>
-          <p className="text-3xl text-blue-600 font-bold">${totalPayment}</p>
+        <div className="p-6 bg-gray-100 rounded-md">
+          <h3 className="mb-4 text-xl font-semibold">Monthly Payment</h3>
+          <p className="text-3xl font-bold text-blue-600">${monthlyPayment}</p>
+          <h3 className="mt-6 text-xl font-semibold">Down Payment</h3>
+          <p className="text-3xl font-bold text-blue-600">${downPayment}</p>
+          <h3 className="mt-6 text-xl font-semibold">Total Payment</h3>
+          <p className="text-3xl font-bold text-blue-600">${totalPayment}</p>
         </div>
       </div>
     </div>
