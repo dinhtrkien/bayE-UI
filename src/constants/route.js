@@ -5,9 +5,9 @@ export default {
 
   // Seller pages
   SELL: '/sell',
-
+  ADDCAR: '/addcar',
   // Buyer pages
   FORM: '/form',
-
+  CAR_DETAIL: '/car/:id',
   // Admin pages
 };

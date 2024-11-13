@@ -1,20 +1,24 @@
 import React from 'react';
 import FormInput from './FormInput';
-import PhoneInput from './Header/PhoneInput.jsx';
+// import PhoneInput from './Header/PhoneInput.jsx';
+import PhoneInput from './Header/PhoneInput';
 import AccountTypeSelect from './AccountTypeSelect';
 import TermsCheckbox from './Header/TermsCheckbox';
-import SubmitButton from './Header/SubmitButton';
-import SocialSignup from './Header/SocialSignup';
+import SubmitButton from './Button/SubmitButton';
+import SocialSignup from './SocialSignup';
 
 function AccountForm() {
   return (
     <form className="flex overflow-hidden grow gap-2.5 items-start p-12 w-full bg-white rounded-3xl max-md:px-5 max-md:mt-4">
       <div className="flex flex-col min-w-[240px] w-[534px] max-md:max-w-full">
-        <div className="flex flex-wrap gap-10 justify-center items-center max-md:max-w-full">
+        <div className="flex flex-wrap items-center justify-center gap-10 max-md:max-w-full">
           <h2 className="self-stretch my-auto text-3xl font-medium text-zinc-800">
             Create an account
           </h2>
-          <a href="#login" className="self-stretch my-auto text-base text-neutral-900">
+          <a
+            href="#login"
+            className="self-stretch my-auto text-base text-neutral-900"
+          >
             log in instead
           </a>
         </div>
@@ -22,7 +26,11 @@ function AccountForm() {
           <FormInput label="First name" placeholder="Tony" />
           <FormInput label="Last name" placeholder="Bui" />
         </div>
-        <FormInput label="Email" placeholder="buitony.420@gmail.com" type="email" />
+        <FormInput
+          label="Email"
+          placeholder="buitony.420@gmail.com"
+          type="email"
+        />
         <PhoneInput />
         <AccountTypeSelect />
         <TermsCheckbox />

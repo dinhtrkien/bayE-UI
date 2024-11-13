@@ -4,10 +4,12 @@ import Header from '@src/components/Header/Header';
 import React from 'react';
 
 const Login = () => {
-  return <div>Login</div>;
-  <Header/>
-  <AccountForm/>
-  <Footer/>
+  return (
+    <div>
+      <AccountForm />
+      <Footer />
+    </div>
+  );
 };
 
 export default Login;
