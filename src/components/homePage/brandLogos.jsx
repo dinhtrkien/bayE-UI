@@ -12,16 +12,18 @@ const BrandLogos = () => {
 
   return (
     <div className="py-4">
-      {/* <hr className="border-gray-200 mb-4" /> */}
+      {/* <hr className="mb-4 border-gray-200" /> */}
       <div className="flex items-center justify-center space-x-8">
         {brands.map((brand) => (
           <div key={brand.name} className="flex flex-col items-center">
             <img src={brand.src} alt={brand.name} className="h-12" />
-            <span className="text-sm font-medium text-gray-600 mt-2">{brand.name}</span>
+            <span className="mt-2 text-sm font-medium text-gray-600">
+              {brand.name}
+            </span>
           </div>
         ))}
       </div>
-      <hr className="border-gray-200 mt-4 w-4/5 mx-auto" />
+      <hr className="w-4/5 mx-auto mt-4 border-gray-200" />
     </div>
   );
 };

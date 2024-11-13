@@ -2,17 +2,23 @@ import React from 'react';
 
 const CarCard = ({ model, year, price, distance, sellerName, description }) => {
   return (
-    <div className="max-w-2xl mx-auto rounded-lg shadow-lg border border-gray-300 p-4 flex items-start space-x-4">
+    <div className="flex items-start max-w-2xl p-4 mx-auto space-x-4 border border-gray-300 rounded-lg shadow-lg">
       {/* Car Image */}
       <div className="w-1/3">
-        <img src="https://via.placeholder.com/150" alt="Car" className="rounded-lg" />
+        <img
+          src="https://via.placeholder.com/150"
+          alt="Car"
+          className="rounded-lg"
+        />
       </div>
 
       {/* Car Details */}
       <div className="w-2/3">
         {/* Title and Heart Icon */}
-        <div className="flex justify-between items-start">
-          <h2 className="text-lg font-semibold">{model} ({year})</h2>
+        <div className="flex items-start justify-between">
+          <h2 className="text-lg font-semibold">
+            {model} ({year})
+          </h2>
           <button className="text-gray-500 hover:text-red-500">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -33,10 +39,10 @@ const CarCard = ({ model, year, price, distance, sellerName, description }) => {
 
         {/* Condition and Price */}
         <div className="text-gray-500">Used</div>
-        <div className="text-xl font-bold mt-1">Price: ${price}</div>
+        <div className="mt-1 text-xl font-bold">Price: ${price}</div>
 
         {/* Additional Details */}
-        <div className="text-sm text-gray-600 mt-2">
+        <div className="mt-2 text-sm text-gray-600">
           <p>Distance: {distance} km</p>
           <p>Seller name: {sellerName}</p>
           <p>Description: {description}</p>
