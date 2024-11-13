@@ -5,6 +5,7 @@ import Home from '@src/pages/Home';
 import CarDetail from '@src/actors/buyer/pages/CarDetail';
 import Login from '@src/pages/Login';
 import AddCar from '@src/actors/seller/pages/AddCar';
+import CarWishlist from '@src/actors/buyer/pages/Wishlist';
 
 export default [
   {
@@ -45,6 +46,13 @@ export default [
   {
     path: routes.CAR_DETAIL,
     component: CarDetail,
+    exact: true,
+    restricted: false,
+    isPrivate: false,
+  },
+  {
+    path: routes.Car_Wishlist,
+    component: CarWishlist,
     exact: true,
     restricted: false,
     isPrivate: false,
