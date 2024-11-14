@@ -1,17 +1,15 @@
 import React, { useState } from 'react';
 
 function CarWishlist() {
-    // Initialize cars with some sample data
     const [cars, setCars] = useState([
-      { id: 1, brand: 'Toyota', model: 'Camry', description: 'A reliable sedan', price: '$20,000', image: 'url-to-image', isAdded: false },
-      { id: 2, brand: 'Honda', model: 'Civic', description: 'A compact car', price: '$18,000', image: 'url-to-image', isAdded: false },
-      // Add more cars here
+      { id: 1, brand: 'Toyota', model: 'Camry', description: 'A reliable sedan', price: '$20,000', image: 'url-to-image', isSold: false },
+      { id: 2, brand: 'Honda', model: 'Civic', description: 'A compact car', price: '$18,000', image: 'url-to-image', isSold: false },
     ]);
   
     const toggleAddToBag = (carId) => {
       setCars((prevCars) =>
         prevCars.map((car) =>
-          car.id === carId ? { ...car, isAdded: !car.isAdded } : car
+          car.id === carId ? { ...car, isSold: !car.isSold } : car
         )
       );
     };
@@ -29,12 +27,12 @@ function CarWishlist() {
             <p className="text-gray-600">{car.description}</p>
             <p className="text-lg font-bold mt-2">{car.price}</p>
             <button
-              onClick={() => toggleAddToBag(car.id)}  // Add onClick event here
+              onClick={() => toggleAddToBag(car.id)}
               className={`mt-4 w-full py-2 rounded-md font-medium ${
-                car.isAdded ? 'bg-green-500 text-white' : 'bg-black text-white'
+                !car.isSold ? 'bg-green-500 text-white' : 'bg-black text-white'
               }`}
             >
-              {car.isAdded ? 'Added to Bag' : 'Add to Bag'}
+              {car.isSold ? 'Sold' : 'Available'}
             </button>
           </div>
         ))}
