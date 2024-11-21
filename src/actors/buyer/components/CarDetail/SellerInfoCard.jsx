@@ -1,10 +1,11 @@
 import React from 'react';
+import CardContainer from "@src/actors/buyer/components/Common/CardContainer";
 
 // Did not use mock data
 
 const SellerInfoCard = () => {
   return (
-    <div className="w-80 h-96 mx-auto bg-white rounded-xl shadow-lg p-8 text-center space-y-6 flex flex-col justify-between">
+    <CardContainer className="w-80 h-96 mx-auto bg-white rounded-xl shadow-lg p-8 text-center space-y-6 flex flex-col justify-between">
       {/* Seller Avatar */}
       <div className="flex justify-center">
         <img
@@ -43,7 +44,7 @@ const SellerInfoCard = () => {
           <span className="ml-1">→</span>
         </a>
       </div>
-    </div>
+    </CardContainer>
   );
 };
 

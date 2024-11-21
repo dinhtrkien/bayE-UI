@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import CardContainer from "@src/actors/buyer/components/Common/CardContainer";
 
 const InstallmentCalculator = () => {
   // State for the form inputs
@@ -41,7 +42,7 @@ const InstallmentCalculator = () => {
   };
 
   return (
-    <div className="border-2 max-w-6xl mx-auto my-10 bg-gray-50 rounded-2xl p-8 flex">
+    <CardContainer className={'mx-auto my-10 flex flex-row'}>
       {/* Left Section - Form */}
       <div className="w-2/3 pr-8">
         <h2 className="text-3xl font-bold mb-4">Installment Calculator</h2>
@@ -221,7 +222,7 @@ const InstallmentCalculator = () => {
           </p>
         </div>
       </div>
-    </div>
+    </CardContainer>
   );
 };
 

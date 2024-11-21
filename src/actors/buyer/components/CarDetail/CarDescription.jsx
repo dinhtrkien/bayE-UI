@@ -2,7 +2,7 @@ import React from 'react';
 // Did not use mock data
 const CarDescription = () => {
   return (
-    <div className="relative w-full max-w-3xl m-auto">
+    <div className="w-full max-w-3xl m-auto">
       <h2 className="text-2xl font-medium mb-4">Description</h2>
       <p className="text-gray-700 leading-relaxed">
         A car is a vehicle that has wheels, carries a small number of

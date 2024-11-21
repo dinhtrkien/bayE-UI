@@ -33,6 +33,25 @@ const PrivateApp = () => {
   );
 };
 
+const PublicApp = () => {
+  const publicRoutes = appRoutes.filter((route) => !route.isPrivate);
+  return (
+    <Layout>
+      <Switch>
+    {publicRoutes.map((publicRoute) => (
+        <PublicRoute
+          exact
+          path={publicRoute.path}
+          component={publicRoute.component}
+          restricted={publicRoute.restricted}
+          key={publicRoute.path}
+        />
+      ))}
+      </Switch>
+    </Layout>
+  )
+}
+
 const AppRouter = () => {
   const [isFirstTime, setIsFirstTime] = useState(true);
 
@@ -64,16 +83,8 @@ const AppRouter = () => {
   return (
     <BrowserRouter>
       <Switch>
-        {publicRoutes.map((publicRoute) => (
-          <PublicRoute
-            exact
-            path={publicRoute.path}
-            component={publicRoute.component}
-            restricted={publicRoute.restricted}
-            key={publicRoute.path}
-          />
-        ))}
 
+        <PublicRoute component={PublicApp}/>
         <PrivateRoute component={PrivateApp} />
       </Switch>
     </BrowserRouter>

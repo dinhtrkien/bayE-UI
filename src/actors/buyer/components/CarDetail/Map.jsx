@@ -45,7 +45,7 @@ const Map = () => {
   });
 
   return (
-    <div className="max-w-6xl mx-auto my-8">
+    <div className="mx-auto my-8">
       <h2 className="text-2xl font-semibold mb-2">Location</h2>
       <p className="text-gray-600 mb-4">{locationMessage}</p>
 
@@ -53,7 +53,7 @@ const Map = () => {
         center={position}
         zoom={14}
         scrollWheelZoom={false}
-        style={{ height: '400px', borderRadius: '12px' }}
+        style={{ height: '600px', borderRadius: '12px' }}
       >
         <TileLayer
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
