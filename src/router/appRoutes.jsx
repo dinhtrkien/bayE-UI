@@ -4,6 +4,7 @@ import Form from '@src/actors/buyer/pages/Form';
 import Home from '@src/pages/Home';
 import CarDetailPage from '@src/actors/buyer/pages/CarDetailPage';
 import Login from '@src/pages/Login';
+import Register from '@src/pages/Register';
 import AddCar from '@src/actors/seller/pages/AddCar';
 import Shopping from "@src/actors/buyer/pages/Shopping";
 
@@ -32,6 +33,13 @@ export default [
   {
     path: routes.LOGIN,
     component: Login,
+    exact: true,
+    restricted: true,
+    isPrivate: false,
+  },
+  {
+    path: routes.REGISTER,
+    component: Register,
     exact: true,
     restricted: true,
     isPrivate: false,

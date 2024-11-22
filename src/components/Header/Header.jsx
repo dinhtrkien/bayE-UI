@@ -1,11 +1,14 @@
+/* eslint-disable jsx-a11y/control-has-associated-label */
+/* eslint-disable react/button-has-type */
 import React from 'react';
+import Logo from './component/Logo';
 
 const Header = () => {
   return (
     <header className="bg-white shadow">
       <div className="container flex items-center justify-between py-4 mx-auto">
         <div className="flex items-center">
-          <img src="/logo.svg" alt="Logo" className="h-8 mr-4" />
+          <Logo />
           <nav className="space-x-4">
             <a href="/" className="text-gray-700 hover:text-blue-500">
               Home
@@ -44,6 +47,9 @@ const Header = () => {
           </div>
           <button className="px-4 py-2 ml-4 text-white bg-blue-500 rounded-md">
             Login
+          </button>
+          <button className="px-4 py-2 ml-4 text-white bg-blue-500 rounded-md">
+            Sign Up
           </button>
         </div>
       </div>
