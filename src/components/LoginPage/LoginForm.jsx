@@ -1,6 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 function LoginForm() {
+  const [isHidden, setIsHidden] = useState(true);
+  function handleHide() {
+    setIsHidden(!isHidden);
+  }
   return (
     <section className="flex overflow-hidden flex-col justify-center px-14 py-10 w-full rounded-3xl border border-solid border-stone-500 border-opacity-50 max-md:px-5">
       <div className="flex flex-col justify-center items-center w-full max-w-[528px] max-md:max-w-full">
@@ -23,14 +27,15 @@ function LoginForm() {
               <label htmlFor="password" className="text-base text-stone-500">
                 Your password
               </label>
-              <button type="button" className="flex gap-2 text-lg text-right whitespace-nowrap text-stone-500 text-opacity-80">
+              <button type="button" className="flex gap-2 text-lg text-right whitespace-nowrap text-stone-500 text-opacity-80" onClick={handleHide}>
                 <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/440bdce0e9d84c08a6a720b9d11b712f/a7da8ed3f20b5b4122f7ad5ea10b2c7a004779f9e3cd9284bfd7bba240051604?apiKey=f6f7fc6690f84fd8b436b7e1bd24bade&" alt="" className="object-contain shrink-0 self-start w-6 aspect-square" />
                 <span>Hide</span>
               </button>
             </div>
             <input
-              type="password"
+              type="text"
               id="password"
+              value={isHidden ? '*********' : 'ABCD'}
               className="flex mt-1 w-full rounded-xl border border-solid border-stone-500 border-opacity-30 min-h-[56px] max-md:max-w-full bg-transparent"
             />
           </div>
