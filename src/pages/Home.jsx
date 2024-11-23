@@ -12,6 +12,7 @@ const Home = () => {
           Latest Listings
         </h2>
       </div>
+      //TODO: Adjust this
       <CarCard
         model="BMW M8"
         year="2023"

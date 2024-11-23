@@ -7,8 +7,10 @@ import L from 'leaflet';
 import markerIconPng from 'leaflet/dist/images/marker-icon.png';
 import markerShadowPng from 'leaflet/dist/images/marker-shadow.png';
 
+const initPosition = [21.0285, 105.8542]
 const Map = () => {
-  const [position, setPosition] = useState([21.0285, 105.8542]); // Default position, e.g., Hanoi
+  //TODO: let {lat, long} = call backend for seller position
+  const [position, setPosition] = useState(initPosition); // Default position, e.g., Hanoi
   const [locationMessage, setLocationMessage] = useState(
     'Enable location services to see the exact location.',
   );
