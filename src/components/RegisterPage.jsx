@@ -6,11 +6,9 @@ import Footer from './Footer/Footer';
 function MainComponent() {
   return (
     <div className="flex overflow-hidden flex-col bg-white">
-      <Header />
       <main>
         <CreateAccount />
       </main>
-      <Footer />
     </div>
   );
 }

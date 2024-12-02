@@ -1,15 +1,8 @@
-import AccountForm from '@src/components/AccountForm';
-import Footer from '@src/components/Footer/Footer';
-import Header from '@src/components/Header/Header';
+import LoginPage from '@src/components/LoginPage/LoginPage';
 import React from 'react';
 
 const Login = () => {
-  return (
-    <div>
-      <AccountForm />
-      <Footer />
-    </div>
-  );
+  return <LoginPage />;
 };
 
 export default Login;

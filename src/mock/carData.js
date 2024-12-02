@@ -130,4 +130,35 @@ const mockUserData = [
     location: 'Can Tho',
   },
 ];
-export { carData, soldCarData, mockUserData };
+// Mảng carWishlist mới
+const carWishlist = [
+  {
+    id: 1,
+    name: 'Tesla Model S',
+    addedDate: 3,
+    price: 75000,
+    viewedCount: 20,
+    testRequestCount: 5,
+    image: '/src/mock/car.png',
+  },
+  {
+    id: 2,
+    name: 'Audi A8',
+    addedDate: 7,
+    price: 60000,
+    viewedCount: 8,
+    testRequestCount: 1,
+    image: '/src/mock/car.png',
+  },
+  {
+    id: 3,
+    name: 'Porsche 911',
+    addedDate: 10,
+    price: 95000,
+    viewedCount: 15,
+    testRequestCount: 3,
+    image: '/src/mock/car.png',
+  },
+  // Thêm xe vào wishlist nếu cần
+];
+export { carData, soldCarData, mockUserData, carWishlist };

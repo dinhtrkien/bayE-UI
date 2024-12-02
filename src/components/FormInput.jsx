@@ -7,7 +7,7 @@ function FormInput({ label, placeholder, type = 'text' }) {
       <input
         type={type}
         placeholder={placeholder}
-        className="flex overflow-hidden flex-col justify-center items-start px-6 py-4 mt-2 w-full whitespace-nowrap rounded-xl border border-solid border-stone-500 border-opacity-30 text-neutral-900 max-md:px-5"
+        className="flex overflow-hidden flex-col justify-center items-start px-6 py-4 mt-2 w-full whitespace-nowrap bg-transparent rounded-xl border border-solid border-stone-500 border-opacity-30 text-neutral-900 max-md:px-5"
       />
     </div>
   );
