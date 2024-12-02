@@ -11,7 +11,6 @@ import Map from '@src/actors/buyer/components/CarDetail/Map';
 import mockCarData from '@src/actors/buyer/mockCar';
 import { useParams } from 'react-router-dom';
 import seller from '@src/actors/seller/pages/Seller';
-import axios from 'axios';
 
 const CarDetailPage = () => {
   const { id } = useParams();
@@ -52,7 +51,8 @@ const CarDetailPage = () => {
           engineCapacity: car.EngineCapacity,
           madeIn: car.MadeIn,
           status: car.Status,
-          location: car.users_cars_SellerIDTousers.Location,
+          description: car.Description,
+          // location: car.users_cars_SellerIDTousers.Location,
           sellerId: car.SellerID,
           seller: car.users_cars_SellerIDTousers,
           // images: car.images,
@@ -83,7 +83,7 @@ const CarDetailPage = () => {
         <div className="flex flex-col">
           <CarOverview carData={carData} />
           <hr className="my-8" />
-          <CarDescription description={mockCarData[0].description} />
+          <CarDescription description={carData.description} />
         </div>
         <div className="ml-8">
           <SellerInfoCard sellerData={carData.seller} />

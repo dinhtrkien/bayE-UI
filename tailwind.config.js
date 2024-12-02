@@ -15,13 +15,12 @@ module.exports = {
     themes: [
       {
         light: {
-          ...require("daisyui/src/theming/themes")["light"],
-          primary: "#3B82F6AA",
-          neutral: "#9c9c9c"
-        }
-      }
-
-    ]
+          ...require('daisyui/src/theming/themes').light,
+          primary: '#3B82F6AA',
+          neutral: '#9c9c9c',
+        },
+      },
+    ],
   },
   plugins: [daisyui],
 };

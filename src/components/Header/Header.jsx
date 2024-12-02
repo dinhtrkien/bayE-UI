@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import SearchModal from "@components/Header/component/SearchModal";
+import React, { useState } from 'react';
+import SearchModal from '@components/Header/component/SearchModal';
 
 const Header = () => {
   const [openModal, setOpenModal] = useState(false);
@@ -44,13 +44,12 @@ const Header = () => {
               </svg>
             </button>
           </div>
-          {/* <SearchAndFilter /> */}
           <button className="px-4 py-2 ml-4 text-white bg-blue-500 rounded-md">
             Login
           </button>
         </div>
       </div>
-      <SearchModal open={openModal} onCancel={()=>setOpenModal(false)}/>
+      <SearchModal open={openModal} onCancel={() => setOpenModal(false)} />
     </header>
   );
 };
