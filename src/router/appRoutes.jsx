@@ -2,9 +2,11 @@ import routes from '@src/constants/route';
 import Sell from '@src/actors/seller/pages/Seller';
 import Form from '@src/actors/buyer/pages/Form';
 import Home from '@src/pages/Home';
-import CarDetail from '@src/actors/buyer/pages/CarDetail';
+import CarDetailPage from '@src/actors/buyer/pages/CarDetailPage';
 import Login from '@src/pages/Login';
+import Register from '@src/pages/Register';
 import AddCar from '@src/actors/seller/pages/AddCar';
+import Shopping from "@src/actors/buyer/pages/Shopping";
 
 export default [
   {
@@ -36,6 +38,13 @@ export default [
     isPrivate: false,
   },
   {
+    path: routes.REGISTER,
+    component: Register,
+    exact: true,
+    restricted: true,
+    isPrivate: false,
+  },
+  {
     path: routes.HOME,
     component: Home,
     exact: true,
@@ -44,9 +53,16 @@ export default [
   },
   {
     path: routes.CAR_DETAIL,
-    component: CarDetail,
+    component: CarDetailPage,
     exact: true,
     restricted: false,
     isPrivate: false,
   },
+  {
+    path: routes.SHOPPING,
+    component: Shopping,
+    exact: true,
+    restricted: false,
+    isPrivate: false
+  }
 ];

@@ -9,5 +9,6 @@ export default {
   // Buyer pages
   FORM: '/form',
   CAR_DETAIL: '/car/:id',
+  SHOPPING: '/shopping'
   // Admin pages
 };

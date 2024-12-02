@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Layout = ({ children }) => {
-  return <div>{children}</div>;
+  return <div className='container py-8 mx-auto'>{children}</div>;
 };
 
 export default Layout;
