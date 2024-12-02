@@ -631,3 +631,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+.container-with-margin {
+  margin-bottom: 50px; /* Adjust the value as needed */
+}

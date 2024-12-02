@@ -5,6 +5,7 @@ import Home from '@src/pages/Home';
 import CarDetail from '@src/actors/buyer/pages/CarDetail';
 import Login from '@src/pages/Login';
 import Register from '@src/pages/Register';
+import Profile from '@src/pages/Profile';
 import AddCar from '@src/actors/seller/pages/AddCar';
 
 export default [
@@ -41,6 +42,13 @@ export default [
     component: Register,
     exact: true,
     restricted: true,
+    isPrivate: false,
+  },
+  {
+    path: routes.PROFILE,
+    component: Profile,
+    exact: true,
+    restricted: false,
     isPrivate: false,
   },
   {

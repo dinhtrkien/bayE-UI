@@ -1,13 +1,10 @@
-import * as React from "react";
-import { Header } from '../Header/Header';
-import { Sidebar } from './Sidebar/Sidebar';
-import { ProfileForm } from './components/ProfileForm';
-import { Footer } from './components/Footer';
+import React from 'react';
+import { Sidebar } from '../Sidebar/Sidebar';
+import { ProfileForm } from './ProfileForm';
 
-export function UserProfile() {
+export default function UserProfile({ username }) {
   return (
     <div className="flex flex-col bg-white">
-      <Header />
       <div className="w-full bg-black border border-black border-solid opacity-30 min-h-[1px] max-md:max-w-full" />
       <div className="flex flex-wrap gap-5 justify-between self-center mt-20 w-full text-sm max-w-[1164px] max-md:mt-10 max-md:max-w-full">
         <nav className="flex gap-3 items-center text-black">
@@ -18,21 +15,19 @@ export function UserProfile() {
             My Account
           </a>
         </nav>
-        <div className="leading-5 text-red-500">
-          Welcome! <span className="text-red-500">Bui Tony</span>
+        <div className="leading-5 text-black opacity-100">
+          Welcome! <span className="text-red-500">{username}</span>
         </div>
       </div>
-      <main className="self-center mt-20 w-full max-w-[1170px] max-md:mt-10 max-md:max-w-full">
+      <main className="self-center mt-20 mb-20 w-full max-w-[1170px] max-md:mt-10 max-md:max-w-full">
         <div className="flex gap-5 max-md:flex-col">
           <Sidebar />
+          {/* <div className="w-[1px] bg-gray-300" /> */}
           <div className="flex flex-col ml-5 w-[84%] max-md:ml-0 max-md:w-full">
             <ProfileForm />
           </div>
         </div>
       </main>
-      <Footer />
     </div>
   );
 }
-
-export default UserProfile;

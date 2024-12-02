@@ -31,7 +31,7 @@ function PhoneInput() {
         </div>
       </div>
     </div>
-  );x
+  );
 }
 
 export default PhoneInput;

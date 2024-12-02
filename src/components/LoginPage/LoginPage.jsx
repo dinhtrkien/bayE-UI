@@ -6,7 +6,7 @@ import Footer from '../Footer/Footer';
 function LoginPage() {
   return (
     <div className="flex overflow-hidden flex-col bg-white">
-    <hr/>
+      <hr />
       <main className="flex flex-col justify-center items-center self-center mt-16 max-w-full w-[640px] max-md:mt-10">
         <LoginForm />
         <div className="flex flex-wrap gap-5 justify-between mt-12 w-full text-base text-right text-neutral-900 max-md:mt-10">

@@ -1,22 +1,26 @@
-import { put, all, takeLatest } from 'redux-saga/effects';
-import apis from '@apis';
+import { put, all, takeLatest, call } from 'redux-saga/effects';
+import axios from 'axios';
 import { setCookie } from '@src/utils/cookie';
 import { A_WEEK } from '@src/constants';
-import axiosClient from '@apis/api';
+import { loginRequest, loginSuccess, loginFailure } from '../userSlice';
 
-import actions from '../actions';
-
-function* loginSaga(email, password) {
+function* loginSaga(action) {
   try {
-    const { accessToken } = yield apis.auth.login(email, password);
-    axiosClient.defaults.headers.common.Authorization = `Bearer ${accessToken}`;
+    const { email, password } = action.payload;
+    const response = yield call(axios.post, '/api/login', { email, password });
+    const { accessToken, user } = response.data;
+    axios.defaults.headers.common.Authorization = `Bearer ${accessToken}`;
     setCookie('accessToken', accessToken, A_WEEK);
-    yield put(actions.auth.loginSuccess(accessToken));
+    yield put(loginSuccess({ user, accessToken }));
   } catch (error) {
-    yield put(actions.auth.loginFailure());
+    yield put(loginFailure({ error: error.message }));
   }
 }
 
+function* watchLogin() {
+  yield takeLatest(loginRequest.type, loginSaga);
+}
+
 export default function* rootSaga() {
-  yield all([takeLatest(actions.auth.actionTypes.LOGIN, loginSaga)]);
+  yield all([watchLogin()]);
 }

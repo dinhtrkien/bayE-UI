@@ -1,28 +1,23 @@
-import { createStore, applyMiddleware } from 'redux';
+import { configureStore } from '@reduxjs/toolkit';
 import createSagaMiddleware from 'redux-saga';
-
-import rootReducer, { initialState } from './reducer';
+import userReducer from './userSlice';
 import rootSaga from './saga';
 
+// Create the saga middleware
 const sagaMiddleware = createSagaMiddleware();
 
-const bindMiddleware = (middleware) => {
-  return applyMiddleware(...middleware);
-};
+// Configure the store
+const store = configureStore({
+  reducer: {
+    user: userReducer,
+    // Add other reducers here if needed
+  },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({ thunk: false }).concat(sagaMiddleware),
+  preloadedState: {}, // Add your initial state here if needed
+});
 
-function configureStore(preloadedState = initialState) {
-  const store = createStore(
-    rootReducer,
-    preloadedState,
-    bindMiddleware([sagaMiddleware]),
-  );
+// Run the root saga
+sagaMiddleware.run(rootSaga);
 
-  store.runSagaTask = () => {
-    store.sagaTask = sagaMiddleware.run(rootSaga);
-  };
-
-  store.runSagaTask();
-  return store;
-}
-
-export default configureStore;
+export default store;

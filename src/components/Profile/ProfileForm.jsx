@@ -17,16 +17,16 @@ const personalInfo = [
 export function ProfileForm() {
   return (
     <section className="flex flex-col ml-5 w-[84%] max-md:ml-0 max-md:w-full">
-      <form className="flex overflow-hidden flex-col px-20 py-10 mx-auto w-full text-base bg-white shadow-sm max-md:px-5 max-md:mt-10 max-md:max-w-full">
+      <form className="flex overflow-hidden flex-col px-20 py-10 mx-auto w-full text-base bg-white shadow-lg rounded-lg max-md:px-5 max-md:mt-10 max-md:max-w-full">
         <h1 className="self-start text-xl font-medium leading-snug text-red-500">
           Edit Profile
         </h1>
-        <div className="flex flex-wrap gap-10 items-start mt-4 text-black max-md:max-w-full">
+        <div className="flex gap-10 items-start mt-4 text-black max-md:max-w-full">
           {personalInfo.slice(0, 2).map((field, index) => (
             <FormInput key={index} {...field} />
           ))}
         </div>
-        <div className="flex flex-wrap gap-10 items-start mt-6 text-black max-md:max-w-full">
+        <div className="flex gap-10 items-start mt-6 text-black max-md:max-w-full">
           {personalInfo.slice(2).map((field, index) => (
             <FormInput key={index} {...field} />
           ))}

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Switch, Redirect } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import nprogress from 'nprogress';
 import 'nprogress/nprogress.css';
 
@@ -12,6 +12,7 @@ import appRoutes from './appRoutes';
 
 import PrivateRoute from './PrivateRoute';
 import PublicRoute from './PublicRoute';
+import { loginSuccess } from '../redux/userSlice';
 
 const PrivateApp = () => {
   const privateRoutes = appRoutes.filter((route) => route.isPrivate);
@@ -35,25 +36,29 @@ const PrivateApp = () => {
 
 const AppRouter = () => {
   const [isFirstTime, setIsFirstTime] = useState(true);
-
-  const { accessToken, verifying } = useSelector((state) => state.auth);
-
-  if (!nprogress.isStarted()) nprogress.start();
+  const dispatch = useDispatch();
+  const { accessToken, verifying } = useSelector((state) => state.user);
 
   useEffect(() => {
-    nprogress.done();
-  });
+    if (isFirstTime) {
+      nprogress.start();
+      setIsFirstTime(false);
+    } else {
+      nprogress.done();
+    }
+  }, [isFirstTime]);
 
   useEffect(() => {
     if (!accessToken) {
       const accessTokenFromCookie = getCookie('accessToken');
       if (accessTokenFromCookie) {
-        // TODO dispatch action verify token
+        // Dispatch action to verify token
+        dispatch(loginSuccess({ accessToken: accessTokenFromCookie }));
       }
     }
 
     setIsFirstTime(false);
-  }, []);
+  }, [accessToken, dispatch]);
 
   if (isFirstTime || verifying) {
     return 'loading';

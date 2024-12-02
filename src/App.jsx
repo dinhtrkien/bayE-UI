@@ -7,7 +7,7 @@ import Footer from './components/Footer/Footer';
 
 const App = () => {
   return (
-    <Provider store={store()}>
+    <Provider store={store}>
       <Header />
       <AppRouter />
       <Footer />
