@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useState } from "react";
+import SearchModal from "@components/Header/component/SearchModal";
 
 const Header = () => {
+  const [openModal, setOpenModal] = useState(false);
   return (
     <header className="bg-white shadow">
       <div className="container flex items-center justify-between py-4 mx-auto">
@@ -10,7 +12,7 @@ const Header = () => {
             <a href="/" className="text-gray-700 hover:text-blue-500">
               Home
             </a>
-            <a href="/contact" className="text-gray-700 hover:text-blue-500">
+            <a href="/contact?a=asedas asda" className="text-gray-700 hover:text-blue-500">
               Contact
             </a>
             <a href="/about" className="text-gray-700 hover:text-blue-500">
@@ -19,7 +21,7 @@ const Header = () => {
           </nav>
         </div>
         <div className="flex">
-          <div className="relative">
+          <div className="relative" onClick={() => setOpenModal(true)}>
             <input
               type="text"
               placeholder="What are you looking for?"
@@ -47,6 +49,7 @@ const Header = () => {
           </button>
         </div>
       </div>
+      <SearchModal open={openModal} onCancel={()=>setOpenModal(false)}/>
     </header>
   );
 };

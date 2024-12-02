@@ -7,6 +7,7 @@ import CarDescription from '@src/actors/buyer/components/CarDetail/CarDescriptio
 import SellerInfoCard from '@src/actors/buyer/components/CarDetail/SellerInfoCard';
 import Map from '@src/actors/buyer/components/CarDetail/Map';
 import mockCarData from '@src/actors/buyer/mockCar';
+import { useParams } from "react-router-dom";
 
 const CarDetailPage = () => {
   return (
