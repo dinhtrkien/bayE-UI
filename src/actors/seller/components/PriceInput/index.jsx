@@ -1,18 +1,39 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
+import { changeMainPrice } from '../../slice/addCarSlice';
 
 export function PhoneNumberInput() {
+  const dispatch = useDispatch()
+
   const [value, setValue] = React.useState();
   const [alertPrice, setAlertPrice] = React.useState(false);
   const [alertPriceMax, setAlertPriceMax] = React.useState(false);
   const minLimit = 5000000; // Minimum limit amount in VND
   const maxLimit = 500000000000; // Minimum limit amount in VND
 
+  function onPhoneNumberComplete(currInPrice){ 
+    // if (check) {
+      // if (!(alertPrice || alertPriceMax)) {
+        dispatch(changeMainPrice(currInPrice));
+    //   }
+    // }
+  }
   const formatNumber = (event) => {
     let curr = event.currentTarget.value.replace(/\D/g, '');
+    const currInPrice = curr
     // if (curr.length > 10) curr = curr.slice(0, 10);
-    if (curr.length > 9) curr = `${curr.slice(0, 9)}.${curr.slice(9)}`;
-    if (curr.length > 6) curr = `${curr.slice(0, 6)}.${curr.slice(6)}`;
-    if (curr.length > 3) curr = `${curr.slice(0, 3)}.${curr.slice(3)}`;
+    curr = curr
+    .split('')
+    .reverse()
+    .reduce((acc, char, index) => {
+      if (index > 0 && index % 3 === 0) {
+        acc.push('.');
+      }
+      acc.push(char);
+      return acc;
+    }, [])
+    .reverse()
+    .join('');
     setValue(curr);
     // Check for the minimum limit
     const numericValue = Number(curr.replace(/\./g, '')); // Convert the formatted string to a number
@@ -26,6 +47,7 @@ export function PhoneNumberInput() {
     } else {
       setAlertPriceMax(false);
     }
+    onPhoneNumberComplete(currInPrice)
   };
   return (
     <div>

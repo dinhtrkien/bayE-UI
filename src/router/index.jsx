@@ -55,7 +55,7 @@ const PublicApp = () => {
 const AppRouter = () => {
   const [isFirstTime, setIsFirstTime] = useState(true);
 
-  const { accessToken, verifying } = useSelector((state) => state.auth);
+  // const { accessToken, verifying } = useSelector((state) => state.auth);
 
   if (!nprogress.isStarted()) nprogress.start();
 
@@ -64,19 +64,19 @@ const AppRouter = () => {
   });
 
   useEffect(() => {
-    if (!accessToken) {
-      const accessTokenFromCookie = getCookie('accessToken');
-      if (accessTokenFromCookie) {
-        // TODO dispatch action verify token
-      }
-    }
+    // if (!accessToken) {
+    //   const accessTokenFromCookie = getCookie('accessToken');
+    //   if (accessTokenFromCookie) {
+    //     // TODO dispatch action verify token
+    //   }
+    // }
 
     setIsFirstTime(false);
   }, []);
 
-  if (isFirstTime || verifying) {
-    return 'loading';
-  }
+  // if (isFirstTime || verifying) {
+  //   return 'loading';
+  // }
 
   const publicRoutes = appRoutes.filter((route) => !route.isPrivate);
 

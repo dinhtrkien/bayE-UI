@@ -6,25 +6,25 @@ import CarOverview from '@src/actors/buyer/components/CarDetail/CarOverview';
 import CarDescription from '@src/actors/buyer/components/CarDetail/CarDescription';
 import SellerInfoCard from '@src/actors/buyer/components/CarDetail/SellerInfoCard';
 import Map from '@src/actors/buyer/components/CarDetail/Map';
-import mockCarData from '@src/actors/buyer/mockCar';
+import props from '@src/actors/buyer/mockCar';
 
 const PopupPreviewCar = ({props}) => {
   return (
     <div className="px-40">
-      <CarTitle carData={mockCarData[0]} />
-      <ImageCarousel images={mockCarData[0].images} />
+      <CarTitle carData={props} />
+      <ImageCarousel images={props.images} />
       <div className="mx-auto flex justify-between items-start mt-10">
         <div className="flex flex-col">
-          <CarOverview carData={mockCarData[0]} />
+          <CarOverview carData={props} />
           <hr className="my-8" />
-          <CarDescription description={mockCarData[0].description} />
+          <CarDescription description={props.description} />
         </div>
         <div className="ml-8">
           <SellerInfoCard />
         </div>
       </div>
       <div className="mb-8 py-12">
-        <InstallmentCalculator />
+        <InstallmentCalculator props={props} />
         <Map />
       </div>
     </div>

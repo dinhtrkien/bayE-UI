@@ -2,6 +2,53 @@ import React from 'react';
 import CarCard from '@src/components/HomePage/carCard';
 import BrandLogos from '@src/components/HomePage/brandLogos';
 
+const carList1 = [
+  {
+    id: 1,
+    model: "Toyota Corolla",
+    year: 2020,
+    price: 20000,
+    distance: 15000,
+    sellerName: "John Doe",
+    description: "A reliable sedan in great condition.",
+    imageUrl: "/images/toyota_corolla.png",
+  },
+  {
+    id: 2,
+    model: "Honda Civic",
+    year: 2019,
+    price: 19000,
+    distance: 20000,
+    sellerName: "Jane Smith",
+    description: "Compact car with great fuel efficiency.",
+    imageUrl: "/images/honda_civic.png",
+  },
+];
+
+const carList2 = [
+  {
+    id: 3,
+    model: "Ford Mustang",
+    year: 2021,
+    price: 30000,
+    distance: 5000,
+    sellerName: "Mike Johnson",
+    description: "A classic sports car with a modern touch.",
+    imageUrl: "/images/ford_mustang.png",
+  },
+  {
+    id: 4,
+    model: "Chevrolet Tahoe",
+    year: 2018,
+    price: 35000,
+    distance: 40000,
+    sellerName: "Anna Brown",
+    description: "A spacious SUV for the whole family.",
+    imageUrl: "/images/chevrolet_tahoe.png",
+  },
+];
+
+
 const Home = () => {
   return (
     <div>
@@ -12,15 +59,20 @@ const Home = () => {
           Latest Listings
         </h2>
       </div>
-      //TODO: Adjust this
-      <CarCard
-        model="BMW M8"
-        year="2023"
-        price="60000"
-        distance="10000"
-        sellerName="Phu"
-        description="Brief description will be displayed here."
-      />
+      <div className="space-y-6">
+        {carList1.map((car) => (
+          <CarCard
+            key={car.id}
+            model={car.model}
+            year={car.year}
+            price={car.price}
+            distance={car.distance}
+            sellerName={car.sellerName}
+            description={car.description}
+            imageUrl={car.imageUrl}
+          />
+        ))}
+      </div>
       <div className="max-w-4xl p-4 mx-auto mt-4">
         <a href="/cars" className="font-semibold text-blue-600 hover:underline">
           See more cars
@@ -32,14 +84,20 @@ const Home = () => {
           From authorized sellers
         </h2>
       </div>
-      <CarCard
-        model="BMW M8"
-        year="2023"
-        price="60000"
-        distance="10000"
-        sellerName="Phu"
-        description="Brief description will be displayed here."
-      />
+        <div className="space-y-6">
+        {carList2.map((car) => (
+          <CarCard
+            key={car.id}
+            model={car.model}
+            year={car.year}
+            price={car.price}
+            distance={car.distance}
+            sellerName={car.sellerName}
+            description={car.description}
+            imageUrl={car.imageUrl}
+          />
+        ))}
+      </div>
       <div className="max-w-4xl p-4 mx-auto mt-4">
         <a href="/cars" className="font-semibold text-blue-600 hover:underline">
           See more cars
