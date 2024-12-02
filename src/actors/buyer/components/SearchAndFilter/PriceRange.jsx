@@ -31,7 +31,7 @@ const PriceRange = ({ priceRange, setPriceRange }) => {
       <input
         type="range"
         min={0}
-        max={10000000000}
+        max={1000000}
         value={priceRange.max}
         onChange={(e) => handleInputChange(e, 'max')}
         className="w-full"

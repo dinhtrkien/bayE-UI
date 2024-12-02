@@ -8,7 +8,7 @@ const SearchAndFilter = () => {
   const [location, setLocation] = useState('');
   const [condition, setCondition] = useState('');
   const [make, setMake] = useState('');
-  const [priceRange, setPriceRange] = useState({ min: 0, max: 10000000000 });
+  const [priceRange, setPriceRange] = useState({ min: 0, max: 1000000 });
 
   const handleSearch = () => {
     const filters = {

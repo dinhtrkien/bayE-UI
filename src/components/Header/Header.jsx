@@ -12,7 +12,7 @@ const Header = () => {
             <a href="/" className="text-gray-700 hover:text-blue-500">
               Home
             </a>
-            <a href="/contact?a=asedas asda" className="text-gray-700 hover:text-blue-500">
+            <a href="/contact" className="text-gray-700 hover:text-blue-500">
               Contact
             </a>
             <a href="/about" className="text-gray-700 hover:text-blue-500">
@@ -44,6 +44,7 @@ const Header = () => {
               </svg>
             </button>
           </div>
+          {/* <SearchAndFilter /> */}
           <button className="px-4 py-2 ml-4 text-white bg-blue-500 rounded-md">
             Login
           </button>

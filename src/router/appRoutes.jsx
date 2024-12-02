@@ -5,7 +5,7 @@ import Home from '@src/pages/Home';
 import CarDetailPage from '@src/actors/buyer/pages/CarDetailPage';
 import Login from '@src/pages/Login';
 import AddCar from '@src/actors/seller/pages/AddCar';
-import Shopping from "@src/actors/buyer/pages/Shopping";
+import Shopping from '@src/actors/buyer/pages/Shopping';
 
 export default [
   {
@@ -55,6 +55,6 @@ export default [
     component: Shopping,
     exact: true,
     restricted: false,
-    isPrivate: false
-  }
+    isPrivate: false,
+  },
 ];

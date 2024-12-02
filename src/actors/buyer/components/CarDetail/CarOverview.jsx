@@ -1,7 +1,7 @@
 import React from 'react';
 
-// Did not use mockData
 const CarOverview = ({ carData }) => {
+  console.log(carData);
   return (
     <div className="relative w-full max-w-3xl m-auto">
       <h2 className="text-2xl font-medium mb-4">Car Overview</h2>
@@ -22,7 +22,7 @@ const CarOverview = ({ carData }) => {
           </svg>
           <div className="flex justify-between w-44">
             <div className="text-l font-semibold">Body</div>
-            <div className="text-l font-medium">Data</div>
+            <div className="text-l font-medium">Unknown</div>
           </div>
         </div>
 
@@ -42,7 +42,7 @@ const CarOverview = ({ carData }) => {
           </svg>
           <div className="flex justify-between w-44">
             <div className="text-l font-semibold">Condition</div>
-            <div className="text-l font-medium">Data</div>
+            <div className="text-l font-medium">{carData?.condition}</div>
           </div>
         </div>
 
@@ -62,7 +62,7 @@ const CarOverview = ({ carData }) => {
           </svg>
           <div className="flex justify-between w-44">
             <div className="text-l font-semibold">Mileage</div>
-            <div className="text-l font-medium">Data</div>
+            <div className="text-l font-medium">{carData?.mileage}</div>
           </div>
         </div>
 
@@ -82,7 +82,7 @@ const CarOverview = ({ carData }) => {
           </svg>
           <div className="flex justify-between w-44">
             <div className="text-l font-semibold">Engine</div>
-            <div className="text-l font-medium">Data</div>
+            <div className="text-l font-medium">{carData?.engineCapacity}</div>
           </div>
         </div>
 
@@ -102,7 +102,7 @@ const CarOverview = ({ carData }) => {
           </svg>
           <div className="flex justify-between w-44">
             <div className="text-l font-semibold">Fuel</div>
-            <div className="text-l font-medium">Data</div>
+            <div className="text-l font-medium">{carData?.fuelType}</div>
           </div>
         </div>
 
@@ -122,7 +122,7 @@ const CarOverview = ({ carData }) => {
           </svg>
           <div className="flex justify-between w-44">
             <div className="text-l font-semibold">Door</div>
-            <div className="text-l font-medium">Data</div>
+            <div className="text-l font-medium">{carData?.doorNumber}</div>
           </div>
         </div>
 
@@ -142,7 +142,7 @@ const CarOverview = ({ carData }) => {
           </svg>
           <div className="flex justify-between w-44">
             <div className="text-l font-semibold">Year</div>
-            <div className="text-l font-medium">Data</div>
+            <div className="text-l font-medium">{carData?.year}</div>
           </div>
         </div>
 
@@ -162,7 +162,7 @@ const CarOverview = ({ carData }) => {
           </svg>
           <div className="flex justify-between w-44">
             <div className="text-l font-semibold">Cylinder</div>
-            <div className="text-l font-medium">Data</div>
+            <div className="text-l font-medium">unknown</div>
           </div>
         </div>
 
@@ -182,7 +182,7 @@ const CarOverview = ({ carData }) => {
           </svg>
           <div className="flex justify-between w-44">
             <div className="text-l font-semibold">Transmission</div>
-            <div className="text-l font-medium">Data</div>
+            <div className="text-l font-medium">{carData.transmission}</div>
           </div>
         </div>
 
@@ -202,7 +202,7 @@ const CarOverview = ({ carData }) => {
           </svg>
           <div className="flex justify-between w-44">
             <div className="text-l font-semibold">Color</div>
-            <div className="text-l font-medium">Data</div>
+            <div className="text-l font-medium">Unknown</div>
           </div>
         </div>
 
@@ -222,7 +222,7 @@ const CarOverview = ({ carData }) => {
           </svg>
           <div className="flex justify-between w-44">
             <div className="text-l font-semibold">Drive Type</div>
-            <div className="text-l font-medium">Data</div>
+            <div className="text-l font-medium">{carData.driveType}</div>
           </div>
         </div>
 
@@ -242,7 +242,7 @@ const CarOverview = ({ carData }) => {
           </svg>
           <div className="flex justify-between w-44">
             <div className="text-l font-semibold">VIN</div>
-            <div className="text-l font-medium">Data</div>
+            <div className="text-l font-medium">Unknown</div>
           </div>
         </div>
       </div>
