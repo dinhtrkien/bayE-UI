@@ -1,9 +1,7 @@
 import React from 'react';
-import CardContainer from "@src/actors/buyer/components/Common/CardContainer";
+import CardContainer from '@src/actors/buyer/components/Common/CardContainer';
 
-// Did not use mock data
-
-const SellerInfoCard = () => {
+const SellerInfoCard = ({ sellerData }) => {
   return (
     <CardContainer className="w-80 h-96 mx-auto bg-white rounded-xl shadow-lg p-8 text-center space-y-6 flex flex-col justify-between">
       {/* Seller Avatar */}
@@ -14,11 +12,12 @@ const SellerInfoCard = () => {
           className="w-20 h-20 rounded-full border-2 border-gray-200"
         />
       </div>
-
       {/* Seller Name and Location */}
       <div>
-        <h3 className="text-xl font-semibold text-gray-900">Dinh Trung Kien</h3>
-        <p className="text-gray-500">420 Cau Giay, Ha Noi</p>
+        <h3 className="text-xl font-semibold text-gray-900">
+          {sellerData?.Name}
+        </h3>
+        <p className="text-gray-500">{sellerData?.Location}</p>
       </div>
 
       {/* Buttons */}
