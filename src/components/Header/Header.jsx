@@ -1,8 +1,7 @@
-/* eslint-disable jsx-a11y/control-has-associated-label */
-/* eslint-disable react/button-has-type */
 import React, { useState } from 'react';
 import Logo from './component/Logo';
 import SearchModal from '@components/Header/component/SearchModal';
+import Logo from './component/Logo';
 
 const Header = () => {
   const [openModal, setOpenModal] = useState(false);
