@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import ConfirmPopup from "@src/actors/buyer/components/ConfirmPopup.jsx"; // Import ConfirmPopup
+import ConfirmPopup from "@src/actors/buyer/components/Popup/ConfirmPopup.jsx"; // Import ConfirmPopup
 
 const HeartIcon = ({ className = "w-6 h-6", onClick, BuyerID, CarID, isFavourite, handleDeleteCar ,setIdDelete}) => {
   const [isred, setIsred] = useState(isFavourite); // Khởi tạo từ tham số isFavourite
