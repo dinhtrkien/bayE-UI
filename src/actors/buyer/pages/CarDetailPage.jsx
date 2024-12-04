@@ -26,7 +26,7 @@ const CarDetailPage = () => {
 
         // Fetch car details
         const carResponse = await axios.get(
-          `http://localhost:3000/api/cars/${id}`,
+          `http://localhost:8000/api/cars/${id}`,
         );
         const car = carResponse.data;
         console.log(car);

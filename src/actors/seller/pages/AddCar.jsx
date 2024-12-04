@@ -4,15 +4,26 @@ import InstallmentSetup from '../container/InstallmentSetup';
 import DetailDescription from '../container/DetailDescription';
 import VerticalCard from '../components/Card/VericalCard';
 import { soldCarData } from '@src/mock/carData';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import checkFalsyObject from '@src/utils/checkFalsyObject'
+import PopupPreviewCar from '../components/PopupPreviewCar';
 const soldCarMockData = soldCarData;
 
 export default function AddCar() {
   // const [checkClicked, setCheckClicked] = useState(false)
   // const [addCarData, setAddCarData] = useState({});
+  
+  const dispatch = useDispatch();
   const addCarData = useSelector((state) => state.addCar)// Example slice selector
+  const [isPreviewModalOpen, setIsPreviewModalOpen] = useState(false)
   const [imageFile, setImageFile] = useState([]);
+  let user = useSelector((state) => state.addCar)
+
+  async function onPreviewCarModal() {
+    // const user = 
+    console.log(user)
+    setIsPreviewModalOpen(true)
+  }
   async function onSubmitCar () {
 
     try {
@@ -23,6 +34,7 @@ export default function AddCar() {
   
       // Append the image files
       imageFile.forEach((file) => {
+        console.log(file)
         formData.append('image', file); // The backend expects 'image' field for files
       });
       console.log(formData)
@@ -31,12 +43,10 @@ export default function AddCar() {
         body: formData, // FormData will automatically set the correct Content-Type
       });
   
-
-  
       if (!response.ok) {
         throw new Error('Failed to save data');
       }
-  
+
       console.log('Data saved successfully!', await response.json());
     } catch (error) {
       console.error('Error saving data:', error);
@@ -74,13 +84,16 @@ export default function AddCar() {
         
 
       </div>
-      <div id='footer' className='fixed bottom-0 left-0 w-screen h-fit bg-slate-100'>
-          <button className='btn ml-[360px] w-72 mr-4 bg-slate-200'>Preview</button>
+      <div id='footer' className='fixed bottom-0 left-0 w-4/6 h-fit bg-slate-100'>
+          <button className='btn ml-[360px] w-72 mr-4 bg-slate-200' onClick={onPreviewCarModal}>Preview</button>
           <button className='btn w-72 bg-slate-200' onClick={onSubmitCar}>Post</button>
         </div>
-
     </div>
-
+          {
+            isPreviewModalOpen ? (
+              <PopupPreviewCar props={user} imagesFiles={imageFile} closeButton={setIsPreviewModalOpen}/>
+          ) : ''
+          }
     </>
   );
 }
