@@ -23,30 +23,6 @@ const HeartIcon = ({ className = "w-6 h-6", onClick, BuyerID, CarID, isFavourite
     }
   };
 
-  const handleAddFavour = async () => {
-    const favourData = {
-      BuyerID,
-      CarID,
-    };
-
-    try {
-      const response = await fetch("http://localhost:3000/addFavour", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ favourData }),
-      });
-
-      const result = await response.json();
-      if (response.ok) {
-        console.log("Favour added successfully:", result);
-      } else {
-        console.error("Failed to add favour:", result);
-      }
-    } catch (error) {
-      console.error("Error occurred while adding favour:", error.message);
-    }
-  };
-
   const handleDeleteFavour = () => {
     // Gọi handleDeleteCar từ props để xóa car khỏi danh sách
     handleDeleteCar(CarID);

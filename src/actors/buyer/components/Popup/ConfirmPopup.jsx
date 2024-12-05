@@ -14,7 +14,6 @@ console.log("ConfirmPopup");
     };
 
     setIsred(!isred);
-    console.log(JSON.stringify({ favourData }));
     try {
       const response = await fetch("http://localhost:8000/api/favour/deleteFavour", {
         method: "DELETE",
