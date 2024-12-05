@@ -3,7 +3,7 @@ import React from 'react';
 export default function VerticalCard({ car }) {
   return (
     <div className="overflow-hidden bg-white border border-gray-200 rounded-lg shadow-lg min-w-72 w-72">
-      {/* Image Section */}
+      {/* Image CarExploreSection */}
       <div className="relative">
         <img
           src={car.image} // Replace with your image URL
@@ -31,7 +31,7 @@ export default function VerticalCard({ car }) {
         </div>
       </div>
 
-      {/* Details Section */}
+      {/* Details CarExploreSection */}
       <div className="p-4">
         <h2 className="text-xl font-semibold">{car.name}</h2>
         <p className="text-sm text-gray-500">{car.duration} to sell</p>

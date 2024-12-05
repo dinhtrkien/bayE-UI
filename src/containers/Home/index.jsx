@@ -1,6 +1,6 @@
 import React from 'react';
-import CarCard from '@src/components/homePage/carCard';
-import BrandLogos from '@src/components/homePage/brandLogos';
+import CarCard from '@components/HomePage/Index';
+import BrandLogos from '@components/HomePage/BrandLogos';
 
 const Home = () => {
   return (
