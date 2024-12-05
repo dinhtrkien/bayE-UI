@@ -48,7 +48,12 @@ function CarWishlist() {
                         <div className="flex items-center justify-between">
                             <h2 className="text-lg font-semibold">{car.name}</h2>
                             <div className="flex space-x-2">
-                                <HeartIcon isFavourite={false} CarID={car.id} />
+                                <HeartIcon
+                                    // onClick={handleDeleteCar}
+                                    isFavourite={false} // Hoặc bạn có thể thêm điều kiện
+                                    CarID={car.id}
+                                    handleDeleteCar={handleDeleteCar} // Truyền hàm vào
+                                />
                                 <CompareIcon onClick={() => handleCompareClick(car)} />
                             </div>
                         </div>
