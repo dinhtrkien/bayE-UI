@@ -48,7 +48,7 @@ function CarWishlist() {
                         <div className="flex items-center justify-between">
                             <h2 className="text-lg font-semibold">{car.name}</h2>
                             <div className="flex space-x-2">
-                                <HeartIcon isFavourite={true} CarID={car.id} />
+                                <HeartIcon isFavourite={false} CarID={car.id} />
                                 <CompareIcon onClick={() => handleCompareClick(car)} />
                             </div>
                         </div>

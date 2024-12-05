@@ -19,7 +19,31 @@ const HeartIcon = ({ className = "w-6 h-6", onClick, BuyerID, CarID, isFavourite
     if (isred) {
       openPopup(); // Mở popup nếu đang là trạng thái "liked"
     } else {
-      await handleAddFavour(); // Nếu chưa yêu thích, thêm yêu thích ngay
+      setIsred(!isred);
+      await handleAddFavour();
+    }
+  };
+
+  const handleAddFavour = async () =>{
+    const favourData = {
+      BuyerID : 1,
+      CarID : 1,
+    };
+    try {
+      const response = await fetch("http://localhost:8000/api/favour/addFavour", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ favourData }),
+      });
+
+      const result = await response.json();
+      if (response.ok) {
+        console.log("Favour add successfully:", result);
+      } else {
+        console.error("Failed to add favour:", result);
+      }
+    } catch (error) {
+      console.error("Error occurred while adding favour:", error.message);
     }
   };
 
