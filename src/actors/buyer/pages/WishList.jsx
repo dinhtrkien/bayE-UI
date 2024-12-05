@@ -17,6 +17,14 @@ function CarWishlist() {
         );
     };
 
+    const handleDeleteCar = (carId) => {
+        setCars((prevCars) => {
+            const updatedCars = prevCars.filter((car) => car.id !== carId); // Loại bỏ phần tử có id khớp
+            console.log(`Car with id ${carId} has been removed.`);
+            return updatedCars; // Trả về danh sách xe mới
+        });
+    };
+
     const handleCompareClick = (car) => {
         setSelectedCar(car);
         setIsPopupVisible(true);
