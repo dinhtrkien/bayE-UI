@@ -25,9 +25,7 @@ const CarDetailPage = () => {
         setLoading(true);
 
         // Fetch car details
-        const carResponse = await axios.get(
-          `http://localhost:3000/api/cars/${id}`,
-        );
+        const carResponse = await axios.get(`http://localhost:8000/api/cars/${id}`);
         const car = carResponse.data;
         console.log(car);
         // Set car data
@@ -55,7 +53,7 @@ const CarDetailPage = () => {
           // location: car.users_cars_SellerIDTousers.Location,
           sellerId: car.SellerID,
           seller: car.users_cars_SellerIDTousers,
-          // images: car.images,
+          images: car.images,
         });
 
         // Set seller data
@@ -78,7 +76,7 @@ const CarDetailPage = () => {
   return (
     <div className="px-40">
       <CarTitle carData={carData} />
-      <ImageCarousel images={mockCarData[0].images} />
+      <ImageCarousel images={carData.images} />
       <div className="mx-auto flex justify-between items-start mt-10">
         <div className="flex flex-col">
           <CarOverview carData={carData} />
