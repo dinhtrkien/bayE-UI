@@ -6,8 +6,8 @@ import PlusRoundedIcon from "@components/Icon/PlusRoundedIcon";
 import LoveIcon from "@components/Icon/LoveIcon";
 const CarCard = ({ car }) => {
   return (
-    <CardContainer href={`/car/${car?.carId}`} className="bg-neutral-50 w-full mb-6 hover:cursor-pointer hover:bg-neutral-100">
-      <div className="flex flex-row justify-start items-start">
+    <CardContainer className="bg-neutral-50 p-8 w-full mb-6 hover:cursor-pointer hover:bg-neutral-100">
+      <a href={`/car/${car?.carId}`}  className="flex flex-row justify-start items-start">
         <div className="mr-12">
           <img
             loading="lazy"
@@ -71,7 +71,7 @@ const CarCard = ({ car }) => {
             icon={<LoveIcon />}
           />
         </div>
-      </div>
+      </a>
     </CardContainer>
   );
 };

@@ -42,7 +42,7 @@ const InstallmentCalculator = () => {
   };
 
   return (
-    <CardContainer className={'mx-auto my-10 flex flex-row'}>
+    <CardContainer className={'mx-auto my-10 flex flex-row p-8'}>
       {/* Left CarExploreSection - Form */}
       <div className="w-2/3 pr-8">
         <h2 className="text-3xl font-bold mb-4">Installment Calculator</h2>
