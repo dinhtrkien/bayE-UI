@@ -20,4 +20,11 @@ const getCookie = (cname) => {
   return '';
 };
 
-export { setCookie, getCookie };
+const removeCookie = (cname) => {
+  const d = new Date();
+  d.setTime(d.getTime() - 1); // Set the expiration date to a past date
+  const expires = `expires=${d.toUTCString()}`;
+  document.cookie = `${cname}=;${expires};path=/`;
+};
+
+export { setCookie, getCookie, removeCookie };

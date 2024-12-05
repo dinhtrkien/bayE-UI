@@ -10,6 +10,8 @@
     "deploy": "cross-env NODE_ENV=production node server"
   },
   "dependencies": {
+    "@material-ui/core": "^4.12.4",
+    "@material-ui/icons": "^4.11.3",
     "@reduxjs/toolkit": "^2.4.0",
     "@vitejs/plugin-react-swc": "^3.7.1",
     "axios": "^1.7.7",

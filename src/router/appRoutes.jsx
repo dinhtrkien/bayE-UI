@@ -14,21 +14,21 @@ export default [
     component: AddCar,
     exact: true,
     restricted: true,
-    isPrivate: false,
+    isPrivate: true,
   },
   {
     path: routes.SELL,
     component: Sell,
     exact: true,
     restricted: true,
-    isPrivate: false,
+    isPrivate: true,
   },
   {
     path: routes.FORM,
     component: Form,
     exact: true,
     restricted: true,
-    isPrivate: false,
+    isPrivate: true,
   },
   {
     path: routes.LOGIN,
@@ -49,7 +49,7 @@ export default [
     component: Profile,
     exact: true,
     restricted: false,
-    isPrivate: false,
+    isPrivate: true,
   },
   {
     path: routes.HOME,
@@ -63,6 +63,6 @@ export default [
     component: CarDetail,
     exact: true,
     restricted: false,
-    isPrivate: false,
+    isPrivate: true,
   },
 ];

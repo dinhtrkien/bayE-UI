@@ -12,38 +12,25 @@ const userSlice = createSlice({
   initialState,
   reducers: {
     loginRequest: (state) => {
-      return {
-        ...state,
-        loading: true,
-        error: null,
-      };
+      state.loading = true;
+      state.error = null;
     },
     loginSuccess: (state, action) => {
-      return {
-        ...state,
-        loading: false,
-        user: action.payload.user,
-        accessToken: action.payload.accessToken,
-      };
+      state.loading = false;
+      state.user = action.payload.user;
+      state.accessToken = action.payload.accessToken;
     },
     loginFailure: (state, action) => {
-      return {
-        ...state,
-        loading: false,
-        error: action.payload.error,
-      };
+      state.loading = false;
+      state.error = action.payload.error;
     },
     logout: (state) => {
-      return {
-        ...state,
-        user: null,
-        accessToken: null,
-      };
+      state.user = null;
+      state.accessToken = null;
     },
   },
 });
 
 export const { loginRequest, loginSuccess, loginFailure, logout } =
   userSlice.actions;
-
 export default userSlice.reducer;

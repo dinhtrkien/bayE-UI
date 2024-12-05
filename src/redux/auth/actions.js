@@ -2,6 +2,7 @@ export const actionTypes = {
   LOGIN: 'LOGIN',
   LOGIN_SUCCESS: 'LOGIN_SUCCESS',
   LOGIN_FAILURE: 'LOGIN_FAILURE',
+  LOGOUT: 'LOGOUT', // Add logout action type
 };
 
 const login = (email, password) => ({
@@ -19,4 +20,8 @@ const loginFailure = () => ({
   type: actionTypes.LOGIN_FAILURE,
 });
 
-export { login, loginSuccess, loginFailure };
+const logout = () => ({
+  type: actionTypes.LOGOUT, // Define logout action
+});
+
+export { login, loginSuccess, loginFailure, logout };

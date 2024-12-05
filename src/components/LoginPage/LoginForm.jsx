@@ -1,24 +1,38 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { loginRequest } from '../../redux/userSlice';
 
 const LoginForm = () => {
-  const [isHidden, setIsHidden] = useState(true);
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [isHidden, setIsHidden] = useState(true);
+  const history = useHistory();
+  const dispatch = useDispatch();
 
   const handleHide = () => {
     setIsHidden(!isHidden);
   };
 
-  const handlePasswordChange = (e) => {
-    setPassword(e.target.value);
+  const handlePasswordChange = (event) => {
+    setPassword(event.target.value);
   };
 
+  const handleLogin = (event) => {
+    event.preventDefault();
+    dispatch(loginRequest({ email, password }));
+    history.push('/home');
+  };
   return (
     <section className="flex overflow-hidden flex-col justify-center px-14 py-10 w-full rounded-3xl border border-solid border-stone-500 border-opacity-50 max-md:px-5">
       <div className="flex flex-col justify-center items-center w-full max-w-[528px] max-md:max-w-full">
         <h1 className="text-3xl font-medium text-center text-zinc-800">
           Sign in
         </h1>
-        <form className="flex flex-col mt-12 w-full max-md:mt-10">
+        <form
+          className="flex flex-col mt-12 w-full max-md:mt-10"
+          onSubmit={handleLogin}
+        >
           <div className="flex flex-col w-full text-base text-stone-500">
             <label
               htmlFor="email"
@@ -29,6 +43,9 @@ const LoginForm = () => {
             <input
               type="text"
               id="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
               className="flex mt-1 w-full rounded-xl pl-4 border border-solid border-stone-500 border-opacity-30 min-h-[56px] max-md:max-w-full bg-transparent"
             />
           </div>

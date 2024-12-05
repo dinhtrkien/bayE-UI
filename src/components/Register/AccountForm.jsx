@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 import FormInput from './FormInput';
-// import PhoneInput from './Header/PhoneInput.jsx';
-import PhoneInput from './PhoneInput';
 import AccountTypeSelect from './AccountTypeSelect';
 import TermsCheckbox from './TermsCheckbox';
 import SubmitButton from '../Button/SubmitButton';
@@ -13,7 +11,7 @@ function AccountForm({ onNext }) {
     lastName: '',
     email: '',
     phone: '',
-    accountType: '',
+    accountType: 'Buyer', // Set default value to "Buyer"
     termsAccepted: false,
   });
 
@@ -52,6 +50,7 @@ function AccountForm({ onNext }) {
             label="First name"
             placeholder="First name"
             value={formData.firstName}
+            required
             onChange={(e) => handleInputChange('firstName', e.target.value)}
           />
         </div>
@@ -60,6 +59,7 @@ function AccountForm({ onNext }) {
             label="Last name"
             placeholder="Last name"
             value={formData.lastName}
+            required
             onChange={(e) => handleInputChange('lastName', e.target.value)}
           />
         </div>
@@ -69,13 +69,20 @@ function AccountForm({ onNext }) {
             placeholder="example@email.com"
             type="email"
             value={formData.email}
+            required
             onChange={(e) => handleInputChange('email', e.target.value)}
           />
         </div>
-        <PhoneInput
-          value={formData.phone}
-          onChange={(value) => handleInputChange('phone', value)}
-        />
+        <div className="mt-6 flex flex-wrap">
+          <FormInput
+            label="Phone no."
+            placeholder="+84 987-654-321"
+            type="tel"
+            value={formData.phone}
+            required
+            onChange={(e) => handleInputChange('phone', e.target.value)}
+          />
+        </div>
         <AccountTypeSelect
           value={formData.accountType}
           onChange={(value) => handleInputChange('accountType', value)}
