@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/control-has-associated-label */
 /* eslint-disable react/button-has-type */
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { logout } from '../../redux/userSlice';
@@ -10,6 +10,10 @@ const Header = () => {
   const history = useHistory();
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user.user);
+
+  useEffect(() => {
+    console.log('Current user:', user);
+  }, [user]);
 
   const handleLoginClick = () => {
     history.push('/login');
