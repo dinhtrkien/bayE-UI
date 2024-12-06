@@ -15,7 +15,7 @@ const Home = () => {
     <div className="">
       <BrandLogos />
       <div className="mx-auto md:w-3/4  p-4">
-        <CarExploreSection heading="Explored Used Cars" subHeading="Latest Listings" cars={usedCarState.cars.slice(0, 5)} href="/shopping?Condition=USED" />
+        <CarExploreSection heading="Explored Used Cars" subHeading="Latest Listings" cars={usedCarState?.cars?.slice(0, 5)} href="/shopping?Condition=USED" />
         <CarExploreSection heading="Explore New Cars" subHeading="From authorized sellers" cars={newCarState?.cars?.slice(0, 5)} href="/shopping?Condition=NEW" />
         {/* Garage CarExploreSection */}
         <GarageExploreSection />
