@@ -43,7 +43,7 @@ const InstallmentCalculator = ({interest}) => {
 
   return (
     <CardContainer className={'max-w-5xl mx-auto my-10 flex flex-row'}>
-      {/* Left Section - Form */}
+      {/* Left CarExploreSection - Form */}
       <div className="w-2/3 pr-8">
       {/* <div> */}
         <h2 className="text-3xl font-bold mb-4">Installment Calculator</h2>
@@ -196,7 +196,7 @@ const InstallmentCalculator = ({interest}) => {
         </button>
       </div>
 
-      {/* Right Section - Summary */}
+      {/* Right CarExploreSection - Summary */}
       <div className="w-1/3 bg-gray-100 p-8 rounded-lg flex flex-col justify-center">
         <div className="mb-4">
           <h3 className="text-lg font-semibold text-gray-700">

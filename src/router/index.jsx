@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Switch, Redirect } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import nprogress from 'nprogress';
 import 'nprogress/nprogress.css';
 
@@ -12,6 +12,7 @@ import appRoutes from './appRoutes';
 
 import PrivateRoute from './PrivateRoute';
 import PublicRoute from './PublicRoute';
+import { loginSuccess } from '../redux/userSlice';
 
 const PrivateApp = () => {
   const privateRoutes = appRoutes.filter((route) => route.isPrivate);
@@ -33,58 +34,51 @@ const PrivateApp = () => {
   );
 };
 
-const PublicApp = () => {
-  const publicRoutes = appRoutes.filter((route) => !route.isPrivate);
-  return (
-    <Layout>
-      <Switch>
-    {publicRoutes.map((publicRoute) => (
-        <PublicRoute
-          exact
-          path={publicRoute.path}
-          component={publicRoute.component}
-          restricted={publicRoute.restricted}
-          key={publicRoute.path}
-        />
-      ))}
-      </Switch>
-    </Layout>
-  )
-}
-
 const AppRouter = () => {
   const [isFirstTime, setIsFirstTime] = useState(true);
-
-  // const { accessToken, verifying } = useSelector((state) => state.auth);
-
-  if (!nprogress.isStarted()) nprogress.start();
+  const dispatch = useDispatch();
+  const { accessToken, verifying } = useSelector((state) => state.user);
 
   useEffect(() => {
-    nprogress.done();
-  });
+    if (isFirstTime) {
+      nprogress.start();
+      setIsFirstTime(false);
+    } else {
+      nprogress.done();
+    }
+  }, [isFirstTime]);
 
   useEffect(() => {
-    // if (!accessToken) {
-    //   const accessTokenFromCookie = getCookie('accessToken');
-    //   if (accessTokenFromCookie) {
-    //     // TODO dispatch action verify token
-    //   }
-    // }
+    if (!accessToken) {
+      const accessTokenFromCookie = getCookie('accessToken');
+      if (accessTokenFromCookie) {
+        // Dispatch action to verify token
+        dispatch(loginSuccess({ accessToken: accessTokenFromCookie }));
+      }
+    }
 
     setIsFirstTime(false);
-  }, []);
+  }, [accessToken, dispatch]);
 
-  // if (isFirstTime || verifying) {
-  //   return 'loading';
-  // }
+  if (isFirstTime || verifying) {
+    return 'loading';
+  }
 
   const publicRoutes = appRoutes.filter((route) => !route.isPrivate);
 
   return (
     <BrowserRouter>
       <Switch>
+        {publicRoutes.map((publicRoute) => (
+          <PublicRoute
+            exact
+            path={publicRoute.path}
+            component={publicRoute.component}
+            restricted={publicRoute.restricted}
+            key={publicRoute.path}
+          />
+        ))}
 
-        <PublicRoute component={PublicApp}/>
         <PrivateRoute component={PrivateApp} />
       </Switch>
     </BrowserRouter>

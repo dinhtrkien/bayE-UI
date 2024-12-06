@@ -60,8 +60,9 @@ export default function InstallmentSetup() {
                 <input
                   type="range"
                   className="w-full"
-                  min="1"
+                  min="0"
                   max="100"
+                  step={10}
                   defaultValue="1"
                   onChange={(e) => dispatch(changeInterestMonthlyInstallmentAmountMin(Number(e.target.value)))}
                 />
@@ -74,8 +75,9 @@ export default function InstallmentSetup() {
                 <input
                   type="range"
                   className="w-full"
-                  min="1"
+                  min="0"
                   max="100"
+                  step={10}
                   defaultValue="1"
                   onChange={(e) => dispatch(changeInterestMonthlyInstallmentAmountMax(Number(e.target.value)))}
                 />
@@ -92,8 +94,9 @@ export default function InstallmentSetup() {
                 <input
                   type="range"
                   className="w-full"
-                  min="1"
+                  min="0"
                   max="100"
+                  step={10}
                   defaultValue="1"
                   onChange={(e) => dispatch(changeInterestRateMin(Number(e.target.value)))}
                 />
@@ -106,7 +109,8 @@ export default function InstallmentSetup() {
                 <input
                   type="range"
                   className="w-full"
-                  min="1"
+                  min="0"
+                  step={10}
                   max="100"
                   defaultValue="1"
                   onChange={(e) => dispatch(changeInterestRateMax(Number(e.target.value)))}
