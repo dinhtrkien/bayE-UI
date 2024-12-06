@@ -31,7 +31,7 @@ const SearchAndFilter = () => {
         onSearch={handleSearch}
       />
 
-      {/* Advanced Filter Section */}
+      {/* Advanced Filter CarExploreSection */}
       <div>
         <h3 className="font-bold text-lg mb-4">Advanced Filter</h3>
         <div className="grid grid-cols-2 gap-4 mb-4">

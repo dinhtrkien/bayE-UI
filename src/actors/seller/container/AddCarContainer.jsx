@@ -48,13 +48,13 @@ export default function AddCarContainer({setImageFile}) {
   useEffect(() => {
     textRef.current.style.height = textRef.current.scrollHeight + 'px'
   }, [val])
-  return (  
+  return (
     <div className="w-full max-w-4xl p-6 mx-auto bg-white border border-gray-200 rounded-lg shadow-md ">
       {/* Header */}
       {/* Main Container */}
       <div className="flex flex-row space-x-8">
         {/* <ImageUploader width="min-w-28" height="min-h-72" index={0} setImageFile={setImageFile} /> */}
-        {/* Car Info Section */}
+        {/* Car Info CarExploreSection */}
         <div className="flex-1">
           <input type="text" onChange={onTitleChange} className="w-full text-2xl font-bold border-b-2 border-gray-300 bg-inherit focus:outline-none focus:border-blue-500" placeholder="Car Post Title" />
           {/* <textarea className="mb-4 italic text-gray-500">Description: Add description here</textarea> */}
@@ -85,9 +85,9 @@ export default function AddCarContainer({setImageFile}) {
             <p className="text-xl font-semibold">Gearbox</p>
             <div className="flex gap-2">
             {["Automatic", "Manual", "Semi-automatic"].map((gearType) => (
-                
+
                 <button
-                  key={gearType} className={`pl-3 pr-3 transition-colors duration-200 w-fit h-7 rounded-xl 
+                  key={gearType} className={`pl-3 pr-3 transition-colors duration-200 w-fit h-7 rounded-xl
                     ${selectedGear === gearType ? "bg-blue-400" : "bg-slate-200"} hover:bg-slate-300`}
                   onClick={() => onGearSelect(gearType)}
                 >
@@ -120,7 +120,7 @@ export default function AddCarContainer({setImageFile}) {
             <div className="flex gap-2">
               {["New", "Used"].map((status) => (
                 <button
-                  key={status} className={`pl-3 pr-3 transition-colors duration-200 w-fit h-7 rounded-xl 
+                  key={status} className={`pl-3 pr-3 transition-colors duration-200 w-fit h-7 rounded-xl
                     ${selectedStatus === status ? "bg-blue-400" : "bg-slate-200"} hover:bg-slate-300`}
                   onClick={() => onStatusSelect(status)}
                 >
