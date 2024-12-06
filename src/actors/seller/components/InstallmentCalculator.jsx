@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import CardContainer from "@src/actors/buyer/components/Common/CardContainer";
 
-const InstallmentCalculator = () => {
+const InstallmentCalculator = ({interest}) => {
   // State for the form inputs
   const [price, setPrice] = useState('');
   const [downPayment, setDownPayment] = useState('');
@@ -42,9 +42,10 @@ const InstallmentCalculator = () => {
   };
 
   return (
-    <CardContainer className={'mx-auto my-10 flex flex-row p-8'}>
+    <CardContainer className={'max-w-5xl mx-auto my-10 flex flex-row'}>
       {/* Left CarExploreSection - Form */}
       <div className="w-2/3 pr-8">
+      {/* <div> */}
         <h2 className="text-3xl font-bold mb-4">Installment Calculator</h2>
         <p className="text-gray-600 mb-6">
           Use our <span className="font-semibold">Installment</span> calculator

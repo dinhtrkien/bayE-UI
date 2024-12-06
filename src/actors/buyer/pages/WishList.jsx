@@ -25,7 +25,7 @@ function CarWishlist() {
     const handleSave = () => {
         console.log("Saved cars:", cars);
 
-        fetch('http://localhost:3000/saveCars', {
+        fetch('http://localhost:8000/saveCars', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ cars }),

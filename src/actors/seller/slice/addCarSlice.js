@@ -8,11 +8,11 @@ const initialState = {
         fuelType: "Gasoline",
         status: "Used",
         description: "",
-        // images: [
-        //     "/images/car1.jpg", // Replace with default image URLs or empty strings
-        //     "/images/car2.jpg",
-        //     "/images/car3.jpg",
-        // ],    
+        images: [
+            // "/images/car1.jpg", // Replace with default image URLs or empty strings
+            // "/images/car2.jpg",
+            // "/images/car3.jpg",
+        ],    
     },
     interest: {
         installmentLength: [1, 8],
@@ -70,12 +70,12 @@ export const addCarSlice = createSlice({
         },
 
         // // Change images in the main section
-        // changeMainImages: (state, action) => {
-        //     const { file, index } = action.payload;
-        //     console.log(file)
-        //     console.log(index)
-        //     state.main.images[index] = file; // Store the file object in the state at the given index
-        // },
+        changeMainImages: (state, action) => {
+            const { file, index } = action.payload;
+            console.log(file)
+            console.log(index)
+            state.main.images[index] = file; // Store the file object in the state at the given index
+        },
 
         // Change installmentLength in interest section
         changeInterestInstallmentLength: (state, action) => {

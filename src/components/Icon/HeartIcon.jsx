@@ -30,7 +30,7 @@ const HeartIcon = ({ className = "w-6 h-6", onClick, BuyerID, CarID, isFavourite
     };
 
     try {
-      const response = await fetch("http://localhost:3000/addFavour", {
+      const response = await fetch("http://localhost:8000/addFavour", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ favourData }),

@@ -5,52 +5,29 @@ import { changeMainImages } from '../../slice/addCarSlice';
 const generateUniqueId = () =>
   `upload-${Math.random().toString(36).substr(2, 9)}`;
 
-const ImageUploader = ({ width, height, index, check, setImageFile }) => {
+const ImageUploader = ({ width, height, index, check, setImageFiles }) => {
   const [imagePreview, setImagePreview] = useState('');
-  const [file, setFile] = useState(null); // Store the selected file
 
   const uniqueId = generateUniqueId(); // Unique ID for each component instance
 
   const handleFileChange = (event) => {
     const selectedFile = event.target.files[0];
+  
     if (selectedFile) {
+      console.log('selectedFile', selectedFile);
+  
       const reader = new FileReader();
       reader.onload = (e) => {
-        setImagePreview(e.target.result); // Set the image preview
+        const preview = e.target.result; // This contains the base64 image string
+        setImagePreview(preview); // Set the image preview for UI
+        setImageFiles(index, preview); // Pass the file to the parent component
       };
-      reader.readAsDataURL(selectedFile); // Create the preview for UI
-      setFile(selectedFile); // Set the selected file
-      setImageFile((prevFiles) => {
-        const newFiles = [...prevFiles]; // Create a copy of the current files array
-        newFiles.splice(index, 0, selectedFile); // Insert the file at the specific index
-        return newFiles; // Return the updated array
-      });
-      } else {
-      setImagePreview('');
-      setFile(null); // Reset file and preview if no file is selected
+      reader.readAsDataURL(selectedFile); // Generate the preview
+    } else {
+      setImagePreview(''); // Clear the preview if no file is selected
     }
   };
-  // Function to upload the file to the server
-  const uploadFile = async (file) => {
-    const formData = new FormData();
-    formData.append('image', file);
 
-    try {
-      const response = await fetch('http://localhost:8000/upload', {
-        method: 'POST',
-        body: formData,
-      });
-      console.log(response)
-      if (!response.ok) {
-        throw new Error('Failed to upload file');
-      }
-
-      const result = await response.json();
-
-    } catch (error) {
-      console.error('Upload failed:', error);
-    }
-  };
   return (
     <section className="object-cover rounded-lg ">
       <div className={`${width} ${height} items-center max-w-sm overflow-hidden rounded-lg shadow-md`}>

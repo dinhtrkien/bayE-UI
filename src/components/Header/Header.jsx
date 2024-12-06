@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import SearchModal from '@components/Header/component/SearchModal';
 import Logo from './component/Logo';
+import SearchModal from '@components/Header/component/SearchModal';
 
 const Header = () => {
   const [openModal, setOpenModal] = useState(false);
