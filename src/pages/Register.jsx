@@ -14,7 +14,7 @@ function Register() {
   const handleSubmit = async (data) => {
     try {
       console.log('Submitting form data:', data);
-      const response = await fetch('http://localhost:3000/api/users/register', {
+      const response = await fetch('http://localhost:8000/api/users/register', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
