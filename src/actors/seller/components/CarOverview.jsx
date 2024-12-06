@@ -1,7 +1,6 @@
 import React from 'react';
 
-const CarOverview = ({ carData }) => {
-  console.log(carData);
+const CarOverview = ({ status, mileage, engineCapacity, doorNumber, year, driveType, fuelType, weight, transmission, vin, ownerNumber }) => {
   return (
     <div className="relative w-full max-w-3xl m-auto">
       <h2 className="text-2xl font-medium mb-4">Car Overview</h2>
@@ -42,7 +41,7 @@ const CarOverview = ({ carData }) => {
           </svg>
           <div className="flex justify-between w-44">
             <div className="text-l font-semibold">Condition</div>
-            <div className="text-l font-medium">{carData?.condition}</div>
+            <div className="text-l font-medium">{status}</div>
           </div>
         </div>
 
@@ -62,7 +61,7 @@ const CarOverview = ({ carData }) => {
           </svg>
           <div className="flex justify-between w-44">
             <div className="text-l font-semibold">Mileage</div>
-            <div className="text-l font-medium">{carData?.mileage}</div>
+            <div className="text-l font-medium">{mileage}</div>
           </div>
         </div>
 
@@ -82,7 +81,7 @@ const CarOverview = ({ carData }) => {
           </svg>
           <div className="flex justify-between w-44">
             <div className="text-l font-semibold">Engine</div>
-            <div className="text-l font-medium">{carData?.engineCapacity}</div>
+            <div className="text-l font-medium">{engineCapacity}</div>
           </div>
         </div>
 
@@ -102,7 +101,7 @@ const CarOverview = ({ carData }) => {
           </svg>
           <div className="flex justify-between w-44">
             <div className="text-l font-semibold">Fuel</div>
-            <div className="text-l font-medium">{carData?.fuelType}</div>
+            <div className="text-l font-medium">{fuelType}</div>
           </div>
         </div>
 
@@ -122,7 +121,7 @@ const CarOverview = ({ carData }) => {
           </svg>
           <div className="flex justify-between w-44">
             <div className="text-l font-semibold">Door</div>
-            <div className="text-l font-medium">{carData?.doorNumber}</div>
+            <div className="text-l font-medium">{doorNumber}</div>
           </div>
         </div>
 
@@ -141,8 +140,8 @@ const CarOverview = ({ carData }) => {
             />
           </svg>
           <div className="flex justify-between w-44">
-            <div className="text-l font-semibold">Year</div>
-            <div className="text-l font-medium">{carData?.year}</div>
+            <div className="text-l font-semibold">Factory Year</div>
+            <div className="text-l font-medium">{year}</div>
           </div>
         </div>
 
@@ -161,8 +160,8 @@ const CarOverview = ({ carData }) => {
             />
           </svg>
           <div className="flex justify-between w-44">
-            <div className="text-l font-semibold">Cylinder</div>
-            <div className="text-l font-medium">unknown</div>
+            <div className="text-l font-semibold">Weight</div>
+            <div className="text-l font-medium">{weight}</div>
           </div>
         </div>
 
@@ -182,27 +181,27 @@ const CarOverview = ({ carData }) => {
           </svg>
           <div className="flex justify-between w-44">
             <div className="text-l font-semibold">Transmission</div>
-            <div className="text-l font-medium">{carData.transmission}</div>
+            <div className="text-l font-medium">{transmission}</div>
           </div>
         </div>
 
         {/* Color */}
         <div className="flex items-center space-x-2">
-          <svg
+        <svg
             width="18"
-            height="19"
-            viewBox="0 0 18 19"
+            height="18"
+            viewBox="0 0 18 18"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
           >
             <path
-              d="M2.58 13.45C2.26 13.77 2.1 14.14 2.1 14.56C2.1 14.98 2.26 15.35 2.58 15.67C2.9 15.99 3.27 16.15 3.69 16.15C4.11 16.15 4.48 15.99 4.8 15.67C5.12 15.35 5.28 14.98 5.28 14.56C5.28 14.14 5.12 13.77 4.8 13.45C4.48 13.13 4.11 12.97 3.69 12.97C3.27 12.97 2.9 13.13 2.58 13.45ZM4.08 14.95C3.96 15.03 3.83 15.07 3.69 15.07C3.55 15.07 3.43 15.02 3.33 14.92C3.23 14.82 3.18 14.7 3.18 14.56C3.18 14.42 3.23 14.3 3.33 14.2C3.43 14.1 3.55 14.05 3.69 14.05C3.83 14.05 3.95 14.1 4.05 14.2C4.15 14.3 4.2 14.42 4.2 14.56C4.2 14.7 4.16 14.83 4.08 14.95ZM17.52 4.99L13.26 0.73C12.94 0.41 12.56 0.25 12.12 0.25C11.68 0.25 11.3 0.41 10.98 0.73L6.48 5.17L7.14 5.89C8.02 5.85 8.84 6.03 9.6 6.43L4.92 11.11C4.28 10.87 3.61 10.82 2.91 10.96C2.21 11.1 1.61 11.42 1.11 11.92C0.61 12.42 0.28 12.98 0.12 13.6C-0.04 14.22 -0.04 14.85 0.12 15.49C0.28 16.13 0.6 16.69 1.08 17.17C1.44 17.53 1.84 17.8 2.28 17.98C2.72 18.16 3.19 18.25 3.69 18.25C4.19 18.25 4.66 18.16 5.1 17.98C5.54 17.8 5.94 17.53 6.3 17.17C6.82 16.65 7.15 16.04 7.29 15.34C7.43 14.64 7.38 13.97 7.14 13.33L11.82 8.65C12.22 9.41 12.4 10.23 12.36 11.11L13.08 11.77L17.52 7.27C17.84 6.99 18 6.62 18 6.16C18 5.7 17.84 5.31 17.52 4.99ZM5.58 16.45C5.06 16.93 4.43 17.17 3.69 17.17C2.95 17.17 2.33 16.92 1.83 16.42C1.33 15.92 1.08 15.3 1.08 14.56C1.08 13.82 1.33 13.2 1.83 12.7C2.33 12.2 2.95 11.95 3.69 11.95C4.43 11.95 5.05 12.2 5.55 12.7C6.05 13.2 6.3 13.82 6.3 14.56C6.3 15.3 6.06 15.93 5.58 16.45ZM6.66 12.37C6.54 12.21 6.42 12.07 6.3 11.95C6.18 11.83 6.04 11.71 5.88 11.59L10.5 7.03C10.78 7.27 11.02 7.51 11.22 7.75L6.66 12.37ZM11.64 6.61C10.68 5.69 9.56 5.13 8.28 4.93L10.5 2.71L15.54 7.75L13.32 9.97C13.12 8.69 12.56 7.57 11.64 6.61ZM16.8 6.55L16.32 7.03L11.22 1.93L11.7 1.45C11.82 1.37 11.96 1.33 12.12 1.33C12.28 1.33 12.4 1.37 12.48 1.45L16.8 5.77C16.88 5.85 16.92 5.97 16.92 6.13C16.92 6.29 16.88 6.43 16.8 6.55Z"
+              d="M8.99998 10.14C6.27998 10.14 4.19998 10.76 2.75998 12C1.31998 13.24 0.599976 15.02 0.599976 17.34C0.599976 17.54 0.669976 17.7 0.809976 17.82C0.949976 17.94 1.09998 18 1.25998 18H16.74C16.9 18 17.05 17.94 17.19 17.82C17.33 17.7 17.4 17.54 17.4 17.34C17.4 15.02 16.68 13.24 15.24 12C13.8 10.76 11.72 10.14 8.99998 10.14ZM1.97998 16.68C2.21998 13.2 4.55998 11.46 8.99998 11.46C13.44 11.46 15.78 13.2 16.02 16.68H1.97998ZM8.99998 0C8.19998 0 7.45998 0.19 6.77998 0.57C6.09998 0.95 5.56998 1.48 5.18998 2.16C4.80998 2.84 4.61998 3.6 4.61998 4.44C4.61998 5.28 4.81998 6.07 5.21998 6.81C5.61998 7.55 6.14998 8.13 6.80998 8.55C7.46998 8.97 8.19998 9.18 8.99998 9.18C9.79998 9.18 10.53 8.97 11.19 8.55C11.85 8.13 12.38 7.55 12.78 6.81C13.18 6.07 13.38 5.28 13.38 4.44C13.38 3.6 13.19 2.84 12.81 2.16C12.43 1.48 11.9 0.95 11.22 0.57C10.54 0.19 9.79998 0 8.99998 0ZM8.99998 7.86C8.15998 7.86 7.43998 7.53 6.83998 6.87C6.23998 6.21 5.93998 5.41 5.93998 4.47C5.93998 3.53 6.22998 2.77 6.80998 2.19C7.38998 1.61 8.11998 1.32 8.99998 1.32C9.87998 1.32 10.61 1.62 11.19 2.22C11.77 2.82 12.06 3.58 12.06 4.5C12.06 5.42 11.76 6.21 11.16 6.87C10.56 7.53 9.83998 7.86 8.99998 7.86Z"
               fill="#050B20"
             />
           </svg>
           <div className="flex justify-between w-44">
-            <div className="text-l font-semibold">Color</div>
-            <div className="text-l font-medium">Unknown</div>
+            <div className="text-l font-semibold">Prev Owner</div>
+            <div className="text-l font-medium">{ownerNumber}</div>
           </div>
         </div>
 
@@ -222,7 +221,7 @@ const CarOverview = ({ carData }) => {
           </svg>
           <div className="flex justify-between w-44">
             <div className="text-l font-semibold">Drive Type</div>
-            <div className="text-l font-medium">{carData.driveType}</div>
+            <div className="text-l font-medium">{driveType}</div>
           </div>
         </div>
 
@@ -242,7 +241,7 @@ const CarOverview = ({ carData }) => {
           </svg>
           <div className="flex justify-between w-44">
             <div className="text-l font-semibold">VIN</div>
-            <div className="text-l font-medium">Unknown</div>
+            <div className="text-l font-medium">{vin}</div>
           </div>
         </div>
       </div>

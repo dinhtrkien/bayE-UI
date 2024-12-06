@@ -1,9 +1,9 @@
-/* eslint-disable jsx-a11y/control-has-associated-label */
-/* eslint-disable react/button-has-type */
-import React from 'react';
+import React, { useState } from 'react';
 import Logo from './component/Logo';
+import SearchModal from '@components/Header/component/SearchModal';
 
 const Header = () => {
+  const [openModal, setOpenModal] = useState(false);
   return (
     <header className="bg-white shadow">
       <div className="container flex items-center justify-between py-4 mx-auto">
@@ -22,7 +22,7 @@ const Header = () => {
           </nav>
         </div>
         <div className="flex">
-          <div className="relative">
+          <div className="relative" onClick={() => setOpenModal(true)}>
             <input
               type="text"
               placeholder="What are you looking for?"
@@ -53,6 +53,7 @@ const Header = () => {
           </button>
         </div>
       </div>
+      <SearchModal open={openModal} onCancel={() => setOpenModal(false)} />
     </header>
   );
 };

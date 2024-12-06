@@ -9,8 +9,8 @@ const CarList = ({ className, cars }) => {
   return (
     <div className={`w-3/4 flex flex-col ${className}`}>
       <span>Showing 1-10 of 20 results</span>
-      {cars.map((car) => (
-        <CardContainer className="bg-neutral-50 w-full mb-6 hover:cursor-pointer hover:bg-neutral-100">
+      {cars.map((car, i) => (
+        <CardContainer key={i} className="bg-neutral-50 w-full mb-6 hover:cursor-pointer hover:bg-neutral-100">
           <div className="flex flex-row justify-start items-start">
             <div className="mr-12">
               <img
