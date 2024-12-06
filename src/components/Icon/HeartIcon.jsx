@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import ConfirmPopup from "@src/actors/buyer/components/ConfirmPopup.jsx"; // Import ConfirmPopup
+import ConfirmPopup from "@src/actors/buyer/components/Popup/ConfirmPopup.jsx"; // Import ConfirmPopup
 
 const HeartIcon = ({ className = "w-6 h-6", onClick, BuyerID, CarID, isFavourite, handleDeleteCar ,setIdDelete}) => {
   const [isred, setIsred] = useState(isFavourite); // Khởi tạo từ tham số isFavourite
@@ -19,18 +19,18 @@ const HeartIcon = ({ className = "w-6 h-6", onClick, BuyerID, CarID, isFavourite
     if (isred) {
       openPopup(); // Mở popup nếu đang là trạng thái "liked"
     } else {
-      await handleAddFavour(); // Nếu chưa yêu thích, thêm yêu thích ngay
+      setIsred(!isred);
+      await handleAddFavour();
     }
   };
 
-  const handleAddFavour = async () => {
+  const handleAddFavour = async () =>{
     const favourData = {
-      BuyerID,
-      CarID,
+      BuyerID : 1,
+      CarID : 1,
     };
-
     try {
-      const response = await fetch("http://localhost:8000/addFavour", {
+      const response = await fetch("http://localhost:8000/api/favour/addFavour", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ favourData }),
@@ -38,7 +38,7 @@ const HeartIcon = ({ className = "w-6 h-6", onClick, BuyerID, CarID, isFavourite
 
       const result = await response.json();
       if (response.ok) {
-        console.log("Favour added successfully:", result);
+        console.log("Favour add successfully:", result);
       } else {
         console.error("Failed to add favour:", result);
       }

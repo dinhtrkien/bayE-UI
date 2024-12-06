@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
+import SubmitButton from '@src/actors/buyer/components/Popup/SubmitButton';
 
-const Form = () => {
+const Form = (carId) => {
   const [formData, setFormData] = useState({
     name: '',
     surname: '',
     email: '',
     address: '',
-    consent: false,
+    buyerId: 1,
+    carId: {carId}
   });
 
   const handleChange = (e) => {
@@ -68,7 +70,7 @@ const Form = () => {
           <input
             type="checkbox"
             name="consent"
-            checked={formData.consent}
+            // checked={formData.consent}
             onChange={handleChange}
             className="w-4 h-4 text-indigo-600 border-gray-300 rounded focus:ring focus:ring-indigo-200"
           />
@@ -77,14 +79,11 @@ const Form = () => {
           </span>
         </label>
       </div>
-      <button
-        type="submit"
-        className="w-full px-4 py-2 font-medium text-white bg-black rounded hover:bg-gray-800 focus:outline-none focus:ring focus:ring-indigo-200"
-      >
-        Submit
-      </button>
+      <SubmitButton formData={formData}>Submit</SubmitButton>
     </form>
   );
 };
 
 export default Form;
+
+

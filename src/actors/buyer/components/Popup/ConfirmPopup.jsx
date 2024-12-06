@@ -3,6 +3,8 @@ import { carWishlist } from '@src/mock/carData';
 
 const ConfirmPopup = ({ BuyerID, CarID, onCancel, handleDeleteFavour, setIsred , isred}) => {
 
+  BuyerID = 1;
+
 console.log("ConfirmPopup");
 
   const handleDeleteFavourPop = async () => {
@@ -13,8 +15,8 @@ console.log("ConfirmPopup");
 
     setIsred(!isred);
     try {
-      const response = await fetch("http://localhost:8000/api/favour/addFavour", {
-        method: "POST",
+      const response = await fetch("http://localhost:8000/api/favour/deleteFavour", {
+        method: "DELETE",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ favourData }),
       });

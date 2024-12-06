@@ -1,6 +1,6 @@
 import routes from '@src/constants/route';
 import Sell from '@src/actors/seller/pages/Seller';
-import Form from '@src/actors/buyer/pages/Form';
+import Form from '@src/actors/buyer/components/Popup/Form';
 import Home from '@src/pages/Home';
 import CarDetailPage from '@src/actors/buyer/pages/CarDetailPage';
 import Login from '@src/pages/Login';

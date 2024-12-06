@@ -1,10 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import HeartIcon from '@src/components/Icon/HeartIcon';
-import { carWishlist } from '@src/mock/carData'; // Import carWishlist từ mockData
+import CompareIcon from '@src/components/Icon/compareIcon';
+import CarComparePopup from '@src/actors/buyer/components/Popup/CarComparePopup';
+import { carWishlist } from '@src/mock/carData';
 
 function CarWishlist() {
-    const [cars, setCars] = useState(carWishlist); // Khởi tạo từ carWishlist
-    console.log("CarWishlist");
+    const [cars, setCars] = useState(carWishlist);
+    const [isPopupVisible, setIsPopupVisible] = useState(false);
+    const [selectedCar, setSelectedCar] = useState(null);
 
     const toggleAddToBag = (carId) => {
         setCars((prevCars) =>
@@ -22,17 +25,14 @@ function CarWishlist() {
         });
     };
 
-    const handleSave = () => {
-        console.log("Saved cars:", cars);
+    const handleCompareClick = (car) => {
+        setSelectedCar(car);
+        setIsPopupVisible(true);
+    };
 
-        fetch('http://localhost:8000/saveCars', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ cars }),
-        })
-            .then((response) => response.json())
-            .then((data) => console.log('Save response:', data))
-            .catch((error) => console.error('Error saving cars:', error));
+    const closePopup = () => {
+        setIsPopupVisible(false);
+        setSelectedCar(null);
     };
 
     return (
@@ -45,14 +45,19 @@ function CarWishlist() {
                             alt={`${car.name}`}
                             className="w-full h-40 object-cover rounded-md mb-4"
                         />
-                        <h2 className="text-lg font-semibold">{car.name}</h2>
+                        <div className="flex items-center justify-between">
+                            <h2 className="text-lg font-semibold">{car.name}</h2>
+                            <div className="flex space-x-2">
+                                <HeartIcon
+                                    // onClick={handleDeleteCar}
+                                    isFavourite={false} // Hoặc bạn có thể thêm điều kiện
+                                    CarID={car.id}
+                                    handleDeleteCar={handleDeleteCar} // Truyền hàm vào
+                                />
+                                <CompareIcon onClick={() => handleCompareClick(car)} />
+                            </div>
+                        </div>
                         <p className="text-gray-600">Price: ${car.price}</p>
-                        <HeartIcon
-                            // onClick={handleDeleteCar}
-                            isFavourite={true} // Hoặc bạn có thể thêm điều kiện
-                            CarID={car.id}
-                            handleDeleteCar={handleDeleteCar} // Truyền hàm vào
-                        />
                         <button
                             onClick={() => toggleAddToBag(car.id)}
                             className={`mt-4 w-full py-2 rounded-md font-medium ${
@@ -65,15 +70,13 @@ function CarWishlist() {
                 ))}
             </div>
 
-            {/* Nút Save */}
-            <div className="mt-6 flex justify-center">
-                <button
-                    onClick={handleSave}
-                    className="bg-blue-500 text-white py-2 px-6 rounded-md font-medium hover:bg-blue-600"
-                >
-                    Save
-                </button>
-            </div>
+            {/* Popup */}
+            <CarComparePopup
+                isVisible={isPopupVisible}
+                car1={selectedCar}
+                car2={selectedCar}
+                onClose={closePopup}
+            />
         </div>
     );
 }
