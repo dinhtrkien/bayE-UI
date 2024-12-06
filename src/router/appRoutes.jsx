@@ -75,10 +75,10 @@ export default [
     isPrivate: false,
   },
   {
-    path: routes.Car_Wishlist,
+    path: routes.WISHLIST,
     component: CarWishlist,
     exact: true,
     restricted: false,
-    isPrivate: false,
+    isPrivate: true,
   },
 ];
