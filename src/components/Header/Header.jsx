@@ -1,9 +1,29 @@
 import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+import { logout } from '../../redux/userSlice';
 import Logo from './component/Logo';
 import SearchModal from '@components/Header/component/SearchModal';
 
 const Header = () => {
   const [openModal, setOpenModal] = useState(false);
+  const history = useHistory();
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.user.user);
+
+  const handleLoginClick = () => {
+    history.push('/login');
+  };
+
+  const handleSignUpClick = () => {
+    history.push('/register');
+  };
+
+  const handleLogoutClick = () => {
+    dispatch(logout());
+    history.push('/');
+  };
+
   return (
     <header className="bg-white shadow">
       <div className="container flex items-center justify-between py-4 mx-auto">
@@ -45,12 +65,29 @@ const Header = () => {
               </svg>
             </button>
           </div>
-          <button className="px-4 py-2 ml-4 text-white bg-blue-500 rounded-md">
-            Login
-          </button>
-          <button className="px-4 py-2 ml-4 text-white bg-blue-500 rounded-md">
-            Sign Up
-          </button>
+          {user ? (
+            <button
+              onClick={handleLogoutClick}
+              className="px-4 py-2 ml-4 text-white bg-blue-500 rounded-md"
+            >
+              Logout
+            </button>
+          ) : (
+            <>
+              <button
+                onClick={handleLoginClick}
+                className="px-4 py-2 ml-4 text-white bg-blue-500 rounded-md"
+              >
+                Login
+              </button>
+              <button
+                onClick={handleSignUpClick}
+                className="px-4 py-2 ml-4 text-white bg-blue-500 rounded-md"
+              >
+                Sign Up
+              </button>
+            </>
+          )}
         </div>
       </div>
       <SearchModal open={openModal} onCancel={() => setOpenModal(false)} />
