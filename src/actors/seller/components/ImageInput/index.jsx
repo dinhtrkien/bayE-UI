@@ -20,7 +20,7 @@ const ImageUploader = ({ width, height, index, check, setImageFiles }) => {
       reader.onload = (e) => {
         const preview = e.target.result; // This contains the base64 image string
         setImagePreview(preview); // Set the image preview for UI
-        setImageFiles(index, preview); // Pass the file to the parent component
+        setImageFiles(index, selectedFile); // Pass the file to the parent component
       };
       reader.readAsDataURL(selectedFile); // Generate the preview
     } else {

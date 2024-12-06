@@ -18,8 +18,8 @@ export default function AddCarContainer({setImageFile}) {
 
 
   const setImageFiles = (index, file) => {
+    console.log("File in AddCarContainer", file)
     if (index === imageSlots.length && file) {
-      console.log('is full')
       setImageSlots((prevSlots) => [...prevSlots, prevSlots.length + 1]);
       setImageFile((prevFiles) => [...prevFiles, file]); // Use the actual file here
     }

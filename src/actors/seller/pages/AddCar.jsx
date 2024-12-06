@@ -31,13 +31,17 @@ export default function AddCar() {
     
       // Append the car data as JSON in a separate part
       formData.append('carData', JSON.stringify(addCarData)); // Stringify the JSON object
-  
+      console.log("imageFile in Add Car", imageFile)
+
       // Append the image files
       imageFile.forEach((file) => {
         console.log(file)
         formData.append('image', file); // The backend expects 'image' field for files
       });
-      console.log(formData)
+      for (const [key, value] of formData.entries()) {
+        console.log(`${key}:`, value);
+      }
+      // console.log(formData)
       const response = await fetch('http://localhost:8000/api/cars', {
         method: 'POST',
         body: formData, // FormData will automatically set the correct Content-Type
