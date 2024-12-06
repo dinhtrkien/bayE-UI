@@ -34,7 +34,7 @@ const CarComparePopup = ({ isVisible, car1, car2, onClose, onChangeCar1, onChang
             className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50"
             onClick={handleClickOutside}
         >
-            <div className="bg-white p-6 rounded-lg shadow-lg max-w-5xl w-full" onClick={(e) => e.stopPropagation()}>
+            <div className="bg-white p-6 rounded-lg shadow-lg max-w-5xl w-full overflow-y-auto max-h-[90vh]" onClick={(e) => e.stopPropagation()}>
                 <h2 className="text-lg font-semibold mb-4 text-center">Compare Cars</h2>
                 <div className="flex space-x-4">
                     {/* Car 1 */}
