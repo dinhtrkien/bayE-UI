@@ -79,6 +79,6 @@ export default [
     component: CarWishlist,
     exact: true,
     restricted: false,
-    isPrivate: true,
+    isPrivate: false,
   },
 ];
