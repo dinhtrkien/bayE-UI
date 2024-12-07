@@ -19,7 +19,7 @@ export default function AddCar() {
   const [isPreviewModalOpen, setIsPreviewModalOpen] = useState(false)
   const [imageFile, setImageFile] = useState([]);
   let user = useSelector((state) => state.addCar)
-
+  const [onPost, setOnPost] = useState(false);
   async function onPreviewCarModal() {
     // const user = 
     console.log(user)
@@ -53,6 +53,11 @@ export default function AddCar() {
       if (!response.ok) {
         throw new Error('Failed to save data');
       }
+      setOnPost(true);
+
+      setTimeout(() => {
+        setOnPost(false);
+      }, [2000])
 
       console.log('Data saved successfully!', await response.json());
     } catch (error) {
@@ -70,7 +75,7 @@ export default function AddCar() {
         <section id="Main Add Car" className="space-y-8 lg:w-4/5">
           <h1 className="mb-4 text-3xl font-bold">Add car info</h1>
 
-          <AddCarContainer setImageFile={setImageFile}/>
+          <AddCarContainer onPost={onPost} imageFile={imageFile} setImageFile={setImageFile}/>
           <h2 className="mt-8 text-2xl font-bold">Installment Range Setup</h2>
 
           <InstallmentSetup />
