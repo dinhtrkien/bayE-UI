@@ -2,12 +2,10 @@
 /* eslint-disable react/button-has-type */
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
 import { logout } from '../../redux/userSlice';
 import Logo from './component/Logo';
 
 const Header = () => {
-  const history = useHistory();
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user.user);
 
@@ -15,17 +13,8 @@ const Header = () => {
     console.log('Current user:', user);
   }, [user]);
 
-  const handleLoginClick = () => {
-    history.push('/login');
-  };
-
-  const handleSignUpClick = () => {
-    history.push('/register');
-  };
-
   const handleLogoutClick = () => {
     dispatch(logout());
-    history.push('/');
   };
 
   return (
@@ -72,24 +61,24 @@ const Header = () => {
           {user ? (
             <button
               onClick={handleLogoutClick}
-              className="px-4 py-2 ml-4 text-white bg-blue-500 rounded-md"
+              className="px-4 py-2 ml-4 text-white bg-blue-500 rounded-md cursor-pointer"
             >
               Logout
             </button>
           ) : (
             <>
-              <button
-                onClick={handleLoginClick}
-                className="px-4 py-2 ml-4 text-white bg-blue-500 rounded-md"
+              <a
+                href="/login"
+                className="px-4 py-2 ml-4 text-white bg-blue-500 rounded-md cursor-pointer"
               >
                 Login
-              </button>
-              <button
-                onClick={handleSignUpClick}
-                className="px-4 py-2 ml-4 text-white bg-blue-500 rounded-md"
+              </a>
+              <a
+                href="/register"
+                className="px-4 py-2 ml-4 text-white bg-blue-500 rounded-md cursor-pointer"
               >
                 Sign Up
-              </button>
+              </a>
             </>
           )}
         </div>
