@@ -15,7 +15,7 @@ console.log("ConfirmPopup");
 
     setIsred(!isred);
     try {
-      const response = await fetch("http://localhost:8000/api/favour/deleteFavour", {
+      const response = await fetch(`${import.meta.env.VITE_URL}/favour/deleteFavour`, {
         method: "DELETE",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ favourData }),

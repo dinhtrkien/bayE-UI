@@ -25,7 +25,7 @@ const CarDetailPage = () => {
         setLoading(true);
 
         // Fetch car details
-        const carResponse = await axios.get(`http://localhost:8000/api/cars/${id}`);
+        const carResponse = await axios.get(`${import.meta.env.VITE_URL}/api/cars/${id}`);
         const car = carResponse.data;
         // console.log(car);
         // Set car data

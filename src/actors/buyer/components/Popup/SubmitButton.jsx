@@ -2,7 +2,7 @@ import React from 'react';
 
 const handleOnclick = async (formData) => {
     try {
-        const response = await fetch("http://localhost:8000/api/driveRequest", {
+        const response = await fetch(`${import.meta.env.VITE_URL}/api/driveRequest`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ formData }),
