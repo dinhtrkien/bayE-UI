@@ -15,7 +15,7 @@ export default function AddCar() {
   
   const dispatch = useDispatch();
   const addCarData = useSelector((state) => state.addCar)// Example slice selector
-  const userInfo = useSelector((state) => state.user);
+  const userInfoId = useSelector((state) => state.user.user.id);
   const [isPreviewModalOpen, setIsPreviewModalOpen] = useState(false)
   const [imageFile, setImageFile] = useState([]);
   let user = useSelector((state) => state.addCar)
@@ -29,8 +29,8 @@ export default function AddCar() {
 
     try {
       const formData = new FormData();
-      console.log(userInfo)
-      formData.append('user_id', JSON.stringify(userInfo.id)); // Stringify the JSON object
+      console.log(userInfoId)
+      formData.append('user_id', JSON.stringify(userInfoId)); // Stringify the JSON object
     
       // Append the car data as JSON in a separate part
       formData.append('carData', JSON.stringify(addCarData)); // Stringify the JSON object
