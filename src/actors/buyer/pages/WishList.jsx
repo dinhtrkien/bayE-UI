@@ -47,7 +47,7 @@ function CarWishlist() {
 
     const handleDeleteCar = (carId) => {
         setCars((prevCars) =>
-            prevCars.filter((car) => car.id !== carId)
+            prevCars.filter((car) => car.CarID !== carId)
         );
         console.log(`Car with id ${carId} has been removed.`);
     };
@@ -80,6 +80,7 @@ function CarWishlist() {
                                     isFavourite={true}
                                     CarID={car.CarID}
                                     handleDeleteCar={handleDeleteCar}
+                                    BuyerID={1}
                                 />
                                 <CompareIcon onClick={() => handleCompareClick(car)} />
                             </div>
@@ -100,7 +101,7 @@ function CarWishlist() {
             <CarComparePopup
                 isVisible={isPopupVisible}
                 car1={selectedCar}
-                car2={selectedCar}
+                initialCar2={selectedCar}
                 onClose={closePopup}
             />
         </div>

@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import SubmitButton from '@src/actors/buyer/components/Popup/SubmitButton';
 
-const Form = (carId) => {
+const Form = ({carId}) => {
   const [formData, setFormData] = useState({
     name: '',
     surname: '',
     email: '',
     address: '',
     buyerId: 1,
-    carId: {carId}
+    carId: carId,
   });
 
   const handleChange = (e) => {
@@ -79,7 +79,7 @@ const Form = (carId) => {
           </span>
         </label>
       </div>
-      <SubmitButton formData={formData}>Submit</SubmitButton>
+      <SubmitButton formData={formData}></SubmitButton>
     </form>
   );
 };
