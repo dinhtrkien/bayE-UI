@@ -5,7 +5,6 @@ import DetailDescription from '../container/DetailDescription';
 import VerticalCard from '../components/Card/VericalCard';
 import { soldCarData } from '@src/mock/carData';
 import { useDispatch, useSelector } from 'react-redux';
-import checkFalsyObject from '@src/utils/checkFalsyObject'
 import PopupPreviewCar from '../components/PopupPreviewCar';
 const soldCarMockData = soldCarData;
 
@@ -45,7 +44,7 @@ export default function AddCar() {
         console.log(`${key}:`, value);
       }
       // console.log(formData)
-      const response = await fetch(`${import.meta.env.VITE_URL}/api/cars`, {
+      const response = await fetch(`${import.meta.env.VITE_URL}/api/seller/cars`, {
         method: 'POST',
         body: formData, // FormData will automatically set the correct Content-Type
       });

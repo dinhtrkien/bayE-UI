@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import CardContainer from "@src/actors/buyer/components/Common/CardContainer";
 import Form from "@src/actors/buyer/components/Popup/Form";
 
-const SellerInfoCard = () => {
+const SellerInfoCard = ({seller_id, name, location = 'Ha Noi'}) => {
   const [isPopupVisible, setIsPopupVisible] = useState(false);
 
   const handleDriveRequestClick = () => {
@@ -27,8 +27,8 @@ const SellerInfoCard = () => {
 
         {/* Seller Name and Location */}
         <div>
-          <h3 className="text-xl font-semibold text-gray-900">Dinh Trung Kien</h3>
-          <p className="text-gray-500">420 Cau Giay, Ha Noi</p>
+          <h3 className="text-xl font-semibold text-gray-900">{name}</h3>
+          <p className="text-gray-500">{location}</p>
         </div>
 
         {/* Buttons */}
@@ -50,7 +50,7 @@ const SellerInfoCard = () => {
         {/* View All Listings Link */}
         <div>
           <a
-            href="#"
+            href="/sell"
             className="text-gray-500 hover:text-gray-700 font-medium flex items-center justify-center"
           >
             View All listing at this seller
