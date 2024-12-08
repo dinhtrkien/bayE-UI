@@ -1,7 +1,7 @@
 import defaultCarImage from "@src/mock/car.png"
-const GarageExploreSection = () => {
+const GarageExploreSection = ({ className }) => {
   return (
-    <div className='w-full flex flex-col'>
+    <div className={`w-full flex flex-col ${className}`}>
       <div className='divider'/>
       <div className='flex flex-row justify-between items-start w-full my-4'>
         <div className='flex flex-col items-start justify-start w-1/2'>

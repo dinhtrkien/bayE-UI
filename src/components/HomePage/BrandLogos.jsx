@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-
+const carTitles = ["BMW"]
 const BrandLogos = () => {
   const [logos, setLogos] = useState([]);
 
@@ -19,39 +19,21 @@ const BrandLogos = () => {
   }, []);
 
   return (
-    <div className="overflow-hidden w-full h-32 mb-8">
+    <div className="overflow-hidden w-full h-32 mb-4 md:w-3/5 mx-auto">
       {/* Scrolling container */}
       <div
-        className="flex animate-scroll whitespace-nowrap"
-        style={{
-          animation: 'scroll 10s linear infinite', // Adjust speed
-        }}
+        className="flex justify-between"
       >
         {/* Original list */}
         {logos.map((logo, index) => (
-          <img
-            key={index}
-            src={logo.src}
-            alt={logo.name}
-            className="w-16 h-32 object-contain mx-2"
-          />
-        ))}
-        {/* Duplicated list for seamless loop */}
-        {logos.map((logo, index) => (
-          <img
-            key={`duplicate-${index}`}
-            src={logo.src}
-            alt={logo.name}
-            className="w-48 h-32 object-contain mx-2"
-          />
-        ))}
-        {logos.map((logo, index) => (
-          <img
-            key={`duplicate-${index}`}
-            src={logo.src}
-            alt={logo.name}
-            className="w-48 h-32 object-contain mx-2"
-          />
+          <a href={`/shopping?MakeName=${carTitles[0]}`}>
+            <img
+              key={index}
+              src={logo.src}
+              alt={logo.name}
+              className="w-24 h-32 object-contain mx-2"
+            />
+          </a>
         ))}
       </div>
     </div>
