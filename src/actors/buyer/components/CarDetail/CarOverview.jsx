@@ -220,8 +220,8 @@ const CarOverview = ({ madeIn, kmCount, fuelType, factoryYear, gearType, doorNum
             />
           </svg>
           <div className="flex justify-between w-44">
-            <div className="text-l font-semibold">Condition</div>
-            <div className="text-l font-medium">{condition}</div>
+            <div className="text-l font-semibold">Seat Number</div>
+            <div className="text-l font-medium">{seatNumber}</div>
           </div>
         </div>
 

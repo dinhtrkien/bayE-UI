@@ -37,7 +37,6 @@ const CarDetailPage = () => {
           condition: car.Condition,
           fuelType: car.FuelType, // Assuming fuel type is not in API
           gearType: car.Gearbox, // Assuming this isn't included
-          driveType: 'FWD', // Assuming not included
           prevOwner: car.NumberOwners,
           seatNumber: car.SeatNumber,
           doorNumber: car.DoorNumber,
@@ -81,7 +80,7 @@ const CarDetailPage = () => {
       <ImageCarousel images={carData.images} />
       <div className="mx-auto flex justify-between items-start mt-10">
         <div className="flex flex-col">
-          <CarOverview madeIn={carData.madeIn} kmCount={carData.mileage} fuelType={carData.fuelType} factoryYear={carData.year} gearType={carData.gearType} doorNumber={carData.doorNumber} numberPrevOwner={carData.prevOwner} registrationStatus={carData.status} engineCapacity={carData.engineCapacity} weight={carData.weight} condition={carData.condition}/>
+          <CarOverview madeIn={carData.madeIn} kmCount={carData.mileage}  seatNumber={carData.seatNumber} fuelType={carData.fuelType} factoryYear={carData.year} gearType={carData.gearType} doorNumber={carData.doorNumber} numberPrevOwner={carData.prevOwner} registrationStatus={carData.status} engineCapacity={carData.engineCapacity} weight={carData.weight} condition={carData.condition}/>
           <hr className="my-8" />
           <CarDescription description={carData.description} />
         </div>
