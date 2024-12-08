@@ -75,7 +75,7 @@ const CarDetailPage = () => {
   if (error) return <div>{error}</div>;
 
   return (
-    <div className="px-40">
+    <div className="px-[500px]">
       <CarTitle carData={carData} />
       <ImageCarousel images={carData.images} />
       <div className="mx-auto flex justify-between items-start mt-10">
@@ -83,6 +83,8 @@ const CarDetailPage = () => {
           <CarOverview madeIn={carData.madeIn} kmCount={carData.mileage}  seatNumber={carData.seatNumber} fuelType={carData.fuelType} factoryYear={carData.year} gearType={carData.gearType} doorNumber={carData.doorNumber} numberPrevOwner={carData.prevOwner} registrationStatus={carData.status} engineCapacity={carData.engineCapacity} weight={carData.weight} condition={carData.condition}/>
           <hr className="my-8" />
           <CarDescription description={carData.description} />
+          <hr className="mt-8" />
+
         </div>
         <div className="ml-8">
           <SellerInfoCard name={sellerData.Name} seller_id={sellerData.UserID} location={sellerData.location} />
