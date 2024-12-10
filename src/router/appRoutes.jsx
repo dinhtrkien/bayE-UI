@@ -30,7 +30,7 @@ export default [
     component: Form,
     exact: true,
     restricted: true,
-    isPrivate: true,
+    isPrivate: false,
   },
   {
     path: routes.LOGIN,

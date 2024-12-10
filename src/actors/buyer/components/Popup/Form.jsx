@@ -79,7 +79,10 @@ const Form = ({carId}) => {
           </span>
         </label>
       </div>
-      <SubmitButton formData={formData}></SubmitButton>
+      <SubmitButton 
+        formData={formData}
+        validate={formData.consent }
+      ></SubmitButton>
     </form>
   );
 };
