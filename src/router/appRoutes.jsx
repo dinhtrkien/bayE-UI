@@ -15,6 +15,7 @@ export default [
     exact: true,
     restricted: true,
     isPrivate: true,
+    requiredRole: 'SELLER',
   },
   {
     path: routes.SELL,
@@ -22,6 +23,7 @@ export default [
     exact: true,
     restricted: true,
     isPrivate: true,
+    requiredRole: 'SELLER',
   },
   {
     path: routes.FORM,
@@ -29,6 +31,7 @@ export default [
     exact: true,
     restricted: true,
     isPrivate: true,
+    requiredRole: 'BUYER',
   },
   {
     path: routes.LOGIN,
@@ -64,5 +67,6 @@ export default [
     exact: true,
     restricted: false,
     isPrivate: true,
+    requiredRole: 'BUYER',
   },
 ];

@@ -2,7 +2,7 @@ import React from 'react';
 import { Sidebar } from '../Sidebar/Sidebar';
 import { ProfileForm } from './ProfileForm';
 
-export default function UserProfile({ username }) {
+export default function UserProfile({ user }) {
   return (
     <div className="flex flex-col bg-white">
       <div className="w-full bg-black border border-black border-solid opacity-30 min-h-[1px] max-md:max-w-full" />
@@ -16,7 +16,7 @@ export default function UserProfile({ username }) {
           </a>
         </nav>
         <div className="leading-5 text-black opacity-100">
-          Welcome! <span className="text-red-500">{username}</span>
+          Welcome! <span className="text-red-500">{user.name}</span>
         </div>
       </div>
       <main className="self-center mt-20 mb-20 w-full max-w-[1170px] max-md:mt-10 max-md:max-w-full">
@@ -24,7 +24,7 @@ export default function UserProfile({ username }) {
           <Sidebar />
           {/* <div className="w-[1px] bg-gray-300" /> */}
           <div className="flex flex-col ml-5 w-[84%] max-md:ml-0 max-md:w-full">
-            <ProfileForm />
+            <ProfileForm user={user} />
           </div>
         </div>
       </main>

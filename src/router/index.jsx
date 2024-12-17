@@ -12,10 +12,14 @@ import appRoutes from './appRoutes';
 
 import PrivateRoute from './PrivateRoute';
 import PublicRoute from './PublicRoute';
+import RoleBasedRoute from './RoleBasedRoute';
 import { loginSuccess } from '../redux/userSlice';
 
 const PrivateApp = () => {
-  const privateRoutes = appRoutes.filter((route) => route.isPrivate);
+  const privateRoutes = appRoutes.filter(
+    (route) => route.isPrivate && !route.requiredRole,
+  );
+  const roleBasedRoutes = appRoutes.filter((route) => route.requiredRole);
 
   return (
     <Layout>
@@ -26,6 +30,15 @@ const PrivateApp = () => {
             component={privateRoute.component}
             exact
             key={privateRoute.path}
+          />
+        ))}
+        {roleBasedRoutes.map((roleBasedRoute) => (
+          <RoleBasedRoute
+            path={roleBasedRoute.path}
+            component={roleBasedRoute.component}
+            exact
+            key={roleBasedRoute.path}
+            requiredRole={roleBasedRoute.requiredRole}
           />
         ))}
         <Redirect to={ROUTE.HOME} />
