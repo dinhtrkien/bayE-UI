@@ -1,59 +1,48 @@
 import Heading from '@components/Heading';
 import SearchBar from '@src/actors/buyer/components/Shop/SearchBar';
 import CarList from '@src/actors/buyer/components/Shop/CarList';
-import mockCarData from '@src/actors/buyer/mockCar';
 import CardContainer from '@src/actors/buyer/components/Common/CardContainer';
-import { useLocation } from 'react-router-dom';
-import { useGetSearchParams } from '@src/actors/buyer/hooks';
+import { useSearchParams} from '@src/actors/buyer/hooks';
 import { useGetCars } from '@apis/cars';
 
-import React, { useEffect, useState } from 'react';
-import axiosClient from '@apis/api';
+import React, { useEffect } from 'react';
+import Pagination, {usePagination} from "@components/Pagination";
+import Woodpecker from "@components/Woodpecker";
 
 const Shopping = () => {
-  // TODO: use search params to call filtered get all cars api
-  const searchParams = useGetSearchParams();
-
-  const [cars, setCars] = useState([]); // State to store the list of cars
-  const [loading, setLoading] = useState(true); // State to manage loading
-  const [error, setError] = useState(null); // State to manage errors
+  const {searchParams, setSearchParams} = useSearchParams();
+  const { currentPage, totalPages, setTotalPages, setCurrentPage, next, previous } = usePagination();
+  const [carsState, fetchCars] = useGetCars();
+  useEffect( () => {
+    fetchCars({ ...searchParams, Page: searchParams?.Page - 1 });
+  }, [searchParams]);
 
   useEffect(() => {
-    const fetchCars = async () => {
-      try {
-        setLoading(true); // Start loading
-        setError(null); // Reset error
+    setSearchParams({ ...searchParams, Page: currentPage })
+  }, [currentPage])
 
-        // Make API call
-        const response = await axiosClient.get(`/cars`, { params: searchParams });
-
-        // Set the fetched car list
-        setCars(response.cars);
-      } catch (err) {
-        console.error('Failed to fetch cars:', err);
-        setError('Failed to load car data.');
-      } finally {
-        setLoading(false); // End loading
-      }
-    };
-
-    fetchCars();
-  }, [searchParams]); // Re-fetch when searchParams change
-
+  useEffect(() => {
+    setTotalPages(carsState.totalPages ? carsState.totalPages : 0);
+  }, [carsState])
   return (
-    <div>
+    <div className='pt-12 px-16 mb-16'>
       <Heading className="mb-8" text="Shop" />
+      <Woodpecker message={'Chờ xíu, đang tải....'} visible={carsState.loading} className={'fixed top-0 left-0 w-screen h-screen flex flex-col items-center justify-center bg-black bg-opacity-75 z-50 text-neutral-100'}/>
       <div className="flex flex-row mb-12">
         {/* Display search bar */}
-        <CardContainer className="h-fit py-8 w-1/4">
+        <CardContainer className="h-fit p-8 w-1/5">
           <SearchBar />
         </CardContainer>
         {/* Display car list */}
-        <CarList cars={cars} className="ml-4 flex-grow" />
+        <div className='flex w-4/5 justify-center items-center flex-col px-8'>
+          <CarList cars={carsState?.cars} showingTotalRecords={true} className="flex-grow w-full mb-12" />
+          <Pagination totalPages={totalPages} currentPage={currentPage} onPageChange={(page) => setCurrentPage(page)} onPrevious={previous} onNext={next}/>
+        </div>
       </div>
-      <div>{/* Pagination here */}</div>
     </div>
   );
 };
+
+
 
 export default Shopping;

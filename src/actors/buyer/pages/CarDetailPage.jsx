@@ -75,7 +75,7 @@ const CarDetailPage = () => {
   if (error) return <div>{error}</div>;
 
   return (
-    <div className="px-[500px]">
+    <div className="px-40 pt-12">
       <CarTitle carData={carData} />
       <ImageCarousel images={carData.images} />
       <div className="mx-auto flex justify-between items-start mt-10">
