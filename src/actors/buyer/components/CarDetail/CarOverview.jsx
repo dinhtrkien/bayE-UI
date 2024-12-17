@@ -1,7 +1,6 @@
 import React from 'react';
 
-const CarOverview = ({ carData }) => {
-  console.log(carData);
+const CarOverview = ({ madeIn, kmCount, fuelType, factoryYear, gearType, doorNumber, numberPrevOwner, registrationStatus, engineCapacity, seatNumber, weight, condition}) => {
   return (
     <div className="relative w-full max-w-3xl m-auto">
       <h2 className="text-2xl font-medium mb-4">Car Overview</h2>
@@ -21,8 +20,8 @@ const CarOverview = ({ carData }) => {
             />
           </svg>
           <div className="flex justify-between w-44">
-            <div className="text-l font-semibold">Body</div>
-            <div className="text-l font-medium">Unknown</div>
+            <div className="text-l font-semibold">Made in</div>
+            <div className="text-l font-medium">{madeIn}</div>
           </div>
         </div>
 
@@ -42,7 +41,7 @@ const CarOverview = ({ carData }) => {
           </svg>
           <div className="flex justify-between w-44">
             <div className="text-l font-semibold">Condition</div>
-            <div className="text-l font-medium">{carData?.condition}</div>
+            <div className="text-l font-medium">{condition}</div>
           </div>
         </div>
 
@@ -61,8 +60,8 @@ const CarOverview = ({ carData }) => {
             />
           </svg>
           <div className="flex justify-between w-44">
-            <div className="text-l font-semibold">Mileage</div>
-            <div className="text-l font-medium">{carData?.mileage}</div>
+            <div className="text-l font-semibold">Kilometers</div>
+            <div className="text-l font-medium">{kmCount}</div>
           </div>
         </div>
 
@@ -82,7 +81,7 @@ const CarOverview = ({ carData }) => {
           </svg>
           <div className="flex justify-between w-44">
             <div className="text-l font-semibold">Engine</div>
-            <div className="text-l font-medium">{carData?.engineCapacity}</div>
+            <div className="text-l font-medium">{engineCapacity}</div>
           </div>
         </div>
 
@@ -102,7 +101,7 @@ const CarOverview = ({ carData }) => {
           </svg>
           <div className="flex justify-between w-44">
             <div className="text-l font-semibold">Fuel</div>
-            <div className="text-l font-medium">{carData?.fuelType}</div>
+            <div className="text-l font-medium">{fuelType}</div>
           </div>
         </div>
 
@@ -121,8 +120,8 @@ const CarOverview = ({ carData }) => {
             />
           </svg>
           <div className="flex justify-between w-44">
-            <div className="text-l font-semibold">Door</div>
-            <div className="text-l font-medium">{carData?.doorNumber}</div>
+            <div className="text-l font-semibold">Doors</div>
+            <div className="text-l font-medium">{doorNumber}</div>
           </div>
         </div>
 
@@ -142,7 +141,7 @@ const CarOverview = ({ carData }) => {
           </svg>
           <div className="flex justify-between w-44">
             <div className="text-l font-semibold">Year</div>
-            <div className="text-l font-medium">{carData?.year}</div>
+            <div className="text-l font-medium">{factoryYear}</div>
           </div>
         </div>
 
@@ -161,8 +160,8 @@ const CarOverview = ({ carData }) => {
             />
           </svg>
           <div className="flex justify-between w-44">
-            <div className="text-l font-semibold">Cylinder</div>
-            <div className="text-l font-medium">unknown</div>
+            <div className="text-l font-semibold">Previous Owner</div>
+            <div className="text-l font-medium">{numberPrevOwner}</div>
           </div>
         </div>
 
@@ -181,8 +180,8 @@ const CarOverview = ({ carData }) => {
             />
           </svg>
           <div className="flex justify-between w-44">
-            <div className="text-l font-semibold">Transmission</div>
-            <div className="text-l font-medium">{carData.transmission}</div>
+            <div className="text-l font-semibold">Gear Type</div>
+            <div className="text-l font-medium">{gearType}</div>
           </div>
         </div>
 
@@ -201,8 +200,8 @@ const CarOverview = ({ carData }) => {
             />
           </svg>
           <div className="flex justify-between w-44">
-            <div className="text-l font-semibold">Color</div>
-            <div className="text-l font-medium">Unknown</div>
+            <div className="text-l font-semibold">Weight</div>
+            <div className="text-l font-medium">{weight}</div>
           </div>
         </div>
 
@@ -221,8 +220,8 @@ const CarOverview = ({ carData }) => {
             />
           </svg>
           <div className="flex justify-between w-44">
-            <div className="text-l font-semibold">Drive Type</div>
-            <div className="text-l font-medium">{carData.driveType}</div>
+            <div className="text-l font-semibold">Seat Number</div>
+            <div className="text-l font-medium">{seatNumber}</div>
           </div>
         </div>
 
@@ -241,8 +240,8 @@ const CarOverview = ({ carData }) => {
             />
           </svg>
           <div className="flex justify-between w-44">
-            <div className="text-l font-semibold">VIN</div>
-            <div className="text-l font-medium">Unknown</div>
+            <div className="text-l font-semibold">Registration Status</div>
+            <div className="text-l font-medium">{registrationStatus}</div>
           </div>
         </div>
       </div>

@@ -1,12 +1,12 @@
-import { put, all, takeLatest } from 'redux-saga/effects';
+import { put, all, takeLatest, delay } from 'redux-saga/effects';
 import { setCookie, removeCookie } from '@src/utils/cookie';
-import { A_MINUTE } from '@src/constants';
+import { jwtDecode } from 'jwt-decode';
 import { loginRequest, loginSuccess, loginFailure, logout } from '../userSlice';
 
 function* loginSaga(action) {
   try {
     const { email, password } = action.payload;
-    const response = yield fetch('http://localhost:8000/api/users/login', {
+    const response = yield fetch(`${import.meta.env.VITE_URL}/api/users/login`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -21,8 +21,19 @@ function* loginSaga(action) {
     const data = yield response.json();
     console.log('Login response:', data);
     const { accessToken, user } = data;
-    setCookie('accessToken', accessToken, A_MINUTE);
+
+    // Decode the JWT to get the expiration time
+    const decodedToken = jwtDecode(accessToken);
+    const expirationTime = decodedToken.exp * 1000; // Convert to milliseconds
+
+    // Set the cookie with the expiration time
+    setCookie('accessToken', accessToken, expirationTime - Date.now());
+
     yield put(loginSuccess({ user, accessToken }));
+
+    // Automatically log out the user when the token expires
+    yield delay(expirationTime - Date.now());
+    yield put(logout());
   } catch (error) {
     yield put(loginFailure({ error: error.message }));
   }

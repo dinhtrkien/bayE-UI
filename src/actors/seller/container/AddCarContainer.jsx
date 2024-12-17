@@ -4,7 +4,7 @@ import { PhoneNumberInput } from '../components/PriceInput';
 import { useDispatch } from 'react-redux';
 import { changeMainDescription, changeMainFuelType, changeMainGearbox, changeMainStatus, changeMainTitle } from '../slice/addCarSlice';
 
-export default function AddCarContainer({setImageFile}) {
+export default function AddCarContainer({imageFile, setImageFile, onPost}) {
   const dispatch = useDispatch();
 
   const [imageSlots, setImageSlots] = useState([1]); // Start with one slot
@@ -16,13 +16,31 @@ export default function AddCarContainer({setImageFile}) {
   const [selectedFuel, setSelectedFuel] = useState(null);
   const [selectedStatus, setSelectedStatus] = useState(null);
 
+  useEffect(() => {
+    if (onPost) {
+      setImageSlots([1])
+      setImageFile([]);
+    }
+  }, [onPost])
+  useEffect(() => {
+    if (imageFile.length >= 1){
+      // Update imageSlots based on the new length of updatedFiles
+      setImageSlots(
+        Array.from({ length: imageFile.length }, (_, i) => i + 1) // Add an extra slot for new images
+      );
+      console.log(imageSlots)
+    }
+  }, [imageFile])
 
   const setImageFiles = (index, file) => {
-    console.log("File in AddCarContainer", file)
-    if (index === imageSlots.length && file) {
-      setImageSlots((prevSlots) => [...prevSlots, prevSlots.length + 1]);
-      setImageFile((prevFiles) => [...prevFiles, file]); // Use the actual file here
-    }
+    setImageFile((prevFiles) => {
+      let updatedFiles = [...prevFiles];
+      console.log("Updated Files", updatedFiles.length)
+      if (file) {
+        updatedFiles[index] = file;
+      } 
+      return updatedFiles;
+    });
   };
 
   function onFuelSelect(fuelType) {
@@ -144,6 +162,7 @@ export default function AddCarContainer({setImageFile}) {
               width="w-56"
               height="h-40"
               index={slot}
+              onPost={onPost}
               setImageFiles={setImageFiles}
             />
           ))

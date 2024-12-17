@@ -3,25 +3,21 @@ import React from 'react';
 const handleOnclick = async (FormData, validate) => {
   if(validate){
     try {
-      const response = await fetch("http://localhost:8000/api/driveRequest", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ FormData }),
-      });
-
-      const result = await response.json();
-      if (response.ok) {
-        console.log("Drive request submitted successfully:", result);
-      } else {
-        console.error("Failed to submit drive request:", result);
+        const response = await fetch(`${import.meta.env.VITE_URL}/api/driveRequest`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ formData }),
+        });
+  
+        const result = await response.json();
+        if (response.ok) {
+            console.log("Drive request submitted successfully:", result);
+        } else {
+            console.error("Failed to submit drive request:", result);
+        }
+      } catch (error) {
+        console.error("Error occurred while submitting drive request:", error.message);
       }
-    } catch (error) {
-      console.error("Error occurred while submitting drive request:", error.message);
-    }
-  } else {
-    alert('You must agree to the Privacy Policy before submitting the form');
-    return; 
-  }
 };
 
 const SubmitButton = ({ formData, validate }) => {
