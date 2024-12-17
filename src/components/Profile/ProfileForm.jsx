@@ -4,8 +4,7 @@ import { ChangePassword } from './ChangePassword';
 
 export function ProfileForm({ user }) {
   const personalInfo = [
-    { label: 'First Name', value: user.name, type: 'text' },
-    { label: 'Last Name', value: 'Bui', type: 'text' },
+    { label: 'Name', value: user.name, type: 'text' },
     { label: 'Email', value: user.email, type: 'email' },
     {
       label: 'Address',
@@ -50,16 +49,12 @@ export function ProfileForm({ user }) {
         <h1 className="self-start text-xl font-medium leading-snug text-red-500">
           Edit Profile
         </h1>
-        <div className="flex gap-10 items-start mt-4 text-black max-md:max-w-full">
-          {personalInfo.slice(0, 2).map((field, index) => (
+        <div className="flex flex-col gap-3 items-start mt-4 text-black max-md:max-w-full">
+          {personalInfo.map((field, index) => (
             <FormInput key={index} {...field} />
           ))}
         </div>
-        <div className="flex gap-10 items-start mt-6 text-black max-md:max-w-full">
-          {personalInfo.slice(2).map((field, index) => (
-            <FormInput key={index} {...field} />
-          ))}
-        </div>
+
         <div className="flex flex-col items-start mt-6">
           <label className="text-black">Avatar</label>
           <input
