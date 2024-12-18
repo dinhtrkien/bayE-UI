@@ -5,7 +5,6 @@ import DetailDescription from '../container/DetailDescription';
 import VerticalCard from '../components/Card/VericalCard';
 import { soldCarData } from '@src/mock/carData';
 import { useDispatch, useSelector } from 'react-redux';
-import checkFalsyObject from '@src/utils/checkFalsyObject'
 import PopupPreviewCar from '../components/PopupPreviewCar';
 const soldCarMockData = soldCarData;
 
@@ -15,10 +14,11 @@ export default function AddCar() {
   
   const dispatch = useDispatch();
   const addCarData = useSelector((state) => state.addCar)// Example slice selector
+  const userInfoId = useSelector((state) => state.user.user.id);
   const [isPreviewModalOpen, setIsPreviewModalOpen] = useState(false)
   const [imageFile, setImageFile] = useState([]);
   let user = useSelector((state) => state.addCar)
-
+  const [onPost, setOnPost] = useState(false);
   async function onPreviewCarModal() {
     // const user = 
     console.log(user)
@@ -28,6 +28,8 @@ export default function AddCar() {
 
     try {
       const formData = new FormData();
+      console.log(userInfoId)
+      formData.append('user_id', JSON.stringify(userInfoId)); // Stringify the JSON object
     
       // Append the car data as JSON in a separate part
       formData.append('carData', JSON.stringify(addCarData)); // Stringify the JSON object
@@ -42,7 +44,7 @@ export default function AddCar() {
         console.log(`${key}:`, value);
       }
       // console.log(formData)
-      const response = await fetch('http://localhost:8000/api/cars', {
+      const response = await fetch(`${import.meta.env.VITE_URL}/api/seller/cars`, {
         method: 'POST',
         body: formData, // FormData will automatically set the correct Content-Type
       });
@@ -50,6 +52,11 @@ export default function AddCar() {
       if (!response.ok) {
         throw new Error('Failed to save data');
       }
+      setOnPost(true);
+
+      setTimeout(() => {
+        setOnPost(false);
+      }, [2000])
 
       console.log('Data saved successfully!', await response.json());
     } catch (error) {
@@ -67,7 +74,7 @@ export default function AddCar() {
         <section id="Main Add Car" className="space-y-8 lg:w-4/5">
           <h1 className="mb-4 text-3xl font-bold">Add car info</h1>
 
-          <AddCarContainer setImageFile={setImageFile}/>
+          <AddCarContainer onPost={onPost} imageFile={imageFile} setImageFile={setImageFile}/>
           <h2 className="mt-8 text-2xl font-bold">Installment Range Setup</h2>
 
           <InstallmentSetup />

@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+/* eslint-disable jsx-a11y/control-has-associated-label */
+/* eslint-disable react/button-has-type */
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { logout } from '../../redux/userSlice';
 import Logo from './component/Logo';
-import SearchModal from '@components/Header/component/SearchModal';
 
 const Header = () => {
   const history = useHistory();

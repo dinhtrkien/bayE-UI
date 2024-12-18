@@ -5,14 +5,18 @@ import { changeMainImages } from '../../slice/addCarSlice';
 const generateUniqueId = () =>
   `upload-${Math.random().toString(36).substr(2, 9)}`;
 
-const ImageUploader = ({ width, height, index, check, setImageFiles }) => {
+const ImageUploader = ({ width, height, index, check, setImageFiles, onPost }) => {
   const [imagePreview, setImagePreview] = useState('');
 
   const uniqueId = generateUniqueId(); // Unique ID for each component instance
+  useEffect(() => {
+    if (onPost) {
+      setImagePreview('');
 
+    }
+  }, [onPost])
   const handleFileChange = (event) => {
     const selectedFile = event.target.files[0];
-  
     if (selectedFile) {
       console.log('selectedFile', selectedFile);
   
@@ -24,6 +28,7 @@ const ImageUploader = ({ width, height, index, check, setImageFiles }) => {
       };
       reader.readAsDataURL(selectedFile); // Generate the preview
     } else {
+      setImageFiles(index, undefined); 
       setImagePreview(''); // Clear the preview if no file is selected
     }
   };

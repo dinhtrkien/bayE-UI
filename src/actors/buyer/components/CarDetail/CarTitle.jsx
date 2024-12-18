@@ -3,13 +3,14 @@ import Heading from '@components/Heading';
 import IconButton from '@components/Button/IconButton';
 import PlusRoundedIcon from '@components/Icon/PlusRoundedIcon';
 import LoveIcon from '@components/Icon/LoveIcon';
+import formatPrice from '@src/utils/formatPrice';
 
 const CarTitle = ({ carData }) => {
   return (
     <div className="flex justify-between items-center">
       <div>
         <Heading text={carData.title} />
-        <p className="text-gray-600">{carData.title}</p>
+        <p className="text-gray-600">{carData.brand}</p>
       </div>
       <div className="text-right">
         <div className="text-right flex space-x-4">
@@ -27,7 +28,7 @@ const CarTitle = ({ carData }) => {
           />
         </div>
         <h2 className="text-right text-3xl font-bold pt-1.5">
-          ${carData.price.toLocaleString()}
+          ${formatPrice (carData.price.toLocaleString())}
         </h2>
       </div>
     </div>
