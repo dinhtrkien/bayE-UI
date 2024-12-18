@@ -1,12 +1,14 @@
 import routes from '@src/constants/route';
 import Sell from '@src/actors/seller/pages/Seller';
-import Form from '@src/actors/buyer/pages/Form';
+import Form from '@src/actors/buyer/components/Popup/Form';
 import Home from '@src/pages/Home';
-import CarDetail from '@src/actors/buyer/pages/CarDetail';
+import CarDetailPage from '@src/actors/buyer/pages/CarDetailPage';
 import Login from '@src/pages/Login';
 import Register from '@src/pages/Register';
 import Profile from '@src/pages/Profile';
 import AddCar from '@src/actors/seller/pages/AddCar';
+import CarWishlist from '@src/actors/buyer/pages/WishList'
+import Shopping from '@src/actors/buyer/pages/Shopping';
 
 export default [
   {
@@ -63,7 +65,21 @@ export default [
   },
   {
     path: routes.CAR_DETAIL,
-    component: CarDetail,
+    component: CarDetailPage,
+    exact: true,
+    restricted: false,
+    isPrivate: false,
+  },
+  {
+    path: routes.SHOPPING,
+    component: Shopping,
+    exact: true,
+    restricted: false,
+    isPrivate: false,
+  },
+  {
+    path: routes.WISHLIST,
+    component: CarWishlist,
     exact: true,
     restricted: false,
     isPrivate: true,

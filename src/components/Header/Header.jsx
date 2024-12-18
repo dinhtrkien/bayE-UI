@@ -1,19 +1,22 @@
-/* eslint-disable jsx-a11y/control-has-associated-label */
-/* eslint-disable react/button-has-type */
-import React, { useEffect } from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { logout } from '../../redux/userSlice';
 import Logo from './component/Logo';
+import SearchModal from '@components/Header/component/SearchModal';
 
 const Header = () => {
   const history = useHistory();
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user.user);
 
-  useEffect(() => {
-    console.log('Current user:', user);
-  }, [user]);
+  const handleLoginClick = () => {
+    history.push('/login');
+  };
+
+  const handleSignUpClick = () => {
+    history.push('/register');
+  };
 
   const handleLogoutClick = () => {
     dispatch(logout());
@@ -37,11 +40,11 @@ const Header = () => {
           </nav>
         </div>
         <div className="flex">
-          <div className="relative">
+          <a className="relative hover:cursor-pointer" href='/shopping'>
             <input
               type="text"
               placeholder="What are you looking for?"
-              className="flex-grow px-4 py-2 pr-10 border border-gray-300 rounded-md"
+              className="flex-grow px-4 py-2 pr-10 border border-gray-300 rounded-md hover:cursor-pointer"
             />
             <button className="absolute top-0 right-0 px-3 py-2">
               <svg
@@ -59,7 +62,7 @@ const Header = () => {
                 />
               </svg>
             </button>
-          </div>
+          </a>
           {user ? (
             <button
               onClick={handleLogoutClick}

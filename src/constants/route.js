@@ -11,6 +11,7 @@ export default {
   // Buyer pages
   FORM: '/form',
   CAR_DETAIL: '/car/:id',
+  SHOPPING: '/shopping',
   PURCHASED: '/purchased',
   WISHLIST: '/wishlist',
   FOLLOWED: '/followed-listings',

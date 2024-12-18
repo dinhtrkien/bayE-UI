@@ -72,7 +72,7 @@ The components folder contains Dumb components are also called ‘presentational
 import React from 'react';
 import CardStyle from './index.style';
 
-export default function Card({ children }) {
+export default function CardContainer({ children }) {
   return <CardStyle>{children}</CardStyle>;
 }
 ```

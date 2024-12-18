@@ -2,6 +2,8 @@ import { configureStore } from '@reduxjs/toolkit';
 import createSagaMiddleware from 'redux-saga';
 import userReducer from './userSlice';
 import rootSaga from './auth/sagas';
+import  addCarSlice  from '@src/actors/seller/slice/addCarSlice'
+
 
 // Create the saga middleware
 const sagaMiddleware = createSagaMiddleware();
@@ -10,6 +12,7 @@ const sagaMiddleware = createSagaMiddleware();
 const store = configureStore({
   reducer: {
     user: userReducer,
+    addCar: addCarSlice,
     // Add other reducers here if needed
   },
   middleware: (getDefaultMiddleware) =>
