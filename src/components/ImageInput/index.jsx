@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { changeMainImages } from '../../slice/addCarSlice';
 
 const generateUniqueId = () =>
   `upload-${Math.random().toString(36).substr(2, 9)}`;
 
-const ImageUploader = ({ width, height, index, check, setImageFiles, onPost }) => {
+
+export default function ImageUploader ({ width, height, index, check, setImageFiles, onPost }) {
   const [imagePreview, setImagePreview] = useState('');
 
   const uniqueId = generateUniqueId(); // Unique ID for each component instance
@@ -89,4 +88,3 @@ const ImageUploader = ({ width, height, index, check, setImageFiles, onPost }) =
   );
 };
 
-export default ImageUploader;
