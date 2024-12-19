@@ -1,10 +1,21 @@
 import React from 'react';
 // Did not use mock data
-const CarDescription = () => {
+const CarDescription = ({description}) => {
+  const paragraphArray = description.split('\n');
+
   return (
-    <div className="w-full max-w-3xl m-auto">
-      <h2 className="text-2xl font-medium mb-4">Description</h2>
-      <p className="text-gray-700 leading-relaxed">
+    <div className=" snap-x  w-full m-auto  ">
+      <h2 className="text-2xl font-medium mb-8">Description</h2>
+      <div className='overflow-auto text-lg max-h-[400px]'>
+        {
+          paragraphArray.map((p) => (
+            <p className="text-gray-700 leading-relaxed">
+              {p}
+            </p>
+          ))
+        }
+      </div>
+      {/* <p className="text-gray-700 leading-relaxed">
         A car is a vehicle that has wheels, carries a small number of
         passengers, and is moved by an engine or a motor. Cars are also called
         automobiles or motor vehicles. Trucks and buses are motor vehicles as
@@ -27,7 +38,7 @@ const CarDescription = () => {
         gasoline is a limited resource that pollutes the atmosphere when burned
         as fuel.
       </p>{' '}
-      <br />
+      <br /> */}
     </div>
   );
 };

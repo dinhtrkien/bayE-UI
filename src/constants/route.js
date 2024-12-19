@@ -8,6 +8,7 @@ export default {
   // Seller pages
   SELL: '/sell',
   ADDCAR: '/addcar',
+  ADDAUCTION: '/add-auction',
   // Buyer pages
   FORM: '/form',
   CAR_DETAIL: '/car/:id',
@@ -15,5 +16,6 @@ export default {
   PURCHASED: '/purchased',
   WISHLIST: '/wishlist',
   FOLLOWED: '/followed-listings',
+  AUCTION: '/auction/:id'
   // Admin pages
 };

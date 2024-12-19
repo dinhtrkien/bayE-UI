@@ -1,14 +1,14 @@
 import React from 'react';
 import CardContainer from '@src/actors/buyer/components/Common/CardContainer';
 
-const SellerInfoCard = ({ sellerData }) => {
+const SellerInfoCard = ({ avatar_url, name, location = 'Ha Noi', soldCarCount, sellingCarCount, successRate, phone }) => {
   ///TODO: Seller Data here
   return (
-    <CardContainer className="w-80 h-96 mx-auto bg-white rounded-xl shadow-lg p-8 text-center space-y-6 flex flex-col justify-between">
+    <CardContainer className="w-80 h-96 mx-auto bg-white rounded-xl shadow-lg p-6 text-center space-y-6 flex flex-col justify-between">
       {/* Seller Avatar */}
       <div className="flex justify-center">
         <img
-          src="https://via.placeholder.com/80" // Replace with the actual image URL
+          src={avatar_url} // Replace with the actual image URL
           alt="Seller Avatar"
           className="w-20 h-20 rounded-full border-2 border-gray-200"
         />
@@ -16,33 +16,33 @@ const SellerInfoCard = ({ sellerData }) => {
       {/* Seller Name and Location */}
       <div>
         <h3 className="text-xl font-semibold text-gray-900">
-          {sellerData?.Name}
+          {name}
         </h3>
-        <p className="text-gray-500">{sellerData?.Location}</p>
+        <p className="text-gray-500 text-left">{location}</p>
       </div>
 
       {/* Buttons */}
-      <div className="space-y-3">
-        <button className="w-full py-2 text-white bg-blue-600 rounded-lg font-medium flex items-center justify-center space-x-2 hover:bg-blue-700 transition">
-          Drive request
-          <span className="ml-1">→</span>
-        </button>
-
-        <button className="w-full py-2 text-green-600 border border-green-600 rounded-lg font-medium flex items-center justify-center space-x-2 hover:bg-green-50 transition">
-          Call Seller
-          <span className="ml-1">→</span>
-        </button>
-      </div>
+        {/* Stats Section */}
+        <div className="flex justify-around mt-4 border-2 rounded-2xl pt-4 pb-3 w-full">
+          <div className="text-center w-1/3">
+            <p className="font-bold text-lg">{successRate}</p>
+            <p className="text-sm text-gray-500">Sell Rate</p>
+          </div>
+          <div className="text-center w-1/3">
+            <p className="font-bold text-lg">{soldCarCount}</p>
+            <p className="text-sm text-gray-500">Sold Car</p>
+          </div>
+          <div className="text-center w-1/3">
+            <p className="font-bold text-lg">{sellingCarCount}</p>
+            <p className="text-sm text-gray-500">Selling Car</p>
+          </div>
+        </div>
 
       {/* View All Listings Link */}
       <div>
-        <a
-          href="#"
-          className="text-gray-500 hover:text-gray-700 font-medium flex items-center justify-center"
-        >
-          View All listing at this seller
-          <span className="ml-1">→</span>
-        </a>
+
+          <div className='font-semibold text-xl'>Phone Number</div>
+          <p className="ml-1">→{phone}→</p>
       </div>
     </CardContainer>
   );

@@ -1,26 +1,91 @@
-import icons from '@src/components/Icon/carDetailIcon';
-import ChangeCarButton from '@src/actors/buyer/components/Popup/ChangeCarButton'
+import React, { useState, useEffect } from "react";
+import icons from "@src/components/Icon/carDetailIcon";
+import ChangeCarButton from "@src/actors/buyer/components/Popup/ChangeCarButton";
 
-const CarComparePopup = ({ isVisible, car1, car2, onClose, onChangeCar1, onChangeCar2 }) => {
+const CarComparePopup = ({ isVisible, car1: initialCar1, initialCar2, onClose }) => {
     if (!isVisible) return null;
 
+    const [car1, setCar1] = useState(initialCar1);
+    const [car2, setCar2] = useState(initialCar2);
+    const [specs1, setSpecs1] = useState([]);
+    const [specs2, setSpecs2] = useState([]);
+
     const getSpecs = (car) => [
-        { label: "Body", value: car?.body, icon: icons.Body },
+        { label: "Made in", value: car?.MadeIn, icon: icons.Body },
         { label: "Mileage", value: car?.mileage, icon: icons.Mileage },
-        { label: "Fuel", value: car?.fuel, icon: icons.Fuel },
-        { label: "Year", value: car?.year, icon: icons.Year },
-        { label: "Transmission", value: car?.transmission, icon: icons.Transmission },
-        { label: "Drive Type", value: car?.driveType, icon: icons.DriveType },
-        { label: "Condition", value: car?.body, icon: icons.Condition },
-        { label: "Engine", value: car?.mileage, icon: icons.Engine },
-        { label: "Door", value: car?.fuel, icon: icons.Door },
-        { label: "Cylinder", value: car?.year, icon: icons.Cylinder },
-        { label: "Color", value: car?.transmission, icon: icons.Color },
-        { label: "VIN", value: car?.driveType, icon: icons.VIN },
+        { label: "Fuel", value: car?.Fuel, icon: icons.Fuel },
+        { label: "Year", value: car?.FactoryYear, icon: icons.Year },
+        { label: "Gear type", value: car?.Gearbox, icon: icons.Transmission },
+        { label: "Seat number", value: car?.SeatNumber, icon: icons.DriveType },
+        { label: "Condition", value: car?.Condition, icon: icons.Condition },
+        { label: "Engine", value: car?.EngineCapacity, icon: icons.Engine },
+        { label: "Door", value: car?.DoorNumber, icon: icons.Door },
+        { label: "Previous owner", value: car?.NumberOwners, icon: icons.Cylinder },
+        { label: "Weight", value: car?.Weight, icon: icons.Color },
+        { label: "Registration Status", value: car?.RegistrationStatus, icon: icons.VIN },
     ];
 
-    const specs1 = getSpecs(car1);
-    const specs2 = getSpecs(car2);
+    const fetchCarDetails = async (CarID) => {
+        try {
+            const response = await fetch(`http://localhost:8000/api/cars/${CarID}`);
+            if (!response.ok) {
+                throw new Error('Car not found');
+            }
+            const carDetails = await response.json();
+    
+            // Tạo object mới với các thuộc tính cần thiết
+            const carDetails2 = {
+                price: carDetails.Price,
+                title: carDetails.Title,
+                images: carDetails.images,
+                mileage: carDetails.KilometersCount,
+                Fuel: carDetails.FuelType,
+                FactoryYear: carDetails.FactoryYear,
+                transmission: carDetails.Transmission,
+                driveType: carDetails.DriveType,
+                Condition: carDetails.Condition,
+                EngineCapacity: carDetails.EngineCapacity,
+                DoorNumber: carDetails.DoorNumber,
+                year: carDetails.Year,
+                MadeIn : carDetails.MadeIn,
+                Gearbox : carDetails.Gearbox,
+                SeatNumber: carDetails.SeatNumber,
+                RegistrationStatus: carDetails.RegistrationStatus,
+                NumberOwners: carDetails.NumberOwners,
+                Weight: carDetails.Weight,
+            };
+    
+            return carDetails2;
+        } catch (error) {
+            console.error('Failed to fetch car details:', error.message);
+            return null;
+        }
+    };
+    
+
+    const onChangeCar1 = async (CarID) => {
+        const carDetails = await fetchCarDetails(CarID);
+        if (carDetails) {
+            setCar1(carDetails);
+            setSpecs1(getSpecs(carDetails));
+        }
+    };
+
+    const onChangeCar2 = async (CarID) => {
+        const carDetails2 = await fetchCarDetails(CarID);
+        if (carDetails2) {
+            setCar2(carDetails2);
+            setSpecs2(getSpecs(carDetails2));
+        }
+    };
+
+    useEffect(() => {
+        setSpecs1(getSpecs(car1));
+    }, [car1]);
+
+    useEffect(() => {
+        setSpecs2(getSpecs(car2));
+    }, [car2]);
 
     const handleClickOutside = (e) => {
         if (e.target.id === "popup-overlay") {
@@ -41,19 +106,14 @@ const CarComparePopup = ({ isVisible, car1, car2, onClose, onChangeCar1, onChang
                     <div className="w-1/2 relative">
                         {car1 && (
                             <div>
-                                {/* Nút Change Car */}
-                                <ChangeCarButton onClick={onChangeCar1} />
-                                <p className="mb-4">
-                                    <strong>Name:</strong> {car1.name}
+                                <ChangeCarButton onSearchResultSelect={onChangeCar1} />
+                                <p className="mb-4 w-40 truncate">
+                                    <strong>Name:</strong> {car1?.title}
                                 </p>
                                 <p className="mb-4">
-                                    <strong>Price:</strong> ${car1.price}
+                                    <strong>Price:</strong> ${car1?.price}
                                 </p>
-                                <img
-                                    src={car1.image}
-                                    alt={car1.name}
-                                    className="w-full h-40 object-cover rounded-md mb-6"
-                                />
+                                <img src={car1.images[0]} alt={car1?.title} className="w-full h-40 object-cover rounded-md mb-6" />
                                 <div className="space-y-4">
                                     {specs1.map((spec, index) => (
                                         <div key={index} className="flex items-center justify-between">
@@ -61,7 +121,7 @@ const CarComparePopup = ({ isVisible, car1, car2, onClose, onChangeCar1, onChang
                                                 <span className="text-gray-500 text-lg">{spec.icon}</span>
                                                 <span className="font-medium">{spec.label}</span>
                                             </div>
-                                            <span>{spec.value || "Data"}</span>
+                                            <span>{spec.value || "Data not available"}</span>
                                         </div>
                                     ))}
                                 </div>
@@ -76,19 +136,14 @@ const CarComparePopup = ({ isVisible, car1, car2, onClose, onChangeCar1, onChang
                     <div className="w-1/2 relative">
                         {car2 && (
                             <div>
-                                {/* Nút Change Car */}
-                                <ChangeCarButton onClick={onChangeCar2} />
-                                <p className="mb-4">
-                                    <strong>Name:</strong> {car2.name}
+                                <ChangeCarButton onSearchResultSelect={onChangeCar2} />
+                                <p className="mb-4 w-40 truncate">
+                                    <strong>Name:</strong> {car2?.title}
                                 </p>
                                 <p className="mb-4">
-                                    <strong>Price:</strong> ${car2.price}
+                                    <strong>Price:</strong> ${car2?.price}
                                 </p>
-                                <img
-                                    src={car2.image}
-                                    alt={car2.name}
-                                    className="w-full h-40 object-cover rounded-md mb-6"
-                                />
+                                <img src={car2.images[0]} alt={car2?.title} className="w-full h-40 object-cover rounded-md mb-6" />
                                 <div className="space-y-4">
                                     {specs2.map((spec, index) => (
                                         <div key={index} className="flex items-center justify-between">
@@ -96,7 +151,7 @@ const CarComparePopup = ({ isVisible, car1, car2, onClose, onChangeCar1, onChang
                                                 <span className="text-gray-500 text-lg">{spec.icon}</span>
                                                 <span className="font-medium">{spec.label}</span>
                                             </div>
-                                            <span>{spec.value || "Data"}</span>
+                                            <span>{spec.value || "Data not available"}</span>
                                         </div>
                                     ))}
                                 </div>

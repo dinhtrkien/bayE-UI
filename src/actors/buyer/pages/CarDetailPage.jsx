@@ -8,7 +8,6 @@ import CarOverview from '@src/actors/buyer/components/CarDetail/CarOverview';
 import CarDescription from '@src/actors/buyer/components/CarDetail/CarDescription';
 import SellerInfoCard from '@src/actors/buyer/components/CarDetail/SellerInfoCard';
 import Map from '@src/actors/buyer/components/CarDetail/Map';
-import mockCarData from '@src/actors/buyer/mockCar';
 import { useParams } from 'react-router-dom';
 import seller from '@src/actors/seller/pages/Seller';
 
@@ -25,19 +24,20 @@ const CarDetailPage = () => {
         setLoading(true);
 
         // Fetch car details
-        const carResponse = await axios.get(`http://localhost:8000/api/cars/${id}`);
+        const carResponse = await axios.get(`${import.meta.env.VITE_URL}/api/cars/${id}`);
         const car = carResponse.data;
-        // console.log(car);
+
         // Set car data
         setCarData({
-          title: `${car.carmakes.Name} ${car.carmodels.Name}`,
+          brand:`${car.carmakes.Name} ${car.carmodels.Name}`,
+          title: car.Title,
           price: car.Price,
           year: car.FactoryYear,
           mileage: car.KilometersCount,
           condition: car.Condition,
-          fuelType: 'Petrol', // Assuming fuel type is not in API
-          transmission: 'Automatic', // Assuming this isn't included
-          driveType: 'FWD', // Assuming not included
+          fuelType: car.FuelType, // Assuming fuel type is not in API
+          gearType: car.Gearbox, // Assuming this isn't included
+          prevOwner: car.NumberOwners,
           seatNumber: car.SeatNumber,
           doorNumber: car.DoorNumber,
           installmentMin: car.InstallmentLengthMin,
@@ -48,12 +48,13 @@ const CarDetailPage = () => {
           monthlyInstallmentMax: car.MonthlyInstallmentMax,
           engineCapacity: car.EngineCapacity,
           madeIn: car.MadeIn,
-          status: car.Status,
+          status: car.RegistrationStatus,
           description: car.Description,
           // location: car.users_cars_SellerIDTousers.Location,
           sellerId: car.SellerID,
           seller: car.users_cars_SellerIDTousers,
           images: car.images,
+          weight: car.Weight,
         });
 
         // Set seller data
@@ -79,12 +80,14 @@ const CarDetailPage = () => {
       <ImageCarousel images={carData.images} />
       <div className="mx-auto flex justify-between items-start mt-10">
         <div className="flex flex-col">
-          <CarOverview carData={carData} />
+          <CarOverview madeIn={carData.madeIn} kmCount={carData.mileage}  seatNumber={carData.seatNumber} fuelType={carData.fuelType} factoryYear={carData.year} gearType={carData.gearType} doorNumber={carData.doorNumber} numberPrevOwner={carData.prevOwner} registrationStatus={carData.status} engineCapacity={carData.engineCapacity} weight={carData.weight} condition={carData.condition}/>
           <hr className="my-8" />
           <CarDescription description={carData.description} />
+          <hr className="mt-8" />
+
         </div>
         <div className="ml-8">
-          <SellerInfoCard sellerData={carData.seller} />
+          <SellerInfoCard name={sellerData.Name} seller_id={sellerData.UserID} location={sellerData.location} />
         </div>
       </div>
       <div className="mb-8 py-12">

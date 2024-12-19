@@ -26,11 +26,11 @@ const HeartIcon = ({ className = "w-6 h-6", onClick, BuyerID, CarID, isFavourite
 
   const handleAddFavour = async () =>{
     const favourData = {
-      BuyerID : 1,
-      CarID : 1,
+      BuyerID : BuyerID,
+      CarID : CarID,
     };
     try {
-      const response = await fetch("http://localhost:8000/api/favour/addFavour", {
+      const response = await fetch(`${import.meta.env.VITE_URL}/api/favour/addFavour`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ favourData }),
