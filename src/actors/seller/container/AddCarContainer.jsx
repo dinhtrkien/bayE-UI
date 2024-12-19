@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import ImageUploader from '../components/ImageInput';
+import ImageUploader from '../../../components/ImageInput';
 import { PhoneNumberInput } from '../components/PriceInput';
 import { useDispatch } from 'react-redux';
 import { changeMainDescription, changeMainFuelType, changeMainGearbox, changeMainStatus, changeMainTitle } from '../slice/addCarSlice';
