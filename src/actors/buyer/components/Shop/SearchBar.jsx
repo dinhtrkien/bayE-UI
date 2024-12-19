@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useSearchParams } from '@src/actors/buyer/hooks';
 import route from '@src/constants/route';
 import { convertToQueryString } from '@src/utils/route';
@@ -24,6 +24,15 @@ const SearchBar = () => {
     ...initialFilterValue,
     ...searchParams,
   });
+
+  useEffect(() => {
+    if (filterValue.MakeName === 'any') {
+      setFilterValue((prev) => ({
+        ...prev,
+        ModelName: 'any',
+      }));
+    }
+  }, [filterValue.MakeName]);
 
   return (
     <>
