@@ -3,7 +3,7 @@ export default {
   REGISTER: '/register',
   LOGIN: '/login',
   PROFILE: '/profile',
-  INFORMATIONS: '/informations',
+  PERSONAL_INFO: '/informations',
 
   // Seller pages
   SELL: '/sell',

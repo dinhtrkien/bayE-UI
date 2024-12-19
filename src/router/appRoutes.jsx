@@ -6,8 +6,9 @@ import CarDetailPage from '@src/actors/buyer/pages/CarDetailPage';
 import Login from '@src/pages/Login';
 import Register from '@src/pages/Register';
 import Profile from '@src/pages/Profile';
+import ProfileInfo from '@src/pages/ProfileInfo';
 import AddCar from '@src/actors/seller/pages/AddCar';
-import CarWishlist from '@src/actors/buyer/pages/WishList'
+import CarWishlist from '@src/actors/buyer/pages/WishList';
 import Shopping from '@src/actors/buyer/pages/Shopping';
 
 export default [
@@ -52,6 +53,13 @@ export default [
   {
     path: routes.PROFILE,
     component: Profile,
+    exact: true,
+    restricted: false,
+    isPrivate: true,
+  },
+  {
+    path: routes.PERSONAL_INFO,
+    component: ProfileInfo,
     exact: true,
     restricted: false,
     isPrivate: true,

@@ -5,7 +5,7 @@ import { changeMainImages } from '../../slice/addCarSlice';
 const generateUniqueId = () =>
   `upload-${Math.random().toString(36).substr(2, 9)}`;
 
-const ImageUploader = ({ width, height, index, check, setImageFiles, onPost }) => {
+const  ImageUploader = ({ width, height, index, check, setImageFiles, onPost }) => {
   const [imagePreview, setImagePreview] = useState('');
 
   const uniqueId = generateUniqueId(); // Unique ID for each component instance
@@ -19,7 +19,7 @@ const ImageUploader = ({ width, height, index, check, setImageFiles, onPost }) =
     const selectedFile = event.target.files[0];
     if (selectedFile) {
       console.log('selectedFile', selectedFile);
-  
+
       const reader = new FileReader();
       reader.onload = (e) => {
         const preview = e.target.result; // This contains the base64 image string
@@ -28,7 +28,7 @@ const ImageUploader = ({ width, height, index, check, setImageFiles, onPost }) =
       };
       reader.readAsDataURL(selectedFile); // Generate the preview
     } else {
-      setImageFiles(index, undefined); 
+      setImageFiles(index, undefined);
       setImagePreview(''); // Clear the preview if no file is selected
     }
   };
