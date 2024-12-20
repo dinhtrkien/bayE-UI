@@ -1,26 +1,70 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router';
 
 // Dữ liệu mẫu về các cuộc đấu giá
 const upcomingAuctions = [
   {
-    id: 1,
-    title: 'Porsche 911 Turbo S',
-    date: '22/12/2024',
-    time: '14:00',
-    startingPrice: '1.200.000.000 VND',
-    image: '/api/placeholder/400/250'
+    AuctionID: 1,
+    Title: 'Porsche 911 Turbo S',
+    StartTime: "2024-12-01T10:00:00.000Z", // Dùng trường StartTime
+    InitialPrice: '1.200.000.000 VND',
+    Duration: 120, // Thời gian đấu giá 120 phút
+    image: '/api/placeholder/400/250',
+    status: 'NOT_STARTED', // Trạng thái
   },
   {
-    id: 2,
-    title: 'Mercedes-Benz S-Class',
-    date: '25/12/2024',
-    time: '15:30',
-    startingPrice: '3.500.000.000 VND',
-    image: '/api/placeholder/400/250'
+    AuctionID: 2,
+    Title: 'Mercedes-Benz S-Class',
+    StartTime: "2024-12-01T15:00:00.000Z", // Dùng trường StartTime
+    InitialPrice: '3.500.000.000 VND',
+    Duration: 90, // Thời gian đấu giá 90 phút
+    image: '/api/placeholder/400/250',
+    status: 'OPEN', // Trạng thái
   }
 ];
 
 const NewsPage = () => {
+  const history = useHistory();
+  const [Auctions, setAuctions] = useState([]);
+  const getFormattedDate = (startTime) => {
+    const date = new Date(startTime);
+    const formattedDate = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
+    const formattedTime = `${date.getHours()}:${String(date.getMinutes()).padStart(2, '0')}`;
+    return { formattedDate, formattedTime };
+  };
+
+  const handleNavigate = (auctionId, status) => {
+    // Truyền thêm các tham số như status, title
+    history.push(`/wishlist?status=${status}`);
+  };
+
+  const getAuctions = async () => {
+    try {
+      const response = await fetch("http://localhost:8000/api/getAuctions", {
+        method: "GET",
+        headers: { "Content-Type": "application/json" },
+      });
+
+      const result = await response.json();
+
+      console.log("API Response:", result.data); // In dữ liệu trả về từ API
+
+      if (Array.isArray(result.data)) {
+        setAuctions(result.data);
+      } else {
+        console.error("API response is not an array");
+        setAuctions([]);
+      }
+    } catch (error) {
+      console.error("Error occurred while fetching favour cars:", error.message);
+      setAuctions([]);
+    }
+  };
+
+  useEffect(() => {
+    getAuctions();
+  }, []);
+
   return (
     <div className="container mx-auto p-4">
       <h1 className="text-2xl font-bold mb-6 flex items-center">
@@ -30,37 +74,50 @@ const NewsPage = () => {
         Tin Tức Đấu Giá
       </h1>
       <div className="grid md:grid-cols-2 gap-6">
-        {upcomingAuctions.map((auction) => (
-          <div key={auction.id} className="border rounded-lg shadow-lg hover:shadow-xl transition-shadow overflow-hidden">
-            <img src={auction.image} alt={auction.title} className="w-full h-48 object-cover" />
-            <div className="p-4">
-              {/* Hiển thị tiêu đề */}
-              <h2 className="text-lg font-bold text-gray-700 mb-2">{auction.title}</h2>
-              <div className="space-y-2">
-                <div className="flex items-center">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                  </svg>
-                  <span>Ngày: {auction.date}</span>
-                </div>
-                <div className="flex items-center">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M13 5h2.5a2 2 0 012 2v2" />
-                  </svg>
-                  <span>Giá khởi điểm: {auction.startingPrice}</span>
-                </div>
-                <div className="flex space-x-3 mt-3">
-                  <button className="flex-1 p-2 border rounded bg-blue-100 hover:bg-blue-200 transition-colors">
-                    Xem Xe
-                  </button>
-                  <button className="flex-1 p-2 border rounded bg-gray-100 hover:bg-gray-200 transition-colors">
-                    Xem Chi Tiết Đấu Giá
-                  </button>
+        {Auctions.map((auction) => {
+          const { formattedDate, formattedTime } = getFormattedDate(auction.StartTime);
+          
+          return (
+            <div key={auction.AuctionID} className="border rounded-lg shadow-lg hover:shadow-xl transition-shadow overflow-hidden">
+              <img src={auction.Car.images[0]} alt={auction.Title} className="w-full h-48 object-cover" />
+              <div className="p-4">
+                <h2 className="text-lg font-bold text-gray-700 mb-2">{auction.Title}</h2>
+                <div className="space-y-2">
+                  <div className="flex items-center">
+                    <span>Ngày: {formattedDate}</span>
+                  </div>
+                  <div className="flex items-center">
+                    <span>Thời gian bắt đầu đấu giá:: {formattedTime}</span>
+                  </div>
+                  <div className="flex items-center">
+                    <span>Giá khởi điểm: {auction.InitialPrice}</span>
+                  </div>
+                  <div className="flex items-center">
+                    <span>
+                      Thời lượng đấu giá: {Math.floor(auction.Duration / 60)} giờ {auction.Duration % 60} phút
+                    </span>
+                  </div>
+                  <div className="flex items-center">
+                    <span className={`font-semibold ${auction.Status === 'OPEN' ? 'text-green-500' : 'text-red-500'}`}>
+                      {auction.Status === 'OPEN' ? 'Mở cửa' : 'Chưa bắt đầu'}
+                    </span>
+                  </div>
+                  <div className="flex space-x-3 mt-3">
+                    <button className="flex-1 p-2 border rounded bg-blue-100 hover:bg-blue-200 transition-colors">
+                      Xem Xe
+                    </button>
+                    <button
+                    // onClick={() => history.push(`/auction/${auction.AuctionID}`)}
+                    onClick={() => handleNavigate(auction.AuctionID, auction.Status)}
+                     className="flex-1 p-2 border rounded bg-gray-100 hover:bg-gray-200 transition-colors">
+                      Xem Chi Tiết Đấu Giá
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </div>
   );

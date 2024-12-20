@@ -31,7 +31,9 @@ console.log("ConfirmPopup");
       console.error("Error occurred while deleting favour:", error.message);
     }
 
-    handleDeleteFavour(CarID);
+    if(handleDeleteFavour){
+      handleDeleteFavour(CarID);
+    }
     onCancel(); // Đóng popup sau khi xóa
   };
 
