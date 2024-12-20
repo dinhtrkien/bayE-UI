@@ -15,5 +15,6 @@ export default {
   PURCHASED: '/purchased',
   WISHLIST: '/wishlist',
   FOLLOWED: '/followed-listings',
+  NEWSPAGE: '/auction-news'
   // Admin pages
 };

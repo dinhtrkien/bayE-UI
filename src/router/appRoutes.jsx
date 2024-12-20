@@ -9,6 +9,7 @@ import Profile from '@src/pages/Profile';
 import AddCar from '@src/actors/seller/pages/AddCar';
 import CarWishlist from '@src/actors/buyer/pages/WishList'
 import Shopping from '@src/actors/buyer/pages/Shopping';
+import NewsPage from '@src/actors/buyer/pages/auctionNews'
 
 export default [
   {
@@ -77,6 +78,13 @@ export default [
   {
     path: routes.WISHLIST,
     component: CarWishlist,
+    exact: true,
+    restricted: false,
+    isPrivate: false,
+  },
+  {
+    path: routes.NEWSPAGE,
+    component: NewsPage,
     exact: true,
     restricted: false,
     isPrivate: false,
