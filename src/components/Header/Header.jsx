@@ -51,7 +51,7 @@ const Header = () => {
             </button>
           </a>
           {user ? (
-            <UserMenu />
+            <UserMenu user={user} />
           ) : (
             <>
               <a href="/login" className="px-4 py-2 ml-4 text-white bg-blue-500 rounded-md cursor-pointer">

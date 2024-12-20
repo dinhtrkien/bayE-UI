@@ -18,11 +18,11 @@ const UserMenu = () => {
   };
 
   return (
-    <div className="relative">
+    <div className="relative my-auto">
       <button onClick={toggleDropdown} className="flex items-center focus:outline-none">
         <span className="ml-5 mr-2 text-grey-800">{user.name}</span>
         <img
-          src={user.avatar || '/default_avatar.png'} // Replace with the actual avatar URL or a default avatar
+          src={user.profilePicture || 'https://res.cloudinary.com/dhgwdfhcf/image/upload/v1734632425/profilePictures/wvk5hiy5xtwydttzqxa3.jpg'} // Replace with the actual avatar URL or a default avatar
           alt="User Avatar"
           className="w-8 h-8 rounded-full"
         />

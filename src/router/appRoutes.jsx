@@ -10,6 +10,9 @@ import ProfileInfo from '@src/pages/ProfileInfo';
 import AddCar from '@src/actors/seller/pages/AddCar';
 import CarWishlist from '@src/actors/buyer/pages/WishList';
 import Shopping from '@src/actors/buyer/pages/Shopping';
+import UserList from '@src/actors/admin/components/UserList';
+import CarList from '@src/actors/admin/components/CarList';
+import Admin from '@src/actors/admin/pages/Admin';
 
 export default [
   {
@@ -92,5 +95,29 @@ export default [
     restricted: false,
     isPrivate: true,
     requiredRole: 'BUYER',
+  },
+  {
+    path: routes.ADMIN,
+    component: Admin,
+    exact: true,
+    restricted: true,
+    isPrivate: true,
+    isAdmin: true,
+  },
+  {
+    path: routes.USER_LIST,
+    component: UserList,
+    exact: true,
+    restricted: true,
+    isPrivate: true,
+    isAdmin: true,
+  },
+  {
+    path: routes.CAR_LIST,
+    component: CarList,
+    exact: true,
+    restricted: true,
+    isPrivate: true,
+    isAdmin: true,
   },
 ];

@@ -3,6 +3,10 @@ import { FormInput } from './FormInput';
 
 export function ProfileForm({ user }) {
   const [address, setAddress] = useState(user.address || '');
+  const [avatar, setAvatar] = useState(null);
+  const [avatarPreview, setAvatarPreview] = useState(user.profilePicture || null); // Set initial avatar preview to existing avatar URL
+  const [isChanged, setIsChanged] = useState(false); // State to track if any changes are made
+
   const personalInfo = [
     { label: 'Name', value: user.name, type: 'text', disabled: true },
     { label: 'Email', value: user.email, type: 'email', disabled: true },
@@ -11,16 +15,17 @@ export function ProfileForm({ user }) {
       value: address,
       type: 'text',
       bordered: true,
-      onChange: (e) => setAddress(e.target.value),
+      onChange: (e) => {
+        setAddress(e.target.value);
+        setIsChanged(true); // Mark as changed
+      },
     },
   ];
-
-  const [avatar, setAvatar] = useState(null);
-  const [avatarPreview, setAvatarPreview] = useState(null);
 
   const handleAvatarChange = (e) => {
     const file = e.target.files[0];
     setAvatar(file);
+    setIsChanged(true); // Mark as changed
 
     // Preview the avatar
     const reader = new FileReader();
@@ -79,7 +84,7 @@ export function ProfileForm({ user }) {
         </div>
 
         <div className="flex gap-8 items-center self-end mt-6">
-          <button type="submit" className="gap-2.5 self-stretch px-12 py-4 my-auto font-medium bg-red-500 rounded-lg text-neutral-50 max-md:px-5">
+          <button type="submit" className={`gap-2.5 self-stretch px-12 py-4 my-auto font-medium rounded-lg text-neutral-50 max-md:px-5 ${isChanged ? 'bg-red-500' : 'bg-gray-500 cursor-not-allowed'}`} disabled={!isChanged}>
             Save Changes
           </button>
         </div>

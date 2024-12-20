@@ -16,4 +16,7 @@ export default {
   WISHLIST: '/wishlist',
   FOLLOWED: '/followed-listings',
   // Admin pages
+  ADMIN: '/admin',
+  USER_LIST: '/admin/users',
+  CAR_LIST: '/admin/cars',
 };
