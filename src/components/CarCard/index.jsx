@@ -6,7 +6,6 @@ import { useSelector } from 'react-redux';
 
 const CarCard = ({ car, className }) => {
   const user = useSelector((state) => state.user.user);
-  console.log(user);
   return (
     <CardContainer className={`bg-neutral-50 w-full hover:cursor-pointer hover:bg-neutral-100 h-80 flex-row flex ${className}`}>
       <a href={`/car/${car?.carId}`} className="flex flex-row justify-start items-start w-full">
@@ -57,10 +56,8 @@ const CarCard = ({ car, className }) => {
         </div>
       </a>
       <div className="ml-auto pt-8 pr-8">
-        {/*<IconButton className="hover:border-primary hover:text-primary active:bg-primary mb-2" icon={<PlusRoundedIcon />} />*/}
-        <HeartIcon 
-        BuyerID = {1}
-        CarID = {8}/>
+        {/* <IconButton className="hover:border-primary hover:text-primary active:bg-primary mb-2" icon={<PlusRoundedIcon />} /> */}
+        <HeartIcon BuyerID={user?.id} CarID={car?.carId} />
       </div>
     </CardContainer>
   );
