@@ -35,7 +35,7 @@ const NewsPage = () => {
 
   const handleNavigateAuction = (auctionId, auction) => {
     // Truyền thêm các tham số như status, title
-    history.push(`/auction/${auctionId}?status=${auction.Status}&title=${auction.Title}`);
+    history.push(`/auction/${auctionId}?id=${auctionId}`);
   };
 
   const handleNavigateCar = (CarID) => {

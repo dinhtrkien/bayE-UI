@@ -13,7 +13,7 @@ const getTimeAgo = (time) => {
 export default function Auction() {
 
   const searchParams = new URLSearchParams(location.search);
-  const status = searchParams.get('status');
+  const status = searchParams.get('id');
 
   console.log(status);
   const auctionInfo = {
