@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const ImageCarousel = ({ images }) => {
+const ImageCarousel = ({ images, max_width=null, min_width=null }) => {
   const imageArray = Array.isArray(images) ? images : Object.values(images); // Convert to array if not already
   const [currentIndex, setCurrentIndex] = useState(0);
   const totalImages = imageArray.length;
@@ -14,7 +14,7 @@ const ImageCarousel = ({ images }) => {
   };
 
   return (
-    <div className="relative w-full max-w-3xl mx-auto">
+    <div className={`relative w-full ${max_width ? max_width: 'max-w-3xl'} ${min_width ? min_width : ''} mx-auto`}>
       <div className="carousel w-full overflow-hidden rounded-lg shadow-lg">
         {/* Display current image */}
         <img

@@ -74,7 +74,7 @@ const soldCarData = [
   {
     id: 6,
 
-    image: 'src/mock/car.png', // Replace with your image URL
+    image: 'src/mock/car2.png', // Replace with your image URL
     name: 'Ford Explorer 2023',
     duration: '10 Months',
     price: '35,000',
