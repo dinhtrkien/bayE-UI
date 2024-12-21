@@ -3,31 +3,37 @@ import Countdown from '../components/Countdown';
 import LeaderBoard from '../components/LeaderBoard/LeaderBoard';
 import { useSelector } from 'react-redux';
 import { socket } from '@src/socketConfig';
+import formatPrice from '@src/utils/formatPrice';
 const url = import.meta.env.VITE_URL;
-
+export function multiplyPrice(price) {
+  return formatPrice(price * 1000000);
+}
 const getTimeAgo = (time) => {
   const diffInSeconds = Math.floor((Date.now() - time) / 1000);
   return `${diffInSeconds} seconds ago`;
 };
-
-export default function Auction() {
+const getEndTime = (time, duration) => {
+  return time + duration;
+}
+export default function Auction({auctionId, images, auctionTitle, initialPrice, startAuctionDateTime, status, duration}) {
+  // const {id} = 
 
   const searchParams = new URLSearchParams(location.search);
   const status = searchParams.get('status');
 
   console.log(status);
   const auctionInfo = {
-    id: '1',
-    title: 'BMW',
-    description: 'Experience the thrill of owning a luxurious BMW with premium features.',
-    initialPrice: 1,
+    id: auctionId || '1',
+    title: auctionTitle || 'BMW',
+    description: 'Place the highest bid to become a winner !',
+    initialPrice: initialPrice || 1,
   };
   const [isConnected, setIsConnected] = useState(socket.connected);
   const [biddingPrice, setBiddingPrice] = useState(auctionInfo.initialPrice);
   const [leaderBoard, setLeaderBoard] = useState([
     {
       name: 'Phu',
-      timestamp: Date.now() - 1732772042 * 1000, // Adjusting time to be relative for the example
+      timestamp: getEndTime() - Date.now(), // Adjusting time to be relative for the example
       bid: 4,
     },
   ]);
@@ -35,7 +41,6 @@ export default function Auction() {
   const [error, setError] = useState(null);
   const userInfo = useSelector((state) => state.user.user);
 
-  console.log(userInfo)
   const currentHighestPlayer = leaderBoard[0];
   const highestPrice = auctionInfo.initialPrice > currentHighestPlayer.bid ? auctionInfo.initialPrice : currentHighestPlayer.bid;
   async function handleBidding() {
@@ -59,9 +64,6 @@ export default function Auction() {
     console.log('Registration successful:', result);
   }
 
-  function calculateBiddingPrice(value) {
-    setBiddingPrice(parseInt(highestPrice) + parseInt(value));
-  }
   async function fetchLeaderBoard() {
     try {
       const response = await fetch(`${url}/api/auction/${auctionInfo.id}`);
@@ -81,8 +83,15 @@ export default function Auction() {
       console.error('Failed to fetch leaderboard:', error);
     }
   }
+  function calculateBiddingPrice(value) {
+    setBiddingPrice(parseInt(highestPrice) + parseInt(value));
+  }
+  
   function onConnect() {
     setIsConnected(true);
+  }
+  function getAuctionInfo() {
+
   }
   useEffect(() => {
     // Real-time updates
@@ -93,8 +102,6 @@ export default function Auction() {
       console.log(userInfo.name)
       if (data.name === userInfo.name) {
         setLeaderBoard((prevs) => {
-          console.log(prevs)
-
          return prevs.filter((prev) => prev.name != userInfo.name) 
       })
       }
@@ -105,17 +112,14 @@ export default function Auction() {
     };
   }, []);
   useEffect(() => {
-
     setBiddingPrice(highestPrice)
   }, [leaderBoard])
   return (
     <div className="max-w-5xl mx-auto mt-10 p-5">
       {isConnected ? <p>IS CONNECTED SOCKET</p> : <p>NOT CONNECTED SOCKET</p>}
-      {/* Auction Main Content */}
       <div className="flex flex-col md:flex-row gap-10">
-        {/* Image Section */}
         <div className="flex-1">
-          <img src={'https://i.imgur.com/xieN5On.jpeg'} alt="Auction Item" className="rounded-xl shadow-lg object-cover w-full" />
+          <img src={'https://res.cloudinary.com/dhgwdfhcf/image/upload/v1733569988/cars/d9cjg56allh3tnz65bz6.webp'} alt="Auction Item" className="rounded-xl shadow-lg object-cover w-full" />
         </div>
 
         {/* Details Section */}
@@ -123,13 +127,13 @@ export default function Auction() {
           {/* Title and Description */}
           <div>
             <h1 className="text-4xl font-extrabold text-gray-800">{auctionInfo.title}</h1>
-            <p className="text-2xl font-semibold text-blue-600">{highestPrice.toLocaleString()} VND</p>
+            <p className="text-2xl font-semibold text-blue-600">{multiplyPrice(highestPrice.toLocaleString())} VND</p>
             <p className="text-gray-600 mt-4">{auctionInfo.description}</p>
           </div>
 
           {/* Current Bid Info */}
           <div className="flex items-center gap-4">
-            <img src={'https://i.imgur.com/xieN5On.jpeg'} alt={currentHighestPlayer.name} className="w-16 h-16 rounded-full border-2 border-gray-300 shadow-md object-cover" />
+            <img src={'https://res.cloudinary.com/dhgwdfhcf/image/upload/v1733569988/cars/d9cjg56allh3tnz65bz6.webp'} alt={currentHighestPlayer.name} className="w-16 h-16 rounded-full border-2 border-gray-300 shadow-md object-cover" />
             <div>
               <p className="text-lg text-gray-700">
                 <strong>Highest bid by:</strong> {currentHighestPlayer.name}
@@ -158,7 +162,7 @@ export default function Auction() {
                   </button>
                 </div>
                 <button className="w-full bg-blue-600 hover:bg-blue-700 text-white text-lg font-semibold py-2 px-4 rounded-lg shadow-lg transition" onClick={handleBidding}>
-                  Place a Bid {biddingPrice}
+                  Place a Bid {multiplyPrice(biddingPrice)}
                 </button>
               </div>
             </div>

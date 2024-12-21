@@ -1,3 +1,6 @@
+import formatPrice from "@src/utils/formatPrice";
+import { multiplyPrice } from "../../pages/Auction";
+
 export default function LeaderBoard({ leaderBoard }) {
   return (
     <div className="bg-white shadow-md rounded-md overflow-hidden max-w-lg mx-auto mt-16">
@@ -13,7 +16,7 @@ export default function LeaderBoard({ leaderBoard }) {
               <h3 className="text-2xl text-gray-800">{leader.name}</h3>
             </div>
             <div>
-              <p className="text-gray-600 text-xl">{parseInt(leader.bid, 10)} VND</p>
+              <p className="text-gray-600 text-xl">{multiplyPrice(leader.bid)} VND</p>
             </div>
           </li>
         ))}
