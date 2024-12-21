@@ -10,6 +10,7 @@ import SellerInfoCard from '@src/actors/buyer/components/CarDetail/SellerInfoCar
 import Map from '@src/actors/buyer/components/CarDetail/Map';
 import { useParams } from 'react-router-dom';
 import seller from '@src/actors/seller/pages/Seller';
+import Woodpecker from '@src/components/Woodpecker';
 
 const CarDetailPage = () => {
   const { id } = useParams();
@@ -71,7 +72,7 @@ const CarDetailPage = () => {
     fetchCarData();
   }, [id]);
 
-  if (loading) return <div>Loading...</div>;
+  if (loading) return <Woodpecker message={'Chờ xíu, đang tải....'} visible={loading} className={'fixed top-0 left-0 w-screen h-screen flex flex-col items-center justify-center bg-black bg-opacity-75 z-50 text-neutral-100'}/>;
   if (error) return <div>{error}</div>;
 
   return (

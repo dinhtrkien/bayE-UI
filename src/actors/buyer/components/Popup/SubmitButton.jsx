@@ -6,9 +6,9 @@ const handleOnclick = async (FormData, validate) => {
       const response = await fetch(`${import.meta.env.VITE_URL}/api/driveRequest`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ formData }),
+        body: JSON.stringify({ FormData }),
       });
-
+    
       const result = await response.json();
       if (response.ok) {
         console.log('Drive request submitted successfully:', result);

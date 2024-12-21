@@ -77,7 +77,6 @@ function CarWishlist() {
                             <h2 className="text-lg font-semibold">{car.title}</h2>
                             <div className="flex space-x-2">
                                 <HeartIcon
-                                    isFavourite={true}
                                     CarID={car.CarID}
                                     handleDeleteCar={handleDeleteCar}
                                     BuyerID={1}

@@ -1,17 +1,33 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ConfirmPopup from "@src/actors/buyer/components/Popup/ConfirmPopup.jsx"; // Import ConfirmPopup
+import axios from "axios"; // Đảm bảo bạn đã import axios
 
-const HeartIcon = ({ className = "w-6 h-6", onClick, BuyerID, CarID, isFavourite, handleDeleteCar ,setIdDelete}) => {
+const HeartIcon = ({
+  className = "w-6 h-6",
+  onClick,
+  BuyerID,
+  CarID,
+  isFavourite = false, // Giá trị mặc định nếu không truyền
+  handleDeleteCar,
+  setIdDelete,
+}) => {
   const [isred, setIsred] = useState(isFavourite); // Khởi tạo từ tham số isFavourite
   const [isPopupOpen, setIsPopupOpen] = useState(false); // Quản lý trạng thái popup
 
+  // Gọi hàm kiểm tra favourite khi thành phần được load
+  useEffect(() => {
+    const fetchFavouriteStatus = async () => {
+      const exists = await checkFavour(BuyerID, CarID); // Gọi hàm kiểm tra
+      setIsred(exists); // Cập nhật trạng thái dựa trên kết quả
+    };
 
-  const openPopup = () => setIsPopupOpen(true);  // Mở popup
+    fetchFavouriteStatus(); // Gọi hàm kiểm tra
+  }, [BuyerID, CarID]); // Chạy lại khi BuyerID hoặc CarID thay đổi
+
+  const openPopup = () => setIsPopupOpen(true); // Mở popup
   const closePopup = () => setIsPopupOpen(false); // Đóng popup
 
   const handleClick = async () => {
-    // setIsred(!isred); // Toggle trạng thái isred
-
     if (onClick) {
       onClick();
     }
@@ -24,21 +40,43 @@ const HeartIcon = ({ className = "w-6 h-6", onClick, BuyerID, CarID, isFavourite
     }
   };
 
-  const handleAddFavour = async () =>{
+  const checkFavour = async (BuyerID, CarID) => {
+    var carId = CarID;
+    var buyerId = BuyerID;
+    try {
+      const response = await axios.get("http://localhost:8000/api/checkFavour", {
+        params: { carId, buyerId }, // Truyền BuyerID và CarID qua query params
+      });
+
+      if (response.data.exists) {
+        console.log("Favourite exists!");
+        return true;
+      } else {
+        console.log("Favourite does not exist.");
+        console.log(CarID);
+        return false;
+      }
+    } catch (error) {
+      console.error("Error checking favour:", error);
+      return false;
+    }
+  };
+
+  const handleAddFavour = async () => {
     const favourData = {
-      BuyerID : BuyerID,
-      CarID : CarID,
+      BuyerID: BuyerID,
+      CarID: CarID,
     };
     try {
-      const response = await fetch(`${import.meta.env.VITE_URL}/api/favour/addFavour`, {
+      const response = await fetch("http://localhost:8000/api/favour/addFavour", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ favourData }),
+        body: JSON.stringify(favourData),
       });
 
       const result = await response.json();
       if (response.ok) {
-        console.log("Favour add successfully:", result);
+        console.log("Favour added successfully:", result);
       } else {
         console.error("Failed to add favour:", result);
       }
@@ -48,7 +86,6 @@ const HeartIcon = ({ className = "w-6 h-6", onClick, BuyerID, CarID, isFavourite
   };
 
   const handleDeleteFavour = () => {
-    // Gọi handleDeleteCar từ props để xóa car khỏi danh sách
     handleDeleteCar(CarID);
   };
 
@@ -74,14 +111,13 @@ const HeartIcon = ({ className = "w-6 h-6", onClick, BuyerID, CarID, isFavourite
         </svg>
       </button>
 
-      {/* Hiển thị popup xác nhận khi isred là true */}
       {isPopupOpen && (
         <ConfirmPopup
           setIsred={setIsred}
-          isred = {isred}
+          isred={isred}
           setIdDelete={setIdDelete}
           BuyerID={BuyerID}
-          CarID = {CarID}
+          CarID={CarID}
           onCancel={closePopup} // Truyền hàm đóng popup
           handleDeleteFavour={handleDeleteFavour} // Truyền hàm xóa vào popup
         />

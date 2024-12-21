@@ -1,9 +1,6 @@
 import React from 'react';
 import CardContainer from '@src/actors/buyer/components/Common/CardContainer';
 import carImage from '@src/mock/car1.png';
-import IconButton from '@components/Button/IconButton';
-import PlusRoundedIcon from '@components/Icon/PlusRoundedIcon';
-import LoveIcon from '@components/Icon/LoveIcon';
 import HeartIcon from '@components/Icon/HeartIcon';
 import { useSelector } from 'react-redux';
 

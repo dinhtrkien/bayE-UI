@@ -131,8 +131,8 @@ const Home = () => {
         </div>
       </div>
       <div className="mx-auto md:w-3/4  p-4">
-        <CarExploreSection heading="Explored Used Cars" subHeading="Latest Listings" cars={usedCarState?.cars?.slice(0, 5)} href="/shopping?Condition=USED" />
-        <CarExploreSection heading="Explore New Cars" subHeading="From authorized sellers" cars={newCarState?.cars?.slice(0, 5)} href="/shopping?Condition=NEW" />
+        <CarExploreSection heading="Explored Used Cars" loading={usedCarState.loading} subHeading="Latest Listings" cars={usedCarState?.cars?.slice(0, 5)} href="/shopping?Condition=USED" />
+        <CarExploreSection heading="Explore New Cars" loading={newCarState.loading} subHeading="From authorized sellers" cars={newCarState?.cars?.slice(0, 5)} href="/shopping?Condition=NEW" />
         {/* Garage CarExploreSection */}
         <GarageExploreSection className='mt-12'/>
       </div>

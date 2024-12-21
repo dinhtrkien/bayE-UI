@@ -26,9 +26,6 @@ function* loginSaga(action) {
     const decodedToken = jwtDecode(accessToken);
     const expirationTime = decodedToken.exp * 1000; // Convert to milliseconds
 
-    // Set the cookie with the expiration time
-    setCookie('accessToken', accessToken, expirationTime - Date.now());
-
     yield put(loginSuccess({ user, accessToken }));
 
     // Automatically log out the user when the token expires
@@ -41,8 +38,11 @@ function* loginSaga(action) {
 
 function* logoutSaga() {
   try {
-    removeCookie('accessToken');
+    console.log('Logout saga started');
+    localStorage.removeItem('user');
+    localStorage.removeItem('accessToken');
     yield put(logout());
+    console.log('User logged out successfully');
     window.location.href = '/'; // Redirect to home page after logout
   } catch (error) {
     console.error('Error logging out:', error);
@@ -54,7 +54,7 @@ function* watchLogin() {
 }
 
 function* watchLogout() {
-  yield takeLatest(logout.type, logoutSaga);
+  yield put({ type: '/logout' });
 }
 
 export default function* rootSaga() {

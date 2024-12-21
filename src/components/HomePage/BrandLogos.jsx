@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-const carTitles = ["BMW"]
+const carTitles = ["BMW", 'Cadillac', 'Mercedes Benz', 'VinFast']
 const BrandLogos = () => {
-  const [logos, setLogos] = useState([]);
+  const [logos, setLogos] = useState([]); 
 
   useEffect(() => {
     const loadImages = async () => {
@@ -26,7 +26,7 @@ const BrandLogos = () => {
       >
         {/* Original list */}
         {logos.map((logo, index) => (
-          <a href={`/shopping?MakeName=${carTitles[0]}`}>
+          <a href={`/shopping?MakeName=${carTitles[index]}`}>
             <img
               key={index}
               src={logo.src}
