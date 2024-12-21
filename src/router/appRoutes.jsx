@@ -109,8 +109,8 @@ export default [
     component: CarWishlist,
     exact: true,
     restricted: false,
-    isPrivate: true,
-    requiredRole: 'BUYER',
+    isPrivate: false,
+    // requiredRole: 'BUYER',
   },
   {
     path: routes.ADMIN,
@@ -136,14 +136,14 @@ export default [
     isPrivate: true,
     isAdmin: true,
   },
-  {
-    path: routes.NEWSPAGE,
-    component: NewsPage,
-    exact: true,
-    restricted: false,
-    isPrivate: true,
-    requiredRole: 'BUYER',
-  },
+  // {
+  //   path: routes.NEWSPAGE,
+  //   component: NewsPage,
+  //   exact: true,
+  //   restricted: false,
+  //   isPrivate: true,
+  //   requiredRole: 'BUYER',
+  // },
   {
     path: routes.NEWSPAGE,
     component: NewsPage,

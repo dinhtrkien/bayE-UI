@@ -11,6 +11,11 @@ const getTimeAgo = (time) => {
 };
 
 export default function Auction() {
+
+  const searchParams = new URLSearchParams(location.search);
+  const status = searchParams.get('status');
+
+  console.log(status);
   const auctionInfo = {
     id: '1',
     title: 'BMW',

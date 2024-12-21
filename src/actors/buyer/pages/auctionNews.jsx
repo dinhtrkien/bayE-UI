@@ -33,9 +33,14 @@ const NewsPage = () => {
     return { formattedDate, formattedTime };
   };
 
-  const handleNavigate = (auctionId, status) => {
+  const handleNavigateAuction = (auctionId, auction) => {
     // Truyền thêm các tham số như status, title
-    history.push(`/wishlist?status=${status}`);
+    history.push(`/auction/${auctionId}?status=${auction.Status}&title=${auction.Title}`);
+  };
+
+  const handleNavigateCar = (CarID) => {
+    // Truyền thêm các tham số như status, title
+    history.push(`/car/${CarID}`);
   };
 
   const getAuctions = async () => {
@@ -103,12 +108,13 @@ const NewsPage = () => {
                     </span>
                   </div>
                   <div className="flex space-x-3 mt-3">
-                    <button className="flex-1 p-2 border rounded bg-blue-100 hover:bg-blue-200 transition-colors">
+                    <button 
+                    onClick={() => handleNavigateCar(auction.Car.CarID)}
+                    className="flex-1 p-2 border rounded bg-blue-100 hover:bg-blue-200 transition-colors">
                       Xem Xe
                     </button>
                     <button
-                    // onClick={() => history.push(`/auction/${auction.AuctionID}`)}
-                    onClick={() => handleNavigate(auction.AuctionID, auction.Status)}
+                      onClick={() => handleNavigateAuction(auction.AuctionID, auction)}
                      className="flex-1 p-2 border rounded bg-gray-100 hover:bg-gray-200 transition-colors">
                       Xem Chi Tiết Đấu Giá
                     </button>
