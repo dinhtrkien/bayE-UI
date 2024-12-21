@@ -8,7 +8,7 @@ const HeartIcon = ({
   BuyerID,
   CarID,
   isFavourite = false, // Giá trị mặc định nếu không truyền
-  handleDeleteCar,
+  handleDeleteCar = () => {},
   setIdDelete,
 }) => {
   const [isred, setIsred] = useState(isFavourite); // Khởi tạo từ tham số isFavourite
@@ -63,16 +63,14 @@ const HeartIcon = ({
   };
 
   const handleAddFavour = async () => {
-    const favourData = {
-      BuyerID: BuyerID,
-      CarID: CarID,
-    };
     try {
+      const payload = { favourData: { BuyerID, CarID } };
       const response = await fetch("http://localhost:8000/api/favour/addFavour", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(favourData),
+        body: JSON.stringify(payload),
       });
+
 
       const result = await response.json();
       if (response.ok) {

@@ -59,7 +59,9 @@ const CarCard = ({ car, className }) => {
       </a>
       <div className="ml-auto pt-8 pr-8">
         {/*<IconButton className="hover:border-primary hover:text-primary active:bg-primary mb-2" icon={<PlusRoundedIcon />} />*/}
-        <HeartIcon/>
+        <HeartIcon 
+        BuyerID = {1}
+        CarID = {8}/>
       </div>
     </CardContainer>
   );
