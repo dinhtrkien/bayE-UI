@@ -3,7 +3,7 @@ export default {
   REGISTER: '/register',
   LOGIN: '/login',
   PROFILE: '/profile',
-  INFORMATIONS: '/informations',
+  PERSONAL_INFO: '/informations',
 
   // Seller pages
   SELL: '/sell',
@@ -19,4 +19,7 @@ export default {
   NEWSPAGE: '/auction-news'
   AUCTION: '/auction/:id'
   // Admin pages
+  ADMIN: '/admin',
+  USER_LIST: '/admin/users',
+  CAR_LIST: '/admin/cars',
 };

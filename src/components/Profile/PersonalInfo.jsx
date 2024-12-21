@@ -1,6 +1,6 @@
 import * as React from "react";
 
-export function ProfileForm() {
+export function ProfileForm({ user }) {
   return (
     <form className="flex overflow-hidden flex-col px-20 py-10 mx-auto w-full text-base bg-white shadow-sm max-md:px-5 max-md:mt-10 max-md:max-w-full">
       <h2 className="self-start text-xl font-medium leading-snug text-red-500">
@@ -27,7 +27,7 @@ export function ProfileForm() {
           <input
             type="tel"
             id="phone"
-            value="+84 987-654-321"
+            value={user.phone}
             readOnly
             className="flex overflow-hidden flex-col justify-center items-start px-4 py-3.5 mt-2 bg-neutral-100 max-md:pr-5 max-md:max-w-full"
           />

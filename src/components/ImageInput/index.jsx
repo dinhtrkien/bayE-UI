@@ -18,7 +18,7 @@ export default function ImageUploader ({ width, height, index, check, setImageFi
     const selectedFile = event.target.files[0];
     if (selectedFile) {
       console.log('selectedFile', selectedFile);
-  
+
       const reader = new FileReader();
       reader.onload = (e) => {
         const preview = e.target.result; // This contains the base64 image string
@@ -27,7 +27,7 @@ export default function ImageUploader ({ width, height, index, check, setImageFi
       };
       reader.readAsDataURL(selectedFile); // Generate the preview
     } else {
-      setImageFiles(index, undefined); 
+      setImageFiles(index, undefined);
       setImagePreview(''); // Clear the preview if no file is selected
     }
   };
