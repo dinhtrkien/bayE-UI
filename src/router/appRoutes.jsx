@@ -16,8 +16,8 @@ export default [
     path: routes.AUCTION,
     component: Auction,
     exact: true,
-    restricted: false,
-    isPrivate: false,
+    restricted: true,
+    isPrivate: true,
   },
   {
     path: routes.ADDCAR,

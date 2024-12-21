@@ -84,7 +84,7 @@ export default function AddCarContainer({imageFile, setImageFile, onPost}) {
             <label htmlFor="tag" className="w-12 font-semibold text-gray-700">
               Price:
             </label>
-            <PhoneNumberInput />
+            <PhoneNumberInput dispatch={dispatch}/>
           </div>
           <div className="h-3" />
           {/* Tag Input */}

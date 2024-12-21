@@ -1,5 +1,4 @@
 import React from 'react';
-import CarCard from '@components/CarCard';
 import CarList from "@src/actors/buyer/components/Shop/CarList";
 import Woodpecker from "@components/Woodpecker";
 
