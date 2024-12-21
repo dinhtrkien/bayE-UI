@@ -9,6 +9,7 @@ import Profile from '@src/pages/Profile';
 import AddCar from '@src/actors/seller/pages/AddCar';
 import CarWishlist from '@src/actors/buyer/pages/WishList';
 import Shopping from '@src/actors/buyer/pages/Shopping';
+import NewsPage from '@src/actors/buyer/pages/auctionNews'
 import AddAuction from '@src/actors/seller/pages/AddAuction';
 import Auction from '@src/actors/buyer/pages/Auction';
 export default [
@@ -99,5 +100,20 @@ export default [
     restricted: false,
     isPrivate: true,
     requiredRole: 'BUYER',
+  },
+  {
+    path: routes.NEWSPAGE,
+    component: NewsPage,
+    exact: true,
+    restricted: false,
+    isPrivate: true,
+    requiredRole: 'BUYER',
+  },
+  {
+    path: routes.NEWSPAGE,
+    component: NewsPage,
+    exact: true,
+    restricted: false,
+    isPrivate: false,
   },
 ];
